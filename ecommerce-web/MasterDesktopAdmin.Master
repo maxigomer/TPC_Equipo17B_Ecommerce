@@ -54,17 +54,23 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark vh-100" style="width: 230px">
+                <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark vh-100" style="width: 180px">
                     <span>Sidebar</span>
                     <hr />
                     <ul class="nav nav-pills flex-column mb-auto">
                         <li class="nav-item">
                             <a href="#" class="nav-link active" aria-current="page">
-                                <svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
-                                    <use xlink:href="#home"></use>
-                                </svg>
+                                Inicio
                             </a>
-
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-white">Pedidos</a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-white">Clientes</a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-white">Productos</a>
                         </li>
 
                     </ul>

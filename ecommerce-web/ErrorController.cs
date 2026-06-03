@@ -1,6 +1,6 @@
-using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
-namespace Ecommerce.Controllers
+namespace ecommerce_web
 {
     public class ErrorController : Controller
     {

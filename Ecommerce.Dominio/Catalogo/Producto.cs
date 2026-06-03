@@ -7,7 +7,7 @@ namespace Ecommerce.Dominio.Catalogo
     public class Producto
     {
         public int Id { get; set; }
-        public string Sku { get; set; } 
+        public string Sku { get; set; }
         public int IdCategoria { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
@@ -19,3 +19,4 @@ namespace Ecommerce.Dominio.Catalogo
         public virtual Categoria Categoria { get; set; }
         public virtual ICollection<Imagen> Imagenes { get; set; } = new List<Imagen>();
     }
+}

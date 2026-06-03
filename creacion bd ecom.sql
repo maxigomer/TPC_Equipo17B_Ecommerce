@@ -136,3 +136,39 @@ CREATE TABLE ITEM_PEDIDOS(
 	Precio DECIMAL(18,2) NOT NULL
 )
 GO
+
+CREATE PROCEDURE spAltaCategoria(
+@nombre varchar(50),
+@descripcion varchar(255)
+)
+as
+BEGIN
+INSERT INTO CATEGORIAS (Nombre,Descripcion) VALUES(@nombre,@descripcion)
+END
+GO
+
+CREATE PROCEDURE spAltaMarca(
+@nombre varchar(70)
+)
+AS
+BEGIN
+INSERT INTO MARCAS (Nombre) VALUES (@nombre)
+END
+GO
+
+CREATE PROCEDURE spAltaProducto(
+@sku varchar(70),
+@idCategoria integer,
+@idMarca integer,
+@nombre varchar(100),
+@descripcion varchar(255),
+@precio decimal,
+@costo decimal,
+@stock integer,
+@estado bit
+)
+AS
+BEGIN
+INSERT INTO PRODUCTOS (Sku,IdCategoria,IdMarca,Nombre,Descripcion,Precio,Costo,Stock,Estado) VALUES (@sku,@idCategoria,@idMarca,@nombre,@descripcion,@precio,@costo,@stock,@estado)
+END
+GO

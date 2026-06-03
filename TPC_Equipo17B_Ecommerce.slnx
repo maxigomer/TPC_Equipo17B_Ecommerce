@@ -1,3 +1,6 @@
 <Solution>
+  <Folder Name="/Dominio/">
+    <Project Path="Ecommerce.Dominio/Ecommerce.Dominio.csproj" Id="eec9e67e-46a3-4cd8-a4ad-09300ca5e84c" />
+  </Folder>
   <Project Path="ecommerce-web/ecommerce-web.csproj" Id="4c020b8a-2559-4b2e-872f-86e131d5e0ee" />
 </Solution>

@@ -6,12 +6,12 @@ namespace Ecommerce.Dominio.Carrito
 {
     public class Carrito
     {
-        public int IdCarrito { get; set; }
-        public DateTime FechaCreacion { get; set; }
+        public int Id { get; set; }
+        public DateTime Fecha { get; set; }
+        public decimal Precio { get; set; }
 
-        // Relación: Pertenece a un Cliente
         public int IdCliente { get; set; }
-        public virtual Cliente Cliente { get; set; }
+        public virtual Usuarios.Cliente Cliente { get; set; }
 
         public virtual ICollection<ItemCarrito> Items { get; set; } = new List<ItemCarrito>();
     }

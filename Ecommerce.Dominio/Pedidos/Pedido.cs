@@ -8,27 +8,25 @@ namespace Ecommerce.Dominio.Pedidos
 {
     public class Pedido
     {
-        public int IdPedido { get; set; }
-        public DateTime FechaCreacion { get; set; }
-        public decimal Total { get; set; }
-
-        // Claves Foráneas (Relaciones)
+        public int Id { get; set; }
         public int IdCliente { get; set; }
-        public virtual Cliente Cliente { get; set; }
-
-        public int IdFormaPago { get; set; }
-        public virtual FormaPago FormaPago { get; set; }
-
+        public int IdMetodoDePago { get; set; }
+        public DateTime Fecha { get; set; }
+        public decimal Precio { get; set; } // Representa el Total de la compra
         public int IdFormaEntrega { get; set; }
-        public virtual FormaEntrega FormaEntrega { get; set; }
+        public int IdEstado { get; set; }
 
-        public int IdEstadoPedido { get; set; }
-        public virtual EstadoPedido EstadoPedido { get; set; }
+        public int? IdDireccion { get; set; } // 'int?' (nullable) porque si retira en el local, no requiere dirección
 
-        public int? IdDireccion { get; set; } // Nullable (int?) porque si retira en sucursal, no hay dirección
-        public virtual Direccion Direccion { get; set; }
+        // Propiedades de navegación (Relaciones)
+        public virtual Usuarios.Cliente Cliente { get; set; }
+        public virtual Parametros.MetodoPago MetodoPago { get; set; }
+        public virtual Parametros.FormaEntrega FormaEntrega { get; set; }
+        public virtual Parametros.EstadoPedido EstadoPedido { get; set; }
 
-        // Colecciones hijas
-        public virtual ICollection<DetallePedido> Detalles { get; set; } = new List<DetallePedido>();
+        public virtual Usuarios.Direccion Direccion { get; set; }
+
+        public virtual ICollection<ItemPedido> Items { get; set; } = new List<ItemPedido>();
         public virtual ICollection<ObservacionPedido> Observaciones { get; set; } = new List<ObservacionPedido>();
     }
+}

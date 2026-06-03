@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Ecommerce.Dominio.Parametros
 {
-    public class FormaEntrega
+    public class FormaEntrega 
     {
-        public int IdFormaEntrega { get; set; }
+        public int Id { get; set; }
         public string Nombre { get; set; }
-        public bool Activa { get; set; }
+        public string Observaciones { get; set; }
     }
 }

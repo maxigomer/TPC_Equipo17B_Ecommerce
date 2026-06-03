@@ -1,19 +1,19 @@
-﻿using System;
+﻿using Ecommerce.Dominio.Catalogo;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ecommerce.Dominio.Carrito
+namespace Ecommerce.Dominio.Pedidos
 {
-    public class ItemCarrito
+    public class ItemPedido
     {
         public int Id { get; set; }
-        public int IdCarrito { get; set; }
+        public int IdPedido { get; set; }
         public int IdProducto { get; set; }
-
         public int Cantidad { get; set; }
         public decimal Precio { get; set; }
 
-        public virtual Carrito Carrito { get; set; }
+        public virtual Pedido Pedido { get; set; }
         public virtual Catalogo.Producto Producto { get; set; }
     }
 }

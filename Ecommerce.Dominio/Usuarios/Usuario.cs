@@ -6,12 +6,13 @@ namespace Ecommerce.Dominio.Usuarios
 {
     public class Usuario
     {
-        public int IdUsuario { get; set; }
-        public string NombreUsuario { get; set; } // En tu doc dice "Usuario"
-        public string Contrasena { get; set; } // En C# evitamos la "ñ"
-        public int Rol { get; set; } // Ej: 1 = Cliente, 2 = Admin
+        public int Id { get; set; }
+        public string NombreUsuario { get; set; }
+        public string Clave { get; set; }
 
-        // Relación 1 a 1 con el Cliente
+        public int IdRol { get; set; }
+        public virtual Rol Rol { get; set; }
+
         public virtual Cliente Cliente { get; set; }
     }
 }

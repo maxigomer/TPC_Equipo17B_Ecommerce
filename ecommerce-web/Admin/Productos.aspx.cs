@@ -1,14 +1,14 @@
-﻿using System;
+﻿using negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using negocio;
 
 namespace ecommerce_web
 {
-    public partial class DefaultAdmin : System.Web.UI.Page
+    public partial class Productos : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -19,9 +19,15 @@ namespace ecommerce_web
                 dgvProductos.DataSource = Session["listaProductos"];
                 dgvProductos.DataBind();
 
-                
+
             }
 
+           
+        }
+        protected void btnCargaProducto_Click(object sender, EventArgs e)
+        {
+
+            Response.Redirect("CargaProducto.aspx", false);
         }
     }
 }

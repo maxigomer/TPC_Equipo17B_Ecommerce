@@ -50,14 +50,14 @@ GO
 
 CREATE TABLE CATEGORIAS(
 	Id INTEGER NOT NULL PRIMARY KEY IDENTITY(1,1),
-	Nombre VARCHAR(50) NOT NULL,
+	Nombre VARCHAR(50) NOT NULL UNIQUE,
 	Descripcion VARCHAR(255) NOT NULL
 )
 GO
 
 CREATE TABLE MARCAS(
 	Id INTEGER NOT NULL PRIMARY KEY IDENTITY(1,1),
-	Nombre VARCHAR(70) NOT NULL,
+	Nombre VARCHAR(70) NOT NULL UNIQUE,
 )
 GO
 
@@ -173,3 +173,6 @@ BEGIN
 INSERT INTO PRODUCTOS (Sku,IdCategoria,IdMarca,Nombre,Descripcion,Precio,Costo,Stock,Estado) VALUES (@sku,@idCategoria,@idMarca,@nombre,@descripcion,@precio,@costo,@stock,@estado)
 END
 GO
+
+EXEC spAltaMarca 'Huawei'
+EXEC spAltaMarca 'Samsung'

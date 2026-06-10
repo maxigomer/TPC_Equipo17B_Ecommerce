@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EcommerceDominio.Catalogo
 {
-    internal class Marca
+    public class Marca
     {
         public int Id { get; set; }
         public string Nombre { get; set; }

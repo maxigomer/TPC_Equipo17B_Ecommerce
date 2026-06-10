@@ -17,3 +17,4 @@ namespace EcommerceDominio.Usuarios
 
         public virtual Cliente Cliente { get; set; }
     }
+}

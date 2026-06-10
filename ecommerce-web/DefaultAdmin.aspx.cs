@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using negocio;
 
 namespace ecommerce_web
 {
@@ -11,6 +12,15 @@ namespace ecommerce_web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                ProductoNegocio negocio = new ProductoNegocio();
+                Session.Add("listaProductos", negocio.listar());
+                dgvProductos.DataSource = Session["listaProductos"];
+                dgvProductos.DataBind();
+
+                
+            }
 
         }
     }

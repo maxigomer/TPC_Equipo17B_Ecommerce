@@ -7,7 +7,7 @@ using EcommerceDominio.Catalogo;
 
 namespace negocio
 {
-    internal class MarcaNegocio
+    public class MarcaNegocio
     {
         public List<Marca> listar()
         {

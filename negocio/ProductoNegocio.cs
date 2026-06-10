@@ -7,7 +7,7 @@ using EcommerceDominio.Catalogo;
 
 namespace negocio
 {
-    internal class ProductoNegocio
+    public class ProductoNegocio
     {
 
         public List<Producto> listar()
@@ -28,11 +28,14 @@ namespace negocio
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.Precio = (decimal)datos.Lector["Precio"];
-                    aux.Costo = (decimal)datos.Lector["Costo"];
+                    if (!(datos.Lector["Costo"] is DBNull))
+                        aux.Costo = (decimal)datos.Lector["Costo"];
                     aux.Stock = (int)datos.Lector["Stock"];
                     aux.Estado = (bool)datos.Lector["Estado"];
+                    aux.Marca = new Marca();
                     aux.Marca.Id = (int)datos.Lector["IdMarca"];
                     aux.Marca.Nombre = (string)datos.Lector["Marca"];
+                    aux.Categoria = new Categoria();
                     aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
                     aux.Categoria.Nombre = (string)datos.Lector["Categoria"];
 

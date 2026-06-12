@@ -106,7 +106,7 @@
 
             <div class="error-code">404</div>
             <h1>Página no encontrada</h1>
-            <p>El recurso de ASP.NET que estás buscando no existe en el servidor o ha cambiado de dirección de forma permanente.</p>
+            <p>La pagina que estás buscando no existe en el servidor o ha cambiado de dirección de forma permanente.</p>
             
             <!-- Enlace directo a la raíz de tu sitio ASP.NET -->
             <a href="Default.aspx" class="btn">Regresar al inicio</a>

@@ -15,10 +15,11 @@
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
                     <div class="d-flex">
-                        <asp:TextBox runat="server" ID="txtUrlImagen" CssClass="form-control flex-grow-1" placeholder="Url Imagen" />
-                        <asp:Button runat="server" ID="btnAgregarUrlImagen" CssClass="form-control" Text="Agregar" />
+                        <asp:TextBox runat="server" ID="txtUrlImagen" CssClass="form-control flex-grow-1 m-2" placeholder="Url Imagen" />
+                        <asp:Button runat="server" ID="btnAgregarUrlImagen" OnClick="btnAgregarUrlImagen_Click" CssClass="form-control m-1" Text="Agregar" Style="width: 100px" />
 
                     </div>
+                    <asp:BulletedList runat="server" ID="blImagenes"></asp:BulletedList>
 
                 </ContentTemplate>
             </asp:UpdatePanel>

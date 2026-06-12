@@ -15,4 +15,13 @@
 
         </Columns>
     </asp:GridView>
+
+<%--    <asp:GridView runat="server" ID="dgvTest" CssClass="table table-dark table-bordered" AutoGenerateColumns="false">
+        <Columns>
+            <asp:BoundField HeaderText="URL" DataField="Url" />
+            <asp:BoundField HeaderText="Id del Producto" DataField="IdProducto" />
+
+        </Columns>--%>
+
+    </asp:GridView>
 </asp:Content>

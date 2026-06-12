@@ -95,5 +95,17 @@ namespace ecommerce_web
             }
 
         }
+
+        protected void btnAgregarUrlImagen_Click(object sender, EventArgs e)
+        {
+            string url = txtUrlImagen.Text;
+
+            if (Session["listaUrl"] != null)
+            {
+                List<string> lista = new List<string>();
+                lista.Add(url);
+            }
+
+        }
     }
 }

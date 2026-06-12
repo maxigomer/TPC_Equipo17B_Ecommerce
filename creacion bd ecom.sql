@@ -181,5 +181,15 @@ SELECT P.Id, Sku, P.Nombre, P.Descripcion, Precio, Costo, Stock , M.Nombre Marca
 END
 GO
 
+CREATE PROCEDURE spAltaImagen(
+@url varchar(255),
+@IdProducto int
+)
+AS
+BEGIN
+INSERT INTO IMAGENES (Url,IdProducto) VALUES (@url,@IdProducto)
+END
+GO
+
 EXEC spAltaMarca 'Huawei'
 EXEC spAltaMarca 'Samsung'

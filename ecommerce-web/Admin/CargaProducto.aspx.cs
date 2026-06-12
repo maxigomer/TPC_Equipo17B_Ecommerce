@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using negocio;
+using EcommerceDominio.Catalogo;
 
 namespace ecommerce_web
 {
@@ -18,6 +19,7 @@ namespace ecommerce_web
                 if (!IsPostBack)
                 {
                     CategoriaNegocio categoria = new CategoriaNegocio();
+                    MarcaNegocio marca = new MarcaNegocio();
 
                     ddCategoria.DataSource = categoria.listar();
                     ddCategoria.DataValueField = "Id";
@@ -25,6 +27,13 @@ namespace ecommerce_web
                     ddCategoria.DataBind();
 
                     ddCategoria.Items.Insert(0, "");
+
+                    ddMarca.DataSource = marca.listar();
+                    ddMarca.DataValueField = "Id";
+                    ddMarca.DataTextField = "Nombre";
+                    ddMarca.DataBind();
+
+                    ddMarca.Items.Insert(0, "");
 
                 }
 
@@ -49,6 +58,35 @@ namespace ecommerce_web
 
         protected void btnAgregarProducto_Click(object sender, EventArgs e)
         {
+            try
+            {
+                ProductoNegocio negocio = new ProductoNegocio();
+
+                Producto producto = new Producto();
+                producto.Nombre = txtNombre.Text;
+                producto.Descripcion = txtDescripcion.Text;
+                producto.Categoria = new Categoria();
+                producto.Categoria.Id = int.Parse(ddCategoria.SelectedValue);
+                producto.Marca = new Marca();
+                producto.Marca.Id = int.Parse(ddMarca.SelectedValue);
+                producto.Sku = txtSku.Text;
+                producto.Stock = int.Parse(txtStock.Text);
+                producto.Precio = int.Parse(txtPrecio.Text);
+                producto.Costo = int.Parse(txtCosto.Text);
+                producto.Estado = true;
+
+
+                negocio.agregar(producto);
+
+
+                
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex.ToString());
+                //Response.Redirect("Productos.aspx", false);
+            }
             string test = Request.Form[ddCategoria.UniqueID];
 
             if (test.StartsWith("NEW|"))

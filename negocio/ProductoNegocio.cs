@@ -56,6 +56,35 @@ namespace negocio
 
         }
 
+        public void agregar(Producto producto)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("spAltaProducto");
+                datos.setearParametros("@sku",producto.Sku);
+                datos.setearParametros("@idCategoria",producto.Categoria.Id);
+                datos.setearParametros("@idMarca",producto.Marca.Id);
+                datos.setearParametros("@nombre",producto.Nombre);
+                datos.setearParametros("@descripcion",producto.Descripcion);
+                datos.setearParametros("@precio",producto.Precio);
+                datos.setearParametros("@costo",producto.Costo);
+                datos.setearParametros("@stock",producto.Stock);
+                datos.setearParametros("@estado",producto.Estado);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
 
 
     }

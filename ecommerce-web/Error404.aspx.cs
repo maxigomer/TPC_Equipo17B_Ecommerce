@@ -1,6 +1,6 @@
 using System;
 
-namespace TuProyecto
+namespace ecommerce_web
 {
     public partial class Error404 : System.Web.UI.Page
     {

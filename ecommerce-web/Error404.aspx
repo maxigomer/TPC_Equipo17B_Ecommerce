@@ -97,3 +97,20 @@
 </head>
 <body>
 
+    <form id="form1" runat="server">
+        <div class="container">
+            <div class="illustration">
+                <div class="circle circle-outer"></div>
+                <div class="circle circle-inner"></div>
+            </div>
+
+            <div class="error-code">404</div>
+            <h1>Página no encontrada</h1>
+            <p>El recurso de ASP.NET que estás buscando no existe en el servidor o ha cambiado de dirección de forma permanente.</p>
+            
+            <!-- Enlace directo a la raíz de tu sitio ASP.NET -->
+            <a href="Default.aspx" class="btn">Regresar al inicio</a>
+        </div>
+    </form>
+</body>
+</html>

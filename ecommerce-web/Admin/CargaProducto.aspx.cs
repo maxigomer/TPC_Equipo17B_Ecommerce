@@ -79,7 +79,7 @@ namespace ecommerce_web
                 negocio.agregar(producto);
 
 
-                
+
 
             }
             catch (Exception ex)
@@ -100,10 +100,23 @@ namespace ecommerce_web
         {
             string url = txtUrlImagen.Text;
 
-            if (Session["listaUrl"] != null)
+            try
             {
-                List<string> lista = new List<string>();
-                lista.Add(url);
+                if (Session["listaUrl"] != null)
+                {
+                    List<string> lista = new List<string>();
+                    lista.Add(url);
+                    Session.Add("listaUrl", lista);
+                }
+                else
+                {
+                    ((List<string>)Session["listaUrl"]).Add(url);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex.ToString());
             }
 
         }

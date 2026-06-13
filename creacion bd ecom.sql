@@ -183,7 +183,7 @@ GO
 
 CREATE PROCEDURE spAltaImagen(
 @url varchar(255),
-@IdProducto int
+@idProducto int
 )
 AS
 BEGIN

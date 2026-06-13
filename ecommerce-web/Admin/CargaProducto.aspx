@@ -56,5 +56,5 @@
         </div>
 
     </div>
-    <asp:Button runat="server" ID="btnAgregarProducto" OnClick="btnAgregarProducto_Click" />
+    <asp:Button runat="server" ID="btnAgregarProducto" OnClick="btnAgregarProducto_Click" Text="Agregar Producto" />
 </asp:Content>

@@ -61,5 +61,27 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public int agregarScalar(string nombre)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("spAltaMarcaScalar");
+                datos.setearParametros("@nombre", nombre);
+
+                return datos.ejecutarAccionScalar();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

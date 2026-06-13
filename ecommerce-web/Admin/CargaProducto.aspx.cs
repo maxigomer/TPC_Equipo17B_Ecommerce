@@ -61,6 +61,7 @@ namespace ecommerce_web
             try
             {
                 ProductoNegocio negocio = new ProductoNegocio();
+                ImagenNegocio imagenNegocio = new ImagenNegocio();
 
                 Producto producto = new Producto();
                 producto.Nombre = txtNombre.Text;
@@ -76,7 +77,17 @@ namespace ecommerce_web
                 producto.Estado = true;
 
 
-                negocio.agregar(producto);
+                if (Session["listaUrl"] != null)
+                {
+
+                    imagenNegocio.agregarImagen((List<string>)Session["listaUrl"], negocio.agregarScalar(producto));
+
+                }
+                else
+                {
+                    negocio.agregar(producto);
+
+                }
 
 
 
@@ -102,7 +113,7 @@ namespace ecommerce_web
 
             try
             {
-                if (Session["listaUrl"] != null)
+                if (Session["listaUrl"] == null)
                 {
                     List<string> lista = new List<string>();
                     lista.Add(url);

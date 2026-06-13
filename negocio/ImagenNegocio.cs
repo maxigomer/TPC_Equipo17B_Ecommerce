@@ -79,6 +79,7 @@ namespace negocio
                     datos.setearParametros("@url", url);
                     datos.setearParametros("@idProducto", idProducto);
                     datos.ejecutarAccion();
+                    datos.cerrarConexion();
 
                 }
 

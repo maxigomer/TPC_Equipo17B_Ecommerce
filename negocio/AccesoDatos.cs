@@ -33,6 +33,7 @@ namespace negocio
 
         public void setearProcedimiento(string sp)
         {
+            comando.Parameters.Clear();
             comando.CommandType = System.Data.CommandType.StoredProcedure;
             comando.CommandText = sp;
         }
@@ -77,6 +78,9 @@ namespace negocio
             {
                 conexion.Open();
                 return int.Parse(comando.ExecuteScalar().ToString());
+                //int id = 0;
+                //id = (int)comando.ExecuteScalar(); 
+                //return id;
             }
             catch (Exception ex)
             {

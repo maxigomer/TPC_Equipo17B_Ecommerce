@@ -174,6 +174,24 @@ INSERT INTO PRODUCTOS (Sku,IdCategoria,IdMarca,Nombre,Descripcion,Precio,Costo,S
 END
 GO
 
+CREATE PROCEDURE spAltaProductoScalar(
+@sku varchar(70),
+@idCategoria integer,
+@idMarca integer,
+@nombre varchar(100),
+@descripcion varchar(255),
+@precio decimal,
+@costo decimal,
+@stock integer,
+@estado bit
+)
+AS
+BEGIN
+INSERT INTO PRODUCTOS (Sku,IdCategoria,IdMarca,Nombre,Descripcion,Precio,Costo,Stock,Estado) VALUES (@sku,@idCategoria,@idMarca,@nombre,@descripcion,@precio,@costo,@stock,@estado)
+SELECT SCOPE_IDENTITY();
+END
+GO
+
 CREATE PROCEDURE spListarProductos
 AS
 BEGIN

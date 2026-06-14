@@ -50,8 +50,7 @@ GO
 
 CREATE TABLE CATEGORIAS(
 	Id INTEGER NOT NULL PRIMARY KEY IDENTITY(1,1),
-	Nombre VARCHAR(50) NOT NULL UNIQUE,
-	Descripcion VARCHAR(255) NOT NULL
+	Nombre VARCHAR(50) NOT NULL UNIQUE
 )
 GO
 
@@ -139,8 +138,7 @@ CREATE TABLE ITEM_PEDIDOS(
 GO
 
 CREATE PROCEDURE spAltaCategoria(
-@nombre varchar(50),
-@descripcion varchar(255)
+@nombre varchar(50)
 )
 as
 BEGIN
@@ -209,5 +207,27 @@ INSERT INTO IMAGENES (Url,IdProducto) VALUES (@url,@IdProducto)
 END
 GO
 
+CREATE PROCEDURE spAltaMarcaScalar(
+@nombre varchar(70)
+)
+AS
+BEGIN
+INSERT INTO MARCAS (Nombre) VALUES (@nombre)
+SELECT SCOPE_IDENTITY();
+END
+GO
+
+CREATE PROCEDURE spAltaCategoriaScalar(
+@nombre varchar(50)
+)
+as
+BEGIN
+INSERT INTO CATEGORIAS (Nombre) VALUES(@nombre)
+SELECT SCOPE_IDENTITY();
+END
+GO
+
 EXEC spAltaMarca 'Huawei'
 EXEC spAltaMarca 'Samsung'
+
+EXEC spAltaCategoria 'Televisores'

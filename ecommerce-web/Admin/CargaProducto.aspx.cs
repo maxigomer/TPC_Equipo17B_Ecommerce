@@ -63,13 +63,37 @@ namespace ecommerce_web
                 ProductoNegocio negocio = new ProductoNegocio();
                 ImagenNegocio imagenNegocio = new ImagenNegocio();
 
+
                 Producto producto = new Producto();
                 producto.Nombre = txtNombre.Text;
                 producto.Descripcion = txtDescripcion.Text;
                 producto.Categoria = new Categoria();
-                producto.Categoria.Id = int.Parse(ddCategoria.SelectedValue);
+                if (Request.Form[ddCategoria.UniqueID].StartsWith("NEW|"))
+                {
+
+                    string nuevaCategoria = Request.Form[ddCategoria.UniqueID];
+                    CategoriaNegocio categoria = new CategoriaNegocio();
+                    producto.Categoria.Id = categoria.agregarScalar(nuevaCategoria.Substring(4));
+
+                }
+                else
+                {
+                    producto.Categoria.Id = int.Parse(ddCategoria.SelectedValue);
+
+                }
                 producto.Marca = new Marca();
-                producto.Marca.Id = int.Parse(ddMarca.SelectedValue);
+                if (Request.Form[ddMarca.UniqueID].StartsWith("NEW|"))
+                {
+                    string nuevaMarca = Request.Form[ddMarca.UniqueID];
+                    MarcaNegocio marca = new MarcaNegocio();
+                    producto.Marca.Id = marca.agregarScalar(nuevaMarca.Substring(4));
+
+                }
+                else
+                {
+                    producto.Marca.Id = int.Parse(ddMarca.SelectedValue);
+
+                }
                 producto.Sku = txtSku.Text;
                 producto.Stock = int.Parse(txtStock.Text);
                 producto.Precio = int.Parse(txtPrecio.Text);
@@ -91,6 +115,7 @@ namespace ecommerce_web
 
 
 
+                Response.Redirect("Productos.aspx", false);
 
             }
             catch (Exception ex)
@@ -98,12 +123,14 @@ namespace ecommerce_web
                 Session.Add("error", ex.ToString());
                 //Response.Redirect("Productos.aspx", false);
             }
-            string test = Request.Form[ddCategoria.UniqueID];
-
-            if (test.StartsWith("NEW|"))
+            finally
             {
-                test = test.Substring(4);
             }
+
+            //if (test.StartsWith("NEW|"))
+            //{
+            //    test = test.Substring(4);
+            //}
 
         }
 

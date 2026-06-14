@@ -14,6 +14,7 @@ namespace negocio
         {
             List<Producto> lista = new List<Producto>();
             AccesoDatos datos = new AccesoDatos();
+            ImagenNegocio imgNegocio = new ImagenNegocio();
 
             try
             {
@@ -38,6 +39,30 @@ namespace negocio
                     aux.Categoria = new Categoria();
                     aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
                     aux.Categoria.Nombre = (string)datos.Lector["Categoria"];
+
+                    try
+                    {
+                        foreach(Imagen img in imgNegocio.listar(aux.Id))
+                        {
+                            aux.Imagenes.Add(img);
+
+                        }
+                        
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+
+                    }
+
+                    if (aux.Imagenes != null && aux.Imagenes.Count() > 0)
+                    {
+                        aux.ImagenPrincipal = aux.Imagenes[0].Url;
+                    }
+                    else
+                    {
+                        aux.ImagenPrincipal = "https://img.icons8.com/pulsar-line/1200/image.jpg";
+                    }
 
                     lista.Add(aux);
                 }

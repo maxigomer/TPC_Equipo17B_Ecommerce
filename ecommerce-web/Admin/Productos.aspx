@@ -7,7 +7,7 @@
         <%--        <asp:DropDownList runat="server" ID="ddActivo" CssClass="btn btn-primary mb-1 dropdown-toggle"></asp:DropDownList>--%>
         <asp:Button runat="server" ID="btnCargaProducto" Text="Nuevo Producto" OnClick="btnCargaProducto_Click" CssClass="btn btn-dark mb-1" />
     </div>
-    <asp:GridView runat="server" ID="dgvProductos" CssClass="table table-dark table-bordered" AutoGenerateColumns="false">
+    <asp:GridView runat="server" ID="dgvProductos" CssClass="table table-white caption-top" AutoGenerateColumns="false">
         <Columns>
             <asp:TemplateField>
                 <ItemTemplate>
@@ -18,13 +18,19 @@
             <asp:TemplateField HeaderText="Producto">
                 <ItemTemplate>
                     <div class="d-flex flex-row align-items-center">
-                        <asp:Image runat="server" ID="imgProducto" ImageUrl="https://static.thenounproject.com/png/4595376-200.png" Width="100px" Height="100px" />
-                        <h3><%# Eval("Nombre") %></h3>
+                        <asp:Image runat="server" ID="imgProducto" ImageUrl='<%# Eval("ImagenPrincipal") %>' Width="60px" Height="60px" />
+                        <h4><%# Eval("Nombre") %></h4>
                     </div>
                 </ItemTemplate>
             </asp:TemplateField>
+            <asp:TemplateField HeaderText="Estado">
+                <ItemTemplate>
+                    <span class='<%# (bool)Eval("Estado") ? "badge rounded-pill bg-success" : "badge rounded-pill bg-info" %>'>
+                        <%# (bool)Eval("Estado") ? "Activo" : "Draft" %>
+                    </span>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:BoundField HeaderText="SKU" DataField="Sku" />
-            <%--            <asp:BoundField HeaderText="Producto" DataField="Nombre" />--%>
             <asp:BoundField HeaderText="Categoria" DataField="Categoria.Nombre" />
             <asp:BoundField HeaderText="Marca" DataField="Marca.Nombre" />
 

@@ -11,7 +11,10 @@ namespace ecommerce_web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                //continuación de consulta con base de datos para la carga de produtos
+            }
         }
     }
 }

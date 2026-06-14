@@ -7,7 +7,8 @@
         <%--        <asp:DropDownList runat="server" ID="ddActivo" CssClass="btn btn-primary mb-1 dropdown-toggle"></asp:DropDownList>--%>
         <asp:Button runat="server" ID="btnCargaProducto" Text="Nuevo Producto" OnClick="btnCargaProducto_Click" CssClass="btn btn-dark mb-1" />
     </div>
-    <asp:GridView runat="server" ID="dgvProductos" CssClass="table table-white caption-top" AutoGenerateColumns="false">
+    <asp:GridView runat="server" ID="dgvProductos" CssClass="table table-white caption-top" AutoGenerateColumns="false"
+        OnSelectedIndexChanged="dgvProductos_SelectedIndexChanged" AllowPaging="true" PageSize="10">
         <Columns>
             <asp:TemplateField>
                 <ItemTemplate>
@@ -17,10 +18,13 @@
 
             <asp:TemplateField HeaderText="Producto">
                 <ItemTemplate>
-                    <div class="d-flex flex-row align-items-center">
-                        <asp:Image runat="server" ID="imgProducto" ImageUrl='<%# Eval("ImagenPrincipal") %>' Width="60px" Height="60px" />
-                        <h4><%# Eval("Nombre") %></h4>
-                    </div>
+                    <a href='CargaProducto.aspx?id=<%#Eval ("Id") %>' class="text-decoration-none text-reset">
+                        <div class="d-flex flex-row align-items-center">
+                            <asp:Image runat="server" ID="imgProducto" ImageUrl='<%# Eval("ImagenPrincipal") %>' Width="60px" Height="60px" CssClass="me-2" />
+                            <h4><%# Eval("Nombre") %></h4>
+                        </div>
+
+                    </a>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Estado">

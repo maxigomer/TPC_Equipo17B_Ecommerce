@@ -36,5 +36,12 @@ namespace ecommerce_web
 
             Response.Redirect("CargaProducto.aspx", false);
         }
+
+        protected void dgvProductos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            string id = dgvProductos.SelectedDataKey.Value.ToString();
+            Response.Redirect("CargaProducto.aspx?=" + id, false);
+        }
     }
 }

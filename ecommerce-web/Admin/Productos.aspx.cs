@@ -20,6 +20,7 @@ namespace ecommerce_web
                 dgvProductos.DataBind();
 
 
+
                 //ImagenNegocio imagen = new ImagenNegocio();
                 //Session.Add("listaImagenes", imagen.listar());
                 //dgvTest.DataSource = Session["listaImagenes"];

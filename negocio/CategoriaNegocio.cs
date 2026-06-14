@@ -16,7 +16,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("SELECT Id, Nombre, Descripcion FROM CATEGORIAS");
+                datos.setearConsulta("SELECT Id, Nombre FROM CATEGORIAS");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -24,7 +24,6 @@ namespace negocio
                     Categoria aux = new Categoria();
 
                     aux.Id = (int)datos.Lector["Id"];
-                    aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
 
                     lista.Add(aux);
@@ -51,7 +50,6 @@ namespace negocio
             {
                 datos.setearProcedimiento("spAltaCategoria");
                 datos.setearParametros("@nombre", categoria.Nombre);
-                datos.setearParametros("@descripcion", categoria.Descripcion);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)

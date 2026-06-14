@@ -142,7 +142,7 @@ CREATE PROCEDURE spAltaCategoria(
 )
 as
 BEGIN
-INSERT INTO CATEGORIAS (Nombre,Descripcion) VALUES(@nombre,@descripcion)
+INSERT INTO CATEGORIAS (Nombre) VALUES(@nombre)
 END
 GO
 

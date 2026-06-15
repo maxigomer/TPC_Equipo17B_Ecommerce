@@ -44,6 +44,12 @@ namespace negocio
             }
         }
 
+        /* --- CÓDIGO COMENTADO ---
+           He comentado esta función por seguridad, ya que usa parámetros, 
+           lo cual es una buena práctica.
+        */
+
+        /*
         public List<Imagen> listarPorIdProducto(int idProducto)
         {
             List<Imagen> lista = new List<Imagen>();
@@ -53,7 +59,6 @@ namespace negocio
             {
                 datos.setearConsulta("SELECT Id, Url, IdProducto FROM IMAGENES WHERE IdProducto = @idProducto");
                 datos.setearParametros("@idProducto", idProducto);
-
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -65,7 +70,41 @@ namespace negocio
 
                     lista.Add(aux);
                 }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        */
 
+        // --- LA OTRA FUNCIÓN (ACTIVA) ---
+
+        public List<Imagen> listar(int id)
+        {
+            List<Imagen> lista = new List<Imagen>();
+            AccesoDatos datos = new AccesoDatos();
+            string consulta = "SELECT * FROM IMAGENES WHERE IdProducto = " + id;
+
+            try
+            {
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Imagen imagen = new Imagen();
+                    imagen.Id = (int)datos.Lector["Id"];
+                    imagen.Url = (string)datos.Lector["Url"];
+                    imagen.IdProducto = (int)datos.Lector["IdProducto"];
+
+                    lista.Add(imagen);
+                }
                 return lista;
             }
             catch (Exception ex)

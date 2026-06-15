@@ -35,6 +35,14 @@ namespace ecommerce_web
 
                     ddMarca.Items.Insert(0, "");
 
+                    ddEstado.Items.Add("Activo");
+                    ddEstado.Items.Add("Draft");
+
+                }
+
+                if(!IsPostBack && Request.QueryString["id"] != null)
+                {
+
                 }
 
                 if (IsPostBack)
@@ -98,7 +106,7 @@ namespace ecommerce_web
                 producto.Stock = int.Parse(txtStock.Text);
                 producto.Precio = int.Parse(txtPrecio.Text);
                 producto.Costo = int.Parse(txtCosto.Text);
-                producto.Estado = true;
+                producto.Estado = ddEstado.SelectedValue == "Activo" ? true : false;
 
 
                 if (Session["listaUrl"] != null)

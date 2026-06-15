@@ -28,6 +28,9 @@
         </div>
 
         <div style="width: 200px">
+            <label for="ddEstado" class="form-label">Estado</label>
+            <asp:DropDownList runat="server" ID="ddEstado" CssClass="form-select"></asp:DropDownList>
+
             <label for="ddCategoria" class="form-label">Categoria</label>
             <asp:DropDownList runat="server" ID="ddCategoria" CssClass="form-select select2"></asp:DropDownList>
 

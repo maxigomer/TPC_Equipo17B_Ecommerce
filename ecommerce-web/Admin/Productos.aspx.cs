@@ -20,6 +20,7 @@ namespace ecommerce_web
                 dgvProductos.DataBind();
 
 
+
                 //ImagenNegocio imagen = new ImagenNegocio();
                 //Session.Add("listaImagenes", imagen.listar());
                 //dgvTest.DataSource = Session["listaImagenes"];
@@ -34,6 +35,13 @@ namespace ecommerce_web
         {
 
             Response.Redirect("CargaProducto.aspx", false);
+        }
+
+        protected void dgvProductos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            string id = dgvProductos.SelectedDataKey.Value.ToString();
+            Response.Redirect("CargaProducto.aspx?=" + id, false);
         }
     }
 }

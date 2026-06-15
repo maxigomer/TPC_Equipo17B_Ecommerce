@@ -8,6 +8,7 @@ namespace EcommerceDominio.Catalogo
 {
     public class Producto
     {
+        public bool Seleccionado { get; set; }
         public int Id { get; set; }
         public string Sku { get; set; }
         public Categoria Categoria { get; set; }
@@ -18,7 +19,17 @@ namespace EcommerceDominio.Catalogo
         public decimal? Costo { get; set; }
         public int Stock { get; set; }
         public bool Estado { get; set; }
+        public string ImagenPrincipal { get; set; }
+        public List<Imagen> Imagenes { get; set; }
 
-        public virtual ICollection<Imagen> Imagenes { get; set; } = new List<Imagen>();
+        //public virtual ICollection<Imagen> Imagenes { get; set; } = new List<Imagen>();
+
+        public Producto()
+        {
+            Seleccionado = false;
+            Imagenes = new List<Imagen>();
+        }
     }
+
+
 }

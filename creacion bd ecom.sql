@@ -142,7 +142,7 @@ CREATE PROCEDURE spAltaCategoria(
 )
 as
 BEGIN
-INSERT INTO CATEGORIAS (Nombre,Descripcion) VALUES(@nombre,@descripcion)
+INSERT INTO CATEGORIAS (Nombre) VALUES(@nombre)
 END
 GO
 
@@ -193,7 +193,7 @@ GO
 CREATE PROCEDURE spListarProductos
 AS
 BEGIN
-SELECT P.Id, Sku, P.Nombre, P.Descripcion, Precio, Costo, Stock , M.Nombre Marca, C.Nombre Categoria, IdCategoria, IdMarca, Estado FROM PRODUCTOS P, MARCAS M, CATEGORIAS C WHERE M.Id = P.IdMarca and C.Id = P.IdCategoria and P.Estado = 1
+SELECT P.Id, Sku, P.Nombre, P.Descripcion, Precio, Costo, Stock , M.Nombre Marca, C.Nombre Categoria, IdCategoria, IdMarca, Estado FROM PRODUCTOS P, MARCAS M, CATEGORIAS C WHERE M.Id = P.IdMarca and C.Id = P.IdCategoria
 END
 GO
 

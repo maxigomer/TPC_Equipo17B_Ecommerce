@@ -227,6 +227,15 @@ SELECT SCOPE_IDENTITY();
 END
 GO
 
+CREATE PROCEDURE spListarProductoId(
+@id integer
+)
+AS
+BEGIN
+SELECT P.Id, Sku, P.Nombre, P.Descripcion, Precio, Costo, Stock , M.Nombre Marca, C.Nombre Categoria, IdCategoria, IdMarca, Estado FROM PRODUCTOS P, MARCAS M, CATEGORIAS C WHERE M.Id = P.IdMarca and C.Id = P.IdCategoria and P.Id = @id
+END
+GO
+
 EXEC spAltaMarca 'Huawei'
 EXEC spAltaMarca 'Samsung'
 

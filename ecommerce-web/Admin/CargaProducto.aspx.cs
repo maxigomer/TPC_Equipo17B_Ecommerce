@@ -42,6 +42,12 @@ namespace ecommerce_web
 
                 if(!IsPostBack && Request.QueryString["id"] != null)
                 {
+                    Producto producto = new Producto();
+                    ProductoNegocio negocio = new ProductoNegocio();
+                    producto = negocio.listar(int.Parse(Request.QueryString["id"].ToString()));
+                    txtNombre.Text = producto.Nombre;
+                    txtDescripcion.Text = producto.Descripcion;
+                    
 
                 }
 

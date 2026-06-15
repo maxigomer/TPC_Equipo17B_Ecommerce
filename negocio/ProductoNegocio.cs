@@ -26,11 +26,22 @@ namespace negocio
                     aux.Id = (int)datos.Lector["Id"];
                     aux.Sku = (string)datos.Lector["Sku"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
-                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+
+                    if (!(datos.Lector["Descripcion"] is DBNull))
+                        aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    else
+                        aux.Descripcion = "Sin descripción disponible.";
+
                     aux.Precio = (decimal)datos.Lector["Precio"];
+
                     if (!(datos.Lector["Costo"] is DBNull))
                         aux.Costo = (decimal)datos.Lector["Costo"];
-                    aux.Stock = (int)datos.Lector["Stock"];
+
+                    if (!(datos.Lector["Stock"] is DBNull))
+                        aux.Stock = (int)datos.Lector["Stock"];
+                    else
+                        aux.Stock = 0;
+
                     aux.Estado = (bool)datos.Lector["Estado"];
                     aux.Marca = new Marca();
                     aux.Marca.Id = (int)datos.Lector["IdMarca"];
@@ -38,6 +49,8 @@ namespace negocio
                     aux.Categoria = new Categoria();
                     aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
                     aux.Categoria.Nombre = (string)datos.Lector["Categoria"];
+
+                    //falta poner las imagenes
 
                     lista.Add(aux);
                 }

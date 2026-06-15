@@ -52,7 +52,7 @@ namespace negocio
                 datos.setearParametros("@nombre", marca);
                 datos.ejecutarAccion();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }

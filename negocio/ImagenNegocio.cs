@@ -9,7 +9,7 @@ namespace negocio
 {
     public class ImagenNegocio
     {
-        public List<Imagen> listar()
+        public List<Imagen> listar()//trae todas las imagenes
         {
             List<Imagen> lista = new List<Imagen>();
             AccesoDatos datos = new AccesoDatos();
@@ -44,6 +44,40 @@ namespace negocio
             }
         }
 
+        public List<Imagen> listarPorIdProducto(int idProducto)
+        {
+            List<Imagen> lista = new List<Imagen>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT Id, Url, IdProducto FROM IMAGENES WHERE IdProducto = @idProducto");
+                datos.setearParametros("@idProducto", idProducto);
+
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Imagen aux = new Imagen();
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Url = (string)datos.Lector["Url"];
+                    aux.IdProducto = (int)datos.Lector["IdProducto"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public void agregarImagen(string url, int idProducto)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -69,31 +103,22 @@ namespace negocio
 
         public void agregarImagen(List<string> listaUrl, int idProducto)
         {
-            AccesoDatos datos = new AccesoDatos();
-
             try
             {
                 foreach (string url in listaUrl)
                 {
-                    datos.setearProcedimiento("spAltaImagen");
-                    datos.setearParametros("@url", url);
-                    datos.setearParametros("@idProducto", idProducto);
-                    datos.ejecutarAccion();
-                    datos.cerrarConexion();
-
+                    //datos.setearProcedimiento("spAltaImagen");
+                    //datos.setearParametros("@url", url);
+                    //datos.setearParametros("@idProducto", idProducto);
+                    //datos.ejecutarAccion();
+                    //datos.cerrarConexion();
+                    agregarImagen(url, idProducto);
                 }
-
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-
         }
-
     }
 }

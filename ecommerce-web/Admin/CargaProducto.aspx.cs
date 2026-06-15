@@ -44,7 +44,7 @@ namespace ecommerce_web
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception )
             {
 
             }

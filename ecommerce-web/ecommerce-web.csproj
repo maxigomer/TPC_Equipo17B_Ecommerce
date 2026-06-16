@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminCategorias.aspx" />
     <Content Include="Assets\cart.svg" />
     <Content Include="Assets\notion.svg" />
     <Content Include="Assets\person.svg" />
@@ -100,6 +101,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminCategorias.aspx.cs">
+      <DependentUpon>AdminCategorias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminCategorias.aspx.designer.cs">
+      <DependentUpon>AdminCategorias.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\CargaProducto.aspx.cs">
       <DependentUpon>CargaProducto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -163,6 +171,7 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="MasterDesktopAdmin.Master" />
+    <None Include=".editorconfig" />
     <None Include="packages.config" />
     <Content Include="Scripts\bootstrap.min.js.map" />
     <Content Include="Scripts\bootstrap.js.map" />

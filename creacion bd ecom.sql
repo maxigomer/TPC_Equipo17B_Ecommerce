@@ -68,7 +68,7 @@ CREATE TABLE PRODUCTOS(
 	IdMarca INTEGER NOT NULL FOREIGN KEY REFERENCES MARCAS(Id),
 	Nombre VARCHAR(100) NOT NULL,
 	Descripcion VARCHAR(255) NULL,
-	Precio DECIMAL NOT NULL,
+	Precio DECIMAL(18,2) NOT NULL,
 	Costo DECIMAL(18,2) NULL,
 	Stock INTEGER NULL CHECK (Stock >= 0),
 	Estado BIT NOT NULL
@@ -243,8 +243,8 @@ CREATE PROCEDURE spModificarProducto(
 @idMarca integer,
 @nombre varchar(100),
 @descripcion varchar(255),
-@precio decimal,
-@costo decimal,
+@precio decimal(18,2),
+@costo decimal(18,2),
 @stock integer,
 @estado bit
 )

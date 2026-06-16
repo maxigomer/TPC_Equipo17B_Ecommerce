@@ -140,18 +140,18 @@ namespace negocio
             }
         }
 
-        public void agregarImagen(List<string> listaUrl, int idProducto)
+        public void agregarImagen(List<Imagen> listaUrl, int idProducto)
         {
             try
             {
-                foreach (string url in listaUrl)
+                foreach (Imagen url in listaUrl)
                 {
                     //datos.setearProcedimiento("spAltaImagen");
                     //datos.setearParametros("@url", url);
                     //datos.setearParametros("@idProducto", idProducto);
                     //datos.ejecutarAccion();
                     //datos.cerrarConexion();
-                    agregarImagen(url, idProducto);
+                    agregarImagen(url.Url, idProducto);
                 }
             }
             catch (Exception ex)

@@ -19,7 +19,19 @@
                         <asp:Button runat="server" ID="btnAgregarUrlImagen" OnClick="btnAgregarUrlImagen_Click" CssClass="form-control m-1" Text="Agregar" Style="width: 100px" />
 
                     </div>
-                    <asp:BulletedList runat="server" ID="blImagenes"></asp:BulletedList>
+                    <div class="d-flex flex-wrap gap-3">
+                        <asp:Repeater runat="server" ID="repImagenes">
+                            <ItemTemplate>
+                                <div class="position-relative border rounded overflow-hiden shadow-sm" style="min-width: 120px; max-width: 180px; aspect-ratio: 1;">
+                                    <asp:Button ID="btnEliminarImagen" runat="server" CommandArgument='<%#Eval("Url") %>' OnClick="btnEliminarImagen_Click"
+                                        CssClass="btn btn-danger btn-sm position-absolute top-0 end-0 m-1" Text="X"></asp:Button>
+                                    <img src='<%#Eval("Url") %>' class="w-100 h-100" style="object-fit: cover" />
+
+                                </div>
+
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </div>
 
                 </ContentTemplate>
             </asp:UpdatePanel>

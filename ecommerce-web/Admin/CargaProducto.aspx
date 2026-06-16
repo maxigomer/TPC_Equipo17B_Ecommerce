@@ -47,13 +47,13 @@
             <label for="txtPrecio" class="form-label">Precio</label>
             <div class="input-group">
                 <span class="input-group-text">$</span>
-                <asp:TextBox runat="server" ID="txtPrecio" TextMode="Number" min="0" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtPrecio" TextMode="Number" min="0" step="0.01" CssClass="form-control"></asp:TextBox>
             </div>
 
             <label for="txtCosto" class="form-label">Costo</label>
             <div class="input-group">
                 <span class="input-group-text">$</span>
-                <asp:TextBox runat="server" ID="txtCosto" TextMode="Number" min="0" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtCosto" TextMode="Number" min="0" step="0.01" CssClass="form-control"></asp:TextBox>
             </div>
 
         </div>

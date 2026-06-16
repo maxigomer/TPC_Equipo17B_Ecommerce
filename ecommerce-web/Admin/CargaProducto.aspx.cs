@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using negocio;
 using EcommerceDominio.Catalogo;
+using System.Globalization;
 
 namespace ecommerce_web
 {
@@ -47,6 +48,16 @@ namespace ecommerce_web
                     producto = negocio.listar(int.Parse(Request.QueryString["id"].ToString()));
                     txtNombre.Text = producto.Nombre;
                     txtDescripcion.Text = producto.Descripcion;
+                    ddCategoria.SelectedValue = producto.Categoria.Id.ToString();
+                    ddMarca.SelectedValue = producto.Marca.Id.ToString();
+                    txtStock.Text = producto.Stock.ToString();
+                    txtSku.Text = producto.Sku;
+                    txtPrecio.Text = producto.Precio.ToString();
+                    txtCosto.Text = ((decimal)producto.Costo).ToString(CultureInfo.InvariantCulture);
+                    ddEstado.SelectedValue = producto.Estado ? "Activo" : "Draft";
+                    btnAgregarProducto.Text = "Modificar";
+                    
+                    
                     
 
                 }
@@ -65,11 +76,7 @@ namespace ecommerce_web
 
         }
 
-        protected void btnAgregarCategoria_Click(object sender, EventArgs e)
-        {
-
-        }
-
+       
         protected void btnAgregarProducto_Click(object sender, EventArgs e)
         {
             try
@@ -110,20 +117,41 @@ namespace ecommerce_web
                 }
                 producto.Sku = txtSku.Text;
                 producto.Stock = int.Parse(txtStock.Text);
-                producto.Precio = int.Parse(txtPrecio.Text);
-                producto.Costo = int.Parse(txtCosto.Text);
+                producto.Precio = decimal.Parse(txtPrecio.Text, CultureInfo.InvariantCulture);
+                producto.Costo = decimal.Parse(txtCosto.Text, CultureInfo.InvariantCulture);
                 producto.Estado = ddEstado.SelectedValue == "Activo" ? true : false;
 
 
-                if (Session["listaUrl"] != null)
+                if(Request.QueryString["id"] != null)
                 {
+                    producto.Id = int.Parse(Request.QueryString["id"].ToString());
+                    if (Session["listaUrl"] != null)
+                    {
 
-                    imagenNegocio.agregarImagen((List<string>)Session["listaUrl"], negocio.agregarScalar(producto));
+                        imagenNegocio.agregarImagen((List<string>)Session["listaUrl"], producto.Id);
+                        negocio.modificar(producto);
+
+                    }
+                    else
+                    {
+                        negocio.modificar(producto);
+
+                    }
 
                 }
                 else
                 {
-                    negocio.agregar(producto);
+                    if (Session["listaUrl"] != null)
+                    {
+
+                        imagenNegocio.agregarImagen((List<string>)Session["listaUrl"], negocio.agregarScalar(producto));
+
+                    }
+                    else
+                    {
+                        negocio.agregar(producto);
+
+                    }
 
                 }
 

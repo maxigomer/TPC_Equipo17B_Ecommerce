@@ -236,6 +236,25 @@ SELECT P.Id, Sku, P.Nombre, P.Descripcion, Precio, Costo, Stock , M.Nombre Marca
 END
 GO
 
+CREATE PROCEDURE spModificarProducto(
+@id integer,
+@sku varchar(70),
+@idCategoria integer,
+@idMarca integer,
+@nombre varchar(100),
+@descripcion varchar(255),
+@precio decimal,
+@costo decimal,
+@stock integer,
+@estado bit
+)
+AS
+BEGIN
+UPDATE PRODUCTOS SET Sku = @sku, IdCategoria = @idCategoria, IdMarca = @idMarca, Nombre = @nombre, Descripcion = @descripcion, Precio = @precio, Costo = @costo, Stock = @stock, Estado = @estado
+WHERE Id = @id
+END
+GO
+
 EXEC spAltaMarca 'Huawei'
 EXEC spAltaMarca 'Samsung'
 

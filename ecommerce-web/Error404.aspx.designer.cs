@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace mi_ecommerce
+namespace ecommerce_web
 {
     public partial class Error404
     {

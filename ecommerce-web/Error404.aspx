@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Error404.aspx.cs" Inherits="mi_ecommerce.Error404" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Error404.aspx.cs" Inherits="ecommerce_web.Error404" %>
 
 <!DOCTYPE html>
 <html lang="es">

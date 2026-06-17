@@ -13,5 +13,17 @@ namespace EcommerceDominio.Catalogo
         public int IdProducto { get; set; }
 
         public virtual Producto Producto { get; set; }
+
+        public Imagen(string url)
+        {
+            Url = url;
+            Id = 0;
+
+        }
+
+        public Imagen()
+        {
+
+        }
     }
 }

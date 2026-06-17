@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using negocio;
 using EcommerceDominio.Catalogo;
+using System.Globalization;
+using System.Runtime.InteropServices;
 
 namespace ecommerce_web
 {
@@ -38,16 +40,33 @@ namespace ecommerce_web
                     ddEstado.Items.Add("Activo");
                     ddEstado.Items.Add("Draft");
 
+                    Session["listaUrl"] = null;
+
                 }
 
-                if(!IsPostBack && Request.QueryString["id"] != null)
+                if (!IsPostBack && Request.QueryString["id"] != null)
                 {
                     Producto producto = new Producto();
                     ProductoNegocio negocio = new ProductoNegocio();
+                    ImagenNegocio imgNegocio = new ImagenNegocio();
                     producto = negocio.listar(int.Parse(Request.QueryString["id"].ToString()));
                     txtNombre.Text = producto.Nombre;
                     txtDescripcion.Text = producto.Descripcion;
-                    
+                    ddCategoria.SelectedValue = producto.Categoria.Id.ToString();
+                    ddMarca.SelectedValue = producto.Marca.Id.ToString();
+                    txtStock.Text = producto.Stock.ToString();
+                    txtSku.Text = producto.Sku;
+                    txtPrecio.Text = producto.Precio.ToString();
+                    txtCosto.Text = ((decimal)producto.Costo).ToString(CultureInfo.InvariantCulture);
+                    ddEstado.SelectedValue = producto.Estado ? "Activo" : "Draft";
+                    btnAgregarProducto.Text = "Modificar";
+                    Session["listaUrl"] = imgNegocio.listar(int.Parse(Request.QueryString["id"].ToString()));
+                    repImagenes.DataSource = (List<Imagen>)Session["listaUrl"];
+                    repImagenes.DataBind();
+
+
+
+
 
                 }
 
@@ -58,17 +77,13 @@ namespace ecommerce_web
                 }
 
             }
-            catch (Exception )
+            catch (Exception)
             {
 
             }
 
         }
 
-        protected void btnAgregarCategoria_Click(object sender, EventArgs e)
-        {
-
-        }
 
         protected void btnAgregarProducto_Click(object sender, EventArgs e)
         {
@@ -110,20 +125,51 @@ namespace ecommerce_web
                 }
                 producto.Sku = txtSku.Text;
                 producto.Stock = int.Parse(txtStock.Text);
-                producto.Precio = int.Parse(txtPrecio.Text);
-                producto.Costo = int.Parse(txtCosto.Text);
+                producto.Precio = decimal.Parse(txtPrecio.Text, CultureInfo.InvariantCulture);
+                producto.Costo = decimal.Parse(txtCosto.Text, CultureInfo.InvariantCulture);
                 producto.Estado = ddEstado.SelectedValue == "Activo" ? true : false;
 
 
-                if (Session["listaUrl"] != null)
+                if (Request.QueryString["id"] != null)
                 {
+                    producto.Id = int.Parse(Request.QueryString["id"].ToString());
+                    if (Session["listaUrl"] != null)
+                    {
+                        foreach(Imagen img in (List<Imagen>)Session["listaUrl"])
+                        {
+                            if(img.Id != 0)
+                            {
+                                imagenNegocio.agregarImagen(img.Url, producto.Id);
+                                
 
-                    imagenNegocio.agregarImagen((List<string>)Session["listaUrl"], negocio.agregarScalar(producto));
+                            }
+
+                        }
+
+                        //imagenNegocio.agregarImagen((List<Imagen>)Session["listaUrl"], producto.Id);
+                        negocio.modificar(producto);
+
+                    }
+                    else
+                    {
+                        negocio.modificar(producto);
+
+                    }
 
                 }
                 else
                 {
-                    negocio.agregar(producto);
+                    if (Session["listaUrl"] != null)
+                    {
+
+                        imagenNegocio.agregarImagen((List<Imagen>)Session["listaUrl"], negocio.agregarScalar(producto));
+
+                    }
+                    else
+                    {
+                        negocio.agregar(producto);
+
+                    }
 
                 }
 
@@ -154,22 +200,62 @@ namespace ecommerce_web
 
             try
             {
+                if (txtUrlImagen.Text == "" || txtUrlImagen.Text == null)
+                {
+                    return;
+
+                }
                 if (Session["listaUrl"] == null)
                 {
-                    List<string> lista = new List<string>();
-                    lista.Add(url);
-                    Session.Add("listaUrl", lista);
+                    //List<string> lista = new List<string>();
+                    //lista.Add(url);
+                    //Session.Add("listaUrl", lista);
+
+                    List<Imagen> listaImagenes = new List<Imagen>();
+                    listaImagenes.Add(new Imagen(url));
+                    Session.Add("listaUrl", listaImagenes);
                 }
                 else
                 {
-                    ((List<string>)Session["listaUrl"]).Add(url);
+                    //((List<string>)Session["listaUrl"]).Add(url);
+                    ((List<Imagen>)Session["listaUrl"]).Add(new Imagen(url));
                 }
+                repImagenes.DataSource = (List<Imagen>)Session["listaUrl"];
+                repImagenes.DataBind();
+                txtUrlImagen.Text = null;
 
             }
             catch (Exception ex)
             {
                 Session.Add("error", ex.ToString());
             }
+
+        }
+
+        protected void btnEliminarImagen_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            RepeaterItem item = (RepeaterItem)btn.NamingContainer;
+
+            List<Imagen> lista = (List<Imagen>)Session["listaUrl"];
+
+            if (lista[item.ItemIndex].Id != 0)
+            {
+                if (Session["listaImagenesEliminadas"] != null)
+                {
+                    //(List<int>)Session["listaImagenesEliminadas"].Add(lista[item.ItemIndex].Id);
+                }
+            }
+
+            lista.RemoveAt(item.ItemIndex);
+
+            Session["listaUrl"] = lista;
+
+            repImagenes.DataSource = Session["listaUrl"];
+            repImagenes.DataBind();
+
+            //RepeaterItem item = 
+            //List<Imagen> lista = (List<Imagen>)Session["listaUrl"];
 
         }
     }

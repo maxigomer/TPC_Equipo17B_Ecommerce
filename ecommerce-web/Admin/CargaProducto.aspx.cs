@@ -197,6 +197,10 @@ namespace ecommerce_web
             }
             finally
             {
+                CategoriaNegocio categoria = new CategoriaNegocio();
+                MarcaNegocio marca = new MarcaNegocio();
+                categoria.check();
+                marca.check();
             }
 
             //if (test.StartsWith("NEW|"))

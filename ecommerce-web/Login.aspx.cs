@@ -11,7 +11,13 @@ namespace ecommerce_web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                // Reemplazá esto con tu método real que trae los datos
+                // NegocioCliente negocio = new NegocioCliente();
+                // dgvClientes.DataSource = negocio.Listar();
+                // dgvClientes.DataBind();
+            }
         }
 
         protected void btnLoginAcceder_Click(object sender, EventArgs e)
@@ -19,7 +25,7 @@ namespace ecommerce_web
             if (txtEmail.Text == "admin@mail.com" && txtPassword.Text == "admin")
             {
                 Session["AdminLogueado"] = true;
-                Response.Redirect("Productos.aspx", false);
+                Response.Redirect("Clientes.aspx", false);
             }
             else
             {

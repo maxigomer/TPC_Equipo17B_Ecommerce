@@ -1,0 +1,16 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterDesktopAdmin.Master" AutoEventWireup="true" CodeBehind="Pedidos.aspx.cs" Inherits="ecommerce_web.Pedidos" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="container-fluid mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-white">Gestión de Pedidos</h2>
+            <asp:Button ID="btnNuevoPedido" runat="server" Text="+ Nuevo Pedido" CssClass="btn btn-success" />
+        </div>
+
+        <div class="table-responsive">
+            <asp:GridView ID="dgvPedidos" runat="server" CssClass="table table-dark table-striped table-hover table-bordered" AutoGenerateColumns="true">
+            </asp:GridView>
+        </div>
+    </div>
+</asp:Content>

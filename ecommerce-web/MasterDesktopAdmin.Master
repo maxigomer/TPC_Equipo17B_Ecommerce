@@ -64,10 +64,10 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-white">Pedidos</a>
+                            <a href="Pedidos.aspx" class="nav-link text-white">Pedidos</a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-white">Clientes</a>
+                            <a href="Clientes.aspx" class="nav-link text-white">Clientes</a>
                         </li>
                         <li>
                             <a href="Productos.aspx" class="nav-link text-white">Productos</a>

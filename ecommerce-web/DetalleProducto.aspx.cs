@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using System;
 using System.Linq;
 using negocio;
@@ -39,4 +40,47 @@ namespace ecommerce_web
            }
         }
     }
+=======
+using System;
+using System.Linq;
+using negocio;
+using EcommerceDominio.Catalogo;
+
+namespace ecommerce_web
+{
+    public partial class DetalleProducto : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+{
+    if (!IsPostBack)
+    {
+        if (Request.QueryString["id"] == null)
+        {
+            Response.Redirect("Default.aspx");
+            return;
+        }
+
+        int id = int.Parse(Request.QueryString["id"]);
+
+        ProductoNegocio negocio = new ProductoNegocio();
+        var producto = negocio.listar().FirstOrDefault(x => x.Id == id);
+
+        if (producto != null)
+        {
+            pnlDetalle.Visible = true;
+
+            lblNombre.Text = producto.Nombre;
+            lblDescripcion.Text = producto.Descripcion;
+            lblPrecio.Text = producto.Precio.ToString("0.00");
+            lblMarca.Text = producto.Marca.Nombre;
+            lblCategoria.Text = producto.Categoria.Nombre;
+
+            rptImagenes.DataSource = producto.Imagenes;
+            rptImagenes.DataBind();
+                 }
+              }
+           }
+        }
+    }
+>>>>>>> 36bb2dccb1604ef3c2e70dfabb42bd1642b39ac7
 }

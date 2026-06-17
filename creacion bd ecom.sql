@@ -68,7 +68,7 @@ CREATE TABLE PRODUCTOS(
 	IdMarca INTEGER NOT NULL FOREIGN KEY REFERENCES MARCAS(Id),
 	Nombre VARCHAR(100) NOT NULL,
 	Descripcion VARCHAR(255) NULL,
-	Precio DECIMAL NOT NULL,
+	Precio DECIMAL(18,2) NOT NULL,
 	Costo DECIMAL(18,2) NULL,
 	Stock INTEGER NULL CHECK (Stock >= 0),
 	Estado BIT NOT NULL
@@ -233,6 +233,25 @@ CREATE PROCEDURE spListarProductoId(
 AS
 BEGIN
 SELECT P.Id, Sku, P.Nombre, P.Descripcion, Precio, Costo, Stock , M.Nombre Marca, C.Nombre Categoria, IdCategoria, IdMarca, Estado FROM PRODUCTOS P, MARCAS M, CATEGORIAS C WHERE M.Id = P.IdMarca and C.Id = P.IdCategoria and P.Id = @id
+END
+GO
+
+CREATE PROCEDURE spModificarProducto(
+@id integer,
+@sku varchar(70),
+@idCategoria integer,
+@idMarca integer,
+@nombre varchar(100),
+@descripcion varchar(255),
+@precio decimal(18,2),
+@costo decimal(18,2),
+@stock integer,
+@estado bit
+)
+AS
+BEGIN
+UPDATE PRODUCTOS SET Sku = @sku, IdCategoria = @idCategoria, IdMarca = @idMarca, Nombre = @nombre, Descripcion = @descripcion, Precio = @precio, Costo = @costo, Stock = @stock, Estado = @estado
+WHERE Id = @id
 END
 GO
 

@@ -60,13 +60,13 @@ namespace ecommerce_web
         protected global::System.Web.UI.WebControls.Button btnAgregarUrlImagen;
 
         /// <summary>
-        /// blImagenes control.
+        /// repImagenes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.BulletedList blImagenes;
+        protected global::System.Web.UI.WebControls.Repeater repImagenes;
 
         /// <summary>
         /// ddEstado control.

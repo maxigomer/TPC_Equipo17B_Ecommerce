@@ -255,6 +255,15 @@ WHERE Id = @id
 END
 GO
 
+CREATE PROCEDURE spEliminarImagen(
+@id integer
+)
+AS
+BEGIN
+DELETE FROM iMAGENES WHERE Id = @id
+END
+GO
+
 EXEC spAltaMarca 'Huawei'
 EXEC spAltaMarca 'Samsung'
 

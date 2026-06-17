@@ -259,6 +259,27 @@ namespace negocio
             }
         }
 
+        public void modificarEstado(int id, bool estado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE PRODUCTOS SET Estado = 0 WHERE Id = " + id);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
 
 
     }

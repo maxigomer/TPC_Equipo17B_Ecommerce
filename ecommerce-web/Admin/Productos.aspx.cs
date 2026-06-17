@@ -29,7 +29,7 @@ namespace ecommerce_web
 
             }
 
-           
+
         }
         protected void btnCargaProducto_Click(object sender, EventArgs e)
         {
@@ -40,8 +40,63 @@ namespace ecommerce_web
         protected void dgvProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            string id = dgvProductos.SelectedDataKey.Value.ToString();
-            Response.Redirect("CargaProducto.aspx?=" + id, false);
+            //string id = dgvProductos.SelectedDataKey.Value.ToString();
+            //Response.Redirect("CargaProducto.aspx?=" + id, false);
+        }
+
+        protected void chkSeleccionado_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chk = (CheckBox)sender;
+            GridViewRow fila = (GridViewRow)chk.NamingContainer;
+
+            int id = (int)dgvProductos.DataKeys[fila.RowIndex].Value;
+
+            List<int> lista = new List<int>();
+
+            if (Session["idChecked"] != null)
+            {
+                lista = (List<int>)Session["idChecked"];
+            }
+
+            if (chk.Checked)
+            {
+                if (!lista.Contains(id))
+                {
+                    lista.Add(id);
+                }
+            }
+            else
+            {
+                lista.Remove(id);
+            }
+
+            Session.Add("idChecked", lista);
+
+
+
+
+
+        }
+
+        protected void btnTest_Click(object sender, EventArgs e)
+        {
+            List<int> lista = new List<int>();
+            ProductoNegocio pnegocio = new ProductoNegocio();
+            if (Session["idChecked"] != null)
+            {
+                lista = (List<int>)Session["idChecked"];
+
+                foreach(int id in lista)
+                {
+                    pnegocio.modificarEstado(id, true);
+
+                }
+                ProductoNegocio negocio = new ProductoNegocio();
+                Session.Add("listaProductos", negocio.listar());
+                dgvProductos.DataSource = Session["listaProductos"];
+                dgvProductos.DataBind();
+            }
+
         }
     }
 }

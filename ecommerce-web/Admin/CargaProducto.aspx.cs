@@ -137,7 +137,7 @@ namespace ecommerce_web
                     {
                         foreach(Imagen img in (List<Imagen>)Session["listaUrl"])
                         {
-                            if(img.Id != 0)
+                            if(img.Id == 0)
                             {
                                 imagenNegocio.agregarImagen(img.Url, producto.Id);
                                 
@@ -147,14 +147,18 @@ namespace ecommerce_web
                         }
 
                         //imagenNegocio.agregarImagen((List<Imagen>)Session["listaUrl"], producto.Id);
-                        negocio.modificar(producto);
 
                     }
-                    else
+                    if (Session["listaImagenesEliminadas"] != null)
                     {
-                        negocio.modificar(producto);
+                        foreach(int id in (List<int>)Session["listaImagenesEliminadas"])
+                        {
+                            imagenNegocio.eliminar(id);
+
+                        }
 
                     }
+                        negocio.modificar(producto);
 
                 }
                 else
@@ -238,13 +242,16 @@ namespace ecommerce_web
             RepeaterItem item = (RepeaterItem)btn.NamingContainer;
 
             List<Imagen> lista = (List<Imagen>)Session["listaUrl"];
+            List<int> idImagenesEliminar = new List<int>();
 
             if (lista[item.ItemIndex].Id != 0)
             {
                 if (Session["listaImagenesEliminadas"] != null)
                 {
-                    //(List<int>)Session["listaImagenesEliminadas"].Add(lista[item.ItemIndex].Id);
+                    idImagenesEliminar = (List<int>)Session["listaImagenesEliminadas"];
                 }
+                    idImagenesEliminar.Add(lista[item.ItemIndex].Id);
+                    Session.Add("listaImagenesEliminadas", idImagenesEliminar);
             }
 
             lista.RemoveAt(item.ItemIndex);

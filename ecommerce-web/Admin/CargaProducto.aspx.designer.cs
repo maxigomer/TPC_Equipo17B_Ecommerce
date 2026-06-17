@@ -78,15 +78,6 @@ namespace ecommerce_web
         protected global::System.Web.UI.WebControls.DropDownList ddEstado;
 
         /// <summary>
-        /// cvCategoria control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cvCategoria;
-
-        /// <summary>
         /// ddCategoria control.
         /// </summary>
         /// <remarks>
@@ -103,6 +94,15 @@ namespace ecommerce_web
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddMarca;
+
+        /// <summary>
+        /// lblSku control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSku;
 
         /// <summary>
         /// txtSku control.

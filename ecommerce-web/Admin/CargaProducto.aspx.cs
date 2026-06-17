@@ -89,9 +89,17 @@ namespace ecommerce_web
         {
             try
             {
-                Page.Validate();
                 ProductoNegocio negocio = new ProductoNegocio();
                 ImagenNegocio imagenNegocio = new ImagenNegocio();
+
+                if(txtSku.Text != "" && negocio.checkSku(txtSku.Text))
+                {
+                    lblSku.Text = "Ya existe el SKU!";
+
+                    return;
+
+                }
+                Page.Validate();
 
 
                 Producto producto = new Producto();
@@ -127,7 +135,14 @@ namespace ecommerce_web
                 producto.Sku = txtSku.Text;
                 producto.Stock = int.Parse(txtStock.Text);
                 producto.Precio = decimal.Parse(txtPrecio.Text, CultureInfo.InvariantCulture);
-                producto.Costo = decimal.Parse(txtCosto.Text, CultureInfo.InvariantCulture);
+                if(txtCosto.Text == "" || txtCosto.Text == null)
+                {
+                    producto.Costo = null;
+                }
+                else
+                {
+                    producto.Costo = decimal.Parse(txtCosto.Text, CultureInfo.InvariantCulture);
+                }
                 producto.Estado = ddEstado.SelectedValue == "Activo" ? true : false;
 
 
@@ -190,6 +205,10 @@ namespace ecommerce_web
             }
             finally
             {
+                CategoriaNegocio categoria = new CategoriaNegocio();
+                MarcaNegocio marca = new MarcaNegocio();
+                categoria.check();
+                marca.check();
             }
 
             //if (test.StartsWith("NEW|"))
@@ -267,9 +286,13 @@ namespace ecommerce_web
 
         }
 
-        protected void CvCategoria_ServerValidate(object source, ServerValidateEventArgs args)
+       
+        protected void cvSku_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            args.IsValid = ddCategoria.SelectedIndex != 0;
+            if(args.Value == "")
+            {
+                args.IsValid = true;
+            }
 
         }
     }

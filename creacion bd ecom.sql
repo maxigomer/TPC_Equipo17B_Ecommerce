@@ -197,6 +197,13 @@ SELECT P.Id, Sku, P.Nombre, P.Descripcion, Precio, Costo, Stock , M.Nombre Marca
 END
 GO
 
+CREATE PROCEDURE spListarProductosActivos
+AS
+BEGIN
+SELECT P.Id, Sku, P.Nombre, P.Descripcion, Precio, Costo, Stock , M.Nombre Marca, C.Nombre Categoria, IdCategoria, IdMarca, Estado FROM PRODUCTOS P, MARCAS M, CATEGORIAS C WHERE M.Id = P.IdMarca and C.Id = P.IdCategoria and Estado = 1
+END
+GO
+
 CREATE PROCEDURE spAltaImagen(
 @url varchar(255),
 @idProducto int
@@ -270,6 +277,26 @@ CREATE PROCEDURE spEliminarProducto(
 AS
 BEGIN
 DELETE FROM PRODUCTOS WHERE Id = @id
+END
+GO
+
+CREATE PROCEDURE spCheckCategorias
+AS
+BEGIN
+DELETE FROM CATEGORIAS
+WHERE Id NOT IN (
+	SELECT DISTINCT IdCategoria FROM PRODUCTOS WHERE IdCategoria IS NOT NULL
+)
+END
+GO
+
+CREATE PROCEDURE spCheckMarcas
+AS
+BEGIN
+DELETE FROM MARCAS
+WHERE Id NOT IN (
+	SELECT DISTINCT IdMarca FROM PRODUCTOS WHERE IdMarca IS NOT NULL
+)
 END
 GO
 

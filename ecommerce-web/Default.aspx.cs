@@ -17,7 +17,7 @@ namespace ecommerce_web
                 //continuación de consulta con base de datos para la carga de produtos
                 ProductoNegocio negocio = new ProductoNegocio();
 
-                rptProductos.DataSource = negocio.listar();
+                rptProductos.DataSource = negocio.listarActivos();
                 rptProductos.DataBind();
             }
         }

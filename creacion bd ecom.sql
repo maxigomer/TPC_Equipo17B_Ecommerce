@@ -240,3 +240,10 @@ EXEC spAltaMarca 'Huawei'
 EXEC spAltaMarca 'Samsung'
 
 EXEC spAltaCategoria 'Televisores'
+
+-- 1. Insertamos un producto usando los IDs de Categoría (1) y Marca (2 = Samsung)
+EXEC spAltaProducto 'TV-SAM-001', 1, 2, 'Smart TV Samsung 50"', 'Televisor 4K UHD con sistema Tizen y bordes ultra finos.', 500000.00, 400000.00, 10, 1;
+
+-- 2. Asumiendo que el ID de ese producto generado fue el 1, le cargamos dos fotos:
+EXEC spAltaImagen 'https://tse1.mm.bing.net/th/id/OIP.fKqqpnyRVm9NSxMFOs8KLwHaHa?r=0&cb=thfvnextfalcon2&rs=1&pid=ImgDetMain&o=7&rm=3', 1;
+EXEC spAltaImagen 'https://a-static.mlcdn.com.br/1500x1500/smart-tv-50-crystal-4k-samsung-50au7700-wi-fi-bluetooth-hdr-alexa-built-in-3-hdmi-1-usb/magazineluiza/193441200/15a3134ca277772436f19af65d9960ec.jpg', 1;

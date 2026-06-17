@@ -169,6 +169,89 @@ namespace negocio
             }
         }
 
+        public List<Producto> listarActivos()
+        {
+            List<Producto> lista = new List<Producto>();
+            AccesoDatos datos = new AccesoDatos();
+            ImagenNegocio imgNegocio = new ImagenNegocio();
+
+            try
+            {
+                datos.setearProcedimiento("spListarProductosActivos");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Producto aux = new Producto();
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Sku = (string)datos.Lector["Sku"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+
+                    if (!(datos.Lector["Descripcion"] is DBNull))
+                        aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    else
+                        aux.Descripcion = "Sin descripción disponible.";
+
+                    aux.Precio = (decimal)datos.Lector["Precio"];
+
+                    if (!(datos.Lector["Costo"] is DBNull))
+                        aux.Costo = (decimal)datos.Lector["Costo"];
+
+                    if (!(datos.Lector["Stock"] is DBNull))
+                        aux.Stock = (int)datos.Lector["Stock"];
+                    else
+                        aux.Stock = 0;
+
+                    aux.Estado = (bool)datos.Lector["Estado"];
+                    aux.Marca = new Marca();
+                    aux.Marca.Id = (int)datos.Lector["IdMarca"];
+                    aux.Marca.Nombre = (string)datos.Lector["Marca"];
+                    aux.Categoria = new Categoria();
+                    aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
+                    aux.Categoria.Nombre = (string)datos.Lector["Categoria"];
+
+                    try
+                    {
+                        foreach (Imagen img in imgNegocio.listar(aux.Id))
+                        {
+                            aux.Imagenes.Add(img);
+
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+
+                    }
+
+                    if (aux.Imagenes != null && aux.Imagenes.Count() > 0)
+                    {
+                        aux.ImagenPrincipal = aux.Imagenes[0].Url;
+                    }
+                    else
+                    {
+                        aux.ImagenPrincipal = "https://img.icons8.com/pulsar-line/1200/image.jpg";
+                    }
+
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
         public void agregar(Producto producto)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -182,7 +265,7 @@ namespace negocio
                 datos.setearParametros("@nombre", producto.Nombre);
                 datos.setearParametros("@descripcion", producto.Descripcion);
                 datos.setearParametros("@precio", producto.Precio);
-                datos.setearParametros("@costo", producto.Costo);
+                datos.setearParametros("@costo", producto.Costo == null ? 0 : producto.Costo);
                 datos.setearParametros("@stock", producto.Stock);
                 datos.setearParametros("@estado", producto.Estado);
                 datos.ejecutarAccion();

@@ -127,7 +127,14 @@ namespace ecommerce_web
                 producto.Sku = txtSku.Text;
                 producto.Stock = int.Parse(txtStock.Text);
                 producto.Precio = decimal.Parse(txtPrecio.Text, CultureInfo.InvariantCulture);
-                producto.Costo = decimal.Parse(txtCosto.Text, CultureInfo.InvariantCulture);
+                if(txtCosto.Text == "" || txtCosto.Text == null)
+                {
+                    producto.Costo = null;
+                }
+                else
+                {
+                    producto.Costo = decimal.Parse(txtCosto.Text, CultureInfo.InvariantCulture);
+                }
                 producto.Estado = ddEstado.SelectedValue == "Activo" ? true : false;
 
 

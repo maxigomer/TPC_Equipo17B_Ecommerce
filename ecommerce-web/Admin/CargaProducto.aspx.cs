@@ -92,7 +92,7 @@ namespace ecommerce_web
                 ProductoNegocio negocio = new ProductoNegocio();
                 ImagenNegocio imagenNegocio = new ImagenNegocio();
 
-                if(txtSku.Text != "" && negocio.checkSku(txtSku.Text))
+                if(txtSku.Text != "" && negocio.checkSku(txtSku.Text) && Request.QueryString["id"] == null)
                 {
                     lblSku.Text = "Ya existe el SKU!";
 

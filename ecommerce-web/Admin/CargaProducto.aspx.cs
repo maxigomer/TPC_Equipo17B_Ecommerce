@@ -89,6 +89,7 @@ namespace ecommerce_web
         {
             try
             {
+                Page.Validate();
                 ProductoNegocio negocio = new ProductoNegocio();
                 ImagenNegocio imagenNegocio = new ImagenNegocio();
 
@@ -263,6 +264,12 @@ namespace ecommerce_web
 
             //RepeaterItem item = 
             //List<Imagen> lista = (List<Imagen>)Session["listaUrl"];
+
+        }
+
+        protected void CvCategoria_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = ddCategoria.SelectedIndex != 0;
 
         }
     }

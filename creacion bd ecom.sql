@@ -264,6 +264,15 @@ DELETE FROM iMAGENES WHERE Id = @id
 END
 GO
 
+CREATE PROCEDURE spEliminarProducto(
+@id integer
+)
+AS
+BEGIN
+DELETE FROM PRODUCTOS WHERE Id = @id
+END
+GO
+
 EXEC spAltaMarca 'Huawei'
 EXEC spAltaMarca 'Samsung'
 

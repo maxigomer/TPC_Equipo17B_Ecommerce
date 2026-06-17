@@ -1,12 +1,19 @@
 ﻿<%@ Page EnableEventValidation="false" Title="" Language="C#" MasterPageFile="~/MasterDesktopAdmin.Master" AutoEventWireup="true" CodeBehind="CargaProducto.aspx.cs" Inherits="ecommerce_web.CargaProducto" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .validacion{
+            color: red;
+            font-size: 20px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager runat="server" ID="ScriptManager1"></asp:ScriptManager>
-    <div class="d-flex">
+    <div class="d-flex gap-3">
         <div class="flex-grow-1">
             <label for="txtNombre" class="form-label">Nombre</label>
+            <asp:RequiredFieldValidator CssClass="validacion" ErrorMessage="*" ControlToValidate="txtNombre" runat="server" />
             <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" />
 
             <label for="txtDescripcion" class="form-label">Descripcion</label>
@@ -44,6 +51,7 @@
             <asp:DropDownList runat="server" ID="ddEstado" CssClass="form-select"></asp:DropDownList>
 
             <label for="ddCategoria" class="form-label">Categoria</label>
+            <asp:CustomValidator ID="cvCategoria" ErrorMessage="*" ControlToValidate="ddCategoria" runat="server" CssClass="validacion" OnServerValidate="CvCategoria_ServerValidate"  />
             <asp:DropDownList runat="server" ID="ddCategoria" CssClass="form-select select2"></asp:DropDownList>
 
 
@@ -71,5 +79,6 @@
         </div>
 
     </div>
-    <asp:Button runat="server" ID="btnAgregarProducto" OnClick="btnAgregarProducto_Click" Text="Agregar Producto" />
+    <asp:Button runat="server" ID="btnAgregarProducto" OnClick="btnAgregarProducto_Click" CssClass="form-control m-1 btn btn-primary" Text="Agregar Producto" Style="width: 200px;" />
+    <asp:ValidationSummary runat="server" CssClass="alert alert-danger" HeaderText="los valores con * son requeridos" ShowMessageBox="false" ShowSummary="true" DisplayMode="SingleParagraph"  />
 </asp:Content>

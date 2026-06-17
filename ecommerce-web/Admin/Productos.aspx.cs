@@ -78,7 +78,7 @@ namespace ecommerce_web
 
         }
 
-        protected void btnTest_Click(object sender, EventArgs e)
+        protected void btnEliminar_Click(object sender, EventArgs e)
         {
             List<int> lista = new List<int>();
             ProductoNegocio pnegocio = new ProductoNegocio();
@@ -88,10 +88,11 @@ namespace ecommerce_web
 
                 foreach(int id in lista)
                 {
-                    pnegocio.modificarEstado(id, true);
+                    pnegocio.eliminar(id);
 
                 }
                 ProductoNegocio negocio = new ProductoNegocio();
+                Session["idChecked"] = null;
                 Session.Add("listaProductos", negocio.listar());
                 dgvProductos.DataSource = Session["listaProductos"];
                 dgvProductos.DataBind();

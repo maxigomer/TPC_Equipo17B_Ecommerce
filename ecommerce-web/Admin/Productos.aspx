@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="d-flex justify-content-end gap-2 p-1">
-            <asp:Button runat="server" ID="btnTest" Text="Test" OnClick="btnTest_Click" CssClass="btn btn-danger mb-1" />
+            <asp:Button runat="server" ID="btnTest" Text="Eliminar" OnClick="btnEliminar_Click" OnClientClick="return confirm('Estas seguro de ejecutar esta accion?');" CssClass="btn btn-danger mb-1" />
             <asp:Button runat="server" ID="btnCargaProducto" Text="Nuevo Producto" OnClick="btnCargaProducto_Click" CssClass="btn btn-dark mb-1" />
     </div>
     <asp:GridView runat="server" ID="dgvProductos" CssClass="table table-white caption-top" AutoGenerateColumns="false"

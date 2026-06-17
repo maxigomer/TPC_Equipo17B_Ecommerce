@@ -90,6 +90,8 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Default.aspx" />
+    <Content Include="DetalleProducto.aspx" />
+    <Content Include="Error404.aspx" />
     <Content Include="Admin\DefaultAdmin.aspx" />
     <Content Include="Admin\Productos.aspx" />
     <Content Include="Login.aspx" />
@@ -122,6 +124,20 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleProducto.aspx.cs">
+      <DependentUpon>DetalleProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetalleProducto.aspx.designer.cs">
+     <DependentUpon>DetalleProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error404.aspx.cs">
+     <DependentUpon>Error404.aspx</DependentUpon>
+     <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error404.aspx.designer.cs">
+     <DependentUpon>Error404.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\DefaultAdmin.aspx.cs">
       <DependentUpon>DefaultAdmin.aspx</DependentUpon>

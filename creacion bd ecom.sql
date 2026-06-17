@@ -197,13 +197,6 @@ SELECT P.Id, Sku, P.Nombre, P.Descripcion, Precio, Costo, Stock , M.Nombre Marca
 END
 GO
 
-CREATE PROCEDURE spListarProductosActivos
-AS
-BEGIN
-SELECT P.Id, Sku, P.Nombre, P.Descripcion, Precio, Costo, Stock , M.Nombre Marca, C.Nombre Categoria, IdCategoria, IdMarca, Estado FROM PRODUCTOS P, MARCAS M, CATEGORIAS C WHERE M.Id = P.IdMarca and C.Id = P.IdCategoria and Estado = 1
-END
-GO
-
 CREATE PROCEDURE spAltaImagen(
 @url varchar(255),
 @idProducto int
@@ -280,26 +273,6 @@ DELETE FROM PRODUCTOS WHERE Id = @id
 END
 GO
 
-CREATE PROCEDURE spCheckCategorias
-AS
-BEGIN
-DELETE FROM CATEGORIAS
-WHERE Id NOT IN (
-	SELECT DISTINCT IdCategoria FROM PRODUCTOS WHERE IdCategoria IS NOT NULL
-)
-END
-GO
-
-CREATE PROCEDURE spCheckMarcas
-AS
-BEGIN
-DELETE FROM MARCAS
-WHERE Id NOT IN (
-	SELECT DISTINCT IdMarca FROM PRODUCTOS WHERE IdMarca IS NOT NULL
-)
-END
-GO
-
 EXEC spAltaMarca 'Huawei'
 EXEC spAltaMarca 'Samsung'
 
@@ -311,3 +284,45 @@ EXEC spAltaProducto 'TV-SAM-001', 1, 2, 'Smart TV Samsung 50"', 'Televisor 4K UH
 -- 2. Asumiendo que el ID de ese producto generado fue el 1, le cargamos dos fotos:
 EXEC spAltaImagen 'https://tse1.mm.bing.net/th/id/OIP.fKqqpnyRVm9NSxMFOs8KLwHaHa?r=0&cb=thfvnextfalcon2&rs=1&pid=ImgDetMain&o=7&rm=3', 1;
 EXEC spAltaImagen 'https://a-static.mlcdn.com.br/1500x1500/smart-tv-50-crystal-4k-samsung-50au7700-wi-fi-bluetooth-hdr-alexa-built-in-3-hdmi-1-usb/magazineluiza/193441200/15a3134ca277772436f19af65d9960ec.jpg', 1;
+
+USE ECOMMERCE_DB;
+GO
+
+-- 1. Creamos Roles básicos
+INSERT INTO ROLES (Rol) VALUES ('Admin'), ('Cliente');
+GO
+
+-- 2. Creamos 3 Usuarios para nuestros clientes (Se asignan al IdRol 2 = Cliente)
+INSERT INTO USUARIOS (Usuario, Clave, IdRol) VALUES 
+('fluna', '1234', 2),
+('mgomez', '1234', 2),
+('clopez', '1234', 2);
+GO
+
+-- 3. Creamos 3 Clientes vinculados a los usuarios recién creados
+INSERT INTO CLIENTES (Nombre, Apellido, Dni, Email, Telefono, IdUsuario) VALUES 
+('Facundo', 'Luna', '40111222', 'facundo@email.com', '1122334455', 1),
+('María', 'Gómez', '31222333', 'maria.gomez@email.com', '1199887766', 2),
+('Carlos', 'López', '32333444', 'carlos.lopez@email.com', '1155443322', 3);
+GO
+
+-- 4. Creamos Direcciones para esos clientes
+INSERT INTO DIRECCIONES (IdCliente, Calle, Numero, Localidad, CodigoPostal, Observaciones) VALUES 
+(1, 'Ruta 197', 1234, 'General Pacheco', 'B1618', 'Casa con rejas negras'),
+(2, 'Calle Falsa', 456, 'CABA', 'C1001', 'Depto 4B'),
+(3, 'Av. San Martín', 890, 'Tigre', 'B1648', 'Local a la calle');
+GO
+
+-- 5. Llenamos las tablas paramétricas que necesita un Pedido
+INSERT INTO METODOS_DE_PAGO (Nombre) VALUES ('Tarjeta de Crédito'), ('Mercado Pago'), ('Transferencia Bancaria');
+INSERT INTO FORMAS_DE_ENTREGA (Nombre) VALUES ('Envío a Domicilio'), ('Retiro en Sucursal');
+INSERT INTO ESTADOS_DE_PEDIDO (Estado) VALUES ('Pendiente'), ('Enviado'), ('Entregado');
+GO
+
+-- 6. Finalmente, creamos los 3 Pedidos
+-- Estructura: IdCliente, IdDireccion, IdMetodoDePago, Fecha, Precio, IdFormaDeEntrega, IdEstado
+INSERT INTO PEDIDOS (IdCliente, IdDireccion, IdMetodoDePago, Fecha, Precio, IdFormaDeEntrega, IdEstado) VALUES 
+(1, 1, 2, GETDATE(), 15500.50, 1, 1), -- Facundo, Envío, Pendiente, por Mercado Pago
+(2, 2, 1, GETDATE(), 8990.00, 1, 2),  -- María, Envío, Enviado, Tarjeta de Crédito
+(3, 3, 3, '2026-06-10', 45000.00, 2, 3); -- Carlos, Retiro, Entregado, Transferencia
+GO

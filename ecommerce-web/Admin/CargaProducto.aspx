@@ -51,20 +51,25 @@
             <asp:DropDownList runat="server" ID="ddEstado" CssClass="form-select"></asp:DropDownList>
 
             <label for="ddCategoria" class="form-label">Categoria</label>
-            <asp:CustomValidator ID="cvCategoria" ErrorMessage="*" ControlToValidate="ddCategoria" runat="server" CssClass="validacion" OnServerValidate="CvCategoria_ServerValidate"  />
+            <asp:RequiredFieldValidator ErrorMessage="*" CssClass="validacion" ControlToValidate="ddCategoria" runat="server" />
             <asp:DropDownList runat="server" ID="ddCategoria" CssClass="form-select select2"></asp:DropDownList>
 
 
             <label for="ddCategoria" class="form-label">Marca</label>
+            <asp:RequiredFieldValidator ErrorMessage="*" CssClass="validacion" ControlToValidate="ddMarca" runat="server" />
             <asp:DropDownList runat="server" ID="ddMarca" CssClass="form-select select2"></asp:DropDownList>
 
             <label for="txtSku" class="form-label">SKU</label>
+            <asp:RequiredFieldValidator ErrorMessage="*" CssClass="validacion" ControlToValidate="txtSku" runat="server" />
+            <asp:Label Text="" ID="lblSku" runat="server" Style="color: red;" />
+            <%--<asp:CustomValidator ErrorMessage="errormessage" ControlToValidate="txtSku" ID="cvSku" runat="server" OnServerValidate="cvSku_ServerValidate" />--%>
             <asp:TextBox runat="server" ID="txtSku" CssClass="form-control" />
 
             <label for="txtStock" class="form-label">Stock</label>
             <asp:TextBox runat="server" ID="txtStock" CssClass="form-control" TextMode="Number" min="0" Text="0"></asp:TextBox>
 
             <label for="txtPrecio" class="form-label">Precio</label>
+            <asp:RequiredFieldValidator ErrorMessage="*" CssClass="validacion" ControlToValidate="txtPrecio" runat="server" />
             <div class="input-group">
                 <span class="input-group-text">$</span>
                 <asp:TextBox runat="server" ID="txtPrecio" TextMode="Number" min="0" step="0.01" CssClass="form-control"></asp:TextBox>

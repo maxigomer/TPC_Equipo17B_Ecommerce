@@ -89,9 +89,17 @@ namespace ecommerce_web
         {
             try
             {
-                Page.Validate();
                 ProductoNegocio negocio = new ProductoNegocio();
                 ImagenNegocio imagenNegocio = new ImagenNegocio();
+
+                if(txtSku.Text != "" && negocio.checkSku(txtSku.Text))
+                {
+                    lblSku.Text = "Ya existe el SKU!";
+
+                    return;
+
+                }
+                Page.Validate();
 
 
                 Producto producto = new Producto();
@@ -278,9 +286,13 @@ namespace ecommerce_web
 
         }
 
-        protected void CvCategoria_ServerValidate(object source, ServerValidateEventArgs args)
+       
+        protected void cvSku_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            args.IsValid = ddCategoria.SelectedIndex != 0;
+            if(args.Value == "")
+            {
+                args.IsValid = true;
+            }
 
         }
     }

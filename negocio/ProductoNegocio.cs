@@ -384,6 +384,38 @@ namespace negocio
             }
         }
 
+        public bool checkSku(string sku)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT Sku FROM PRODUCTOS");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    if ((string)datos.Lector["Sku"] == sku)
+                    {
+                        return true;
+
+                    }
+                }
+
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
 
 
     }

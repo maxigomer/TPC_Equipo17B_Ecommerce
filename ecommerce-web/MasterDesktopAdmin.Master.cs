@@ -14,7 +14,7 @@ namespace ecommerce_web
 
         }
 
-        protected void btnBuscar_Click(object sender, EventArgs e)
+         protected void btnBuscar_Click(object sender, EventArgs e)
         {
          Response.Redirect("Productos.aspx?buscar=" + txtBuscar.Text);
         }

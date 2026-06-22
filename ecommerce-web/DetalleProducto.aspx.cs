@@ -37,5 +37,10 @@ namespace ecommerce_web
                     producto.ImagenPrincipal;
             }
         }
+        
+        protected void btnAgregarCarrito_Click(object sender, EventArgs e)
+        {
+           Response.Write("<script>alert('Producto agregado al carrito');</script>");
+        }
     }
 }

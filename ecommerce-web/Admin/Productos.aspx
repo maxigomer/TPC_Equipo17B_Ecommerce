@@ -18,7 +18,7 @@
         </div>
 
         <div class="col-md-2">
-            <asp:TextBox ID="txtBuscar"
+            <asp:TextBox ID="txtBuscarFiltro"
                 runat="server"
                 CssClass="form-control"
                 placeholder="Buscar..." />

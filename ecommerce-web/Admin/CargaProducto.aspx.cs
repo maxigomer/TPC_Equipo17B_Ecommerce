@@ -63,6 +63,7 @@ namespace ecommerce_web
                     Session["listaUrl"] = imgNegocio.listar(int.Parse(Request.QueryString["id"].ToString()));
                     repImagenes.DataSource = (List<Imagen>)Session["listaUrl"];
                     repImagenes.DataBind();
+                    Session["listaImagenesEliminadas"] = null;
 
 
 
@@ -224,6 +225,9 @@ namespace ecommerce_web
 
             try
             {
+                if (!Page.IsValid)
+                    return;
+
                 if (txtUrlImagen.Text == "" || txtUrlImagen.Text == null)
                 {
                     return;
@@ -275,6 +279,7 @@ namespace ecommerce_web
             }
 
             lista.RemoveAt(item.ItemIndex);
+
 
             Session["listaUrl"] = lista;
 

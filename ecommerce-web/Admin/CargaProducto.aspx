@@ -22,8 +22,9 @@
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
                     <div class="d-flex">
+                        <asp:RegularExpressionValidator runat="server" ControlToValidate="txtUrlImagen" ValidationExpression="^https://.+" ErrorMessage="Ingrese una URL valida" Display="Dynamic" CssClass="validacion" ValidationGroup="Imagen" />
                         <asp:TextBox runat="server" ID="txtUrlImagen" CssClass="form-control flex-grow-1 m-2" placeholder="Url Imagen" />
-                        <asp:Button runat="server" ID="btnAgregarUrlImagen" OnClick="btnAgregarUrlImagen_Click" CssClass="form-control m-1" Text="Agregar" Style="width: 100px" />
+                        <asp:Button runat="server" ID="btnAgregarUrlImagen" OnClick="btnAgregarUrlImagen_Click" CssClass="form-control m-1" Text="Agregar" Style="width: 100px" ValidationGroup="Imagen" />
 
                     </div>
                     <div class="d-flex flex-wrap gap-3">
@@ -31,7 +32,7 @@
                             <ItemTemplate>
                                 <div class="position-relative border rounded overflow-hiden shadow-sm" style="min-width: 120px; max-width: 180px; aspect-ratio: 1;">
                                     <asp:Button ID="btnEliminarImagen" runat="server" CommandArgument='<%#Eval("Url") %>' OnClick="btnEliminarImagen_Click"
-                                        CssClass="btn btn-danger btn-sm position-absolute top-0 end-0 m-1" Text="X"></asp:Button>
+                                        CssClass="btn btn-danger btn-sm position-absolute top-0 end-0 m-1" Text="X" CausesValidation="false"></asp:Button>
                                     <img src='<%#Eval("Url") %>' class="w-100 h-100" style="object-fit: cover" />
 
                                 </div>

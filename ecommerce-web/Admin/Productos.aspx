@@ -3,6 +3,37 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+        <div class="row mb-3">
+
+        <div class="col-md-4">
+            <asp:DropDownList ID="ddlCategoria"
+                runat="server"
+                CssClass="form-select" />
+        </div>
+
+        <div class="col-md-3">
+            <asp:DropDownList ID="ddlMarca"
+                runat="server"
+                CssClass="form-select" />
+        </div>
+
+        <div class="col-md-2">
+            <asp:TextBox ID="txtBuscar"
+                runat="server"
+                CssClass="form-control"
+                placeholder="Buscar..." />
+        </div>
+
+        <div class="col-md-2">
+            <asp:Button ID="btnFiltrar"
+                runat="server"
+                Text="Filtrar"
+                CssClass="btn btn-primary w-100"
+                OnClick="btnFiltrar_Click" />
+        </div>
+
+    </div>
+
     <div class="d-flex justify-content-end gap-2 p-1">
             <asp:Button runat="server" ID="btnTest" Text="Eliminar" OnClick="btnEliminar_Click" OnClientClick="return confirm('Estas seguro de ejecutar esta accion?');" CssClass="btn btn-danger mb-1" />
             <asp:Button runat="server" ID="btnCargaProducto" Text="Nuevo Producto" OnClick="btnCargaProducto_Click" CssClass="btn btn-dark mb-1" />

@@ -73,7 +73,7 @@
     <Content Include="Assets\notion.svg" />
     <Content Include="Assets\person.svg" />
     <Content Include="Admin\CargaProducto.aspx" />
-    <Content Include="Clientes.aspx" />
+    <Content Include="Admin\Clientes.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -96,7 +96,7 @@
     <Content Include="Admin\DefaultAdmin.aspx" />
     <Content Include="Admin\Productos.aspx" />
     <Content Include="Login.aspx" />
-    <Content Include="Pedidos.aspx" />
+    <Content Include="Admin\Pedidos.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -120,11 +120,11 @@
     <Compile Include="Admin\CargaProducto.aspx.designer.cs">
       <DependentUpon>CargaProducto.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Clientes.aspx.cs">
+    <Compile Include="Admin\Clientes.aspx.cs">
       <DependentUpon>Clientes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Clientes.aspx.designer.cs">
+    <Compile Include="Admin\Clientes.aspx.designer.cs">
       <DependentUpon>Clientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
@@ -183,11 +183,11 @@
     <Compile Include="Admin\Productos.aspx.designer.cs">
       <DependentUpon>Productos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pedidos.aspx.cs">
+    <Compile Include="Admin\Pedidos.aspx.cs">
       <DependentUpon>Pedidos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pedidos.aspx.designer.cs">
+    <Compile Include="Admin\Pedidos.aspx.designer.cs">
       <DependentUpon>Pedidos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

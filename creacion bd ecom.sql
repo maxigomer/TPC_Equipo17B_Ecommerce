@@ -66,8 +66,8 @@ CREATE TABLE PRODUCTOS(
 	Sku VARCHAR(70) NOT NULL UNIQUE,
 	IdCategoria INTEGER NOT NULL FOREIGN KEY REFERENCES CATEGORIAS(Id),
 	IdMarca INTEGER NOT NULL FOREIGN KEY REFERENCES MARCAS(Id),
-	Nombre VARCHAR(100) NOT NULL,
-	Descripcion VARCHAR(255) NULL,
+	Nombre VARCHAR(200) NOT NULL,
+	Descripcion VARCHAR(3000) NULL,
 	Precio DECIMAL(18,2) NOT NULL,
 	Costo DECIMAL(18,2) NULL,
 	Stock INTEGER NULL CHECK (Stock >= 0),
@@ -134,6 +134,15 @@ CREATE TABLE ITEM_PEDIDOS(
 	IdProducto INTEGER NOT NULL FOREIGN KEY REFERENCES PRODUCTOS(Id),
 	Cantidad SMALLINT NOT NULL CHECK (Cantidad >= 0),
 	Precio DECIMAL(18,2) NOT NULL
+)
+GO
+
+CREATE TABLE COLECCIONES_MENU(
+	Id INTEGER NOT NULL PRIMARY KEY IDENTITY(1,1),
+	Nombre VARCHAR(50) NULL,
+	IdCriterio INTEGER NULL,
+	Criterio BIT NULL,
+	Estado BIT NOT NULL
 )
 GO
 
@@ -354,3 +363,6 @@ INSERT INTO PEDIDOS (IdCliente, IdDireccion, IdMetodoDePago, Fecha, Precio, IdFo
 (2, 2, 1, GETDATE(), 8990.00, 1, 2),  -- María, Envío, Enviado, Tarjeta de Crédito
 (3, 3, 3, '2026-06-10', 45000.00, 2, 3); -- Carlos, Retiro, Entregado, Transferencia
 GO
+
+-- Agrego colecciones vacias
+INSERT INTO COLECCIONES_MENU (Nombre,IdCriterio,Criterio,Estado) VALUES (null,null,null,0), (null,null,null,0), (null,null,null,0), (null,null,null,0)

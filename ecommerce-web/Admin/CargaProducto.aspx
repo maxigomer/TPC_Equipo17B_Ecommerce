@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        .validacion{
+        .validacion {
             color: red;
             font-size: 20px;
         }
@@ -22,11 +22,11 @@
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
                     <div class="d-flex">
-                        <asp:RegularExpressionValidator runat="server" ControlToValidate="txtUrlImagen" ValidationExpression="^https://.+" ErrorMessage="Ingrese una URL valida" Display="Dynamic" CssClass="validacion" ValidationGroup="Imagen" />
                         <asp:TextBox runat="server" ID="txtUrlImagen" CssClass="form-control flex-grow-1 m-2" placeholder="Url Imagen" />
                         <asp:Button runat="server" ID="btnAgregarUrlImagen" OnClick="btnAgregarUrlImagen_Click" CssClass="form-control m-1" Text="Agregar" Style="width: 100px" ValidationGroup="Imagen" />
 
                     </div>
+                    <asp:RegularExpressionValidator runat="server" ControlToValidate="txtUrlImagen" ValidationExpression="^https://.+" ErrorMessage="Ingrese una URL valida" Display="Dynamic" CssClass="validacion" ValidationGroup="Imagen" />
                     <div class="d-flex flex-wrap gap-3">
                         <asp:Repeater runat="server" ID="repImagenes">
                             <ItemTemplate>
@@ -86,5 +86,5 @@
 
     </div>
     <asp:Button runat="server" ID="btnAgregarProducto" OnClick="btnAgregarProducto_Click" CssClass="form-control m-1 btn btn-primary" Text="Agregar Producto" Style="width: 200px;" />
-    <asp:ValidationSummary runat="server" CssClass="alert alert-danger" HeaderText="los valores con * son requeridos" ShowMessageBox="false" ShowSummary="true" DisplayMode="SingleParagraph"  />
+    <asp:ValidationSummary runat="server" CssClass="alert alert-danger" HeaderText="los valores con * son requeridos" ShowMessageBox="false" ShowSummary="true" DisplayMode="SingleParagraph" />
 </asp:Content>

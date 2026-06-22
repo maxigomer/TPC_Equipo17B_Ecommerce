@@ -16,6 +16,9 @@ namespace ecommerce_web
 
         }
 
-        
+        protected void btnActualizarColecciones_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

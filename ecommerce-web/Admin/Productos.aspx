@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <div class="row mb-3">
+       <%-- <div class="row mb-3">
 
         <div class="col-md-4">
             <asp:DropDownList ID="ddlCategoria"
@@ -32,7 +32,7 @@
                 OnClick="btnFiltrar_Click" />
         </div>
 
-    </div>
+    </div>--%>
 
     <div class="d-flex justify-content-end gap-2 p-1">
             <asp:Button runat="server" ID="btnTest" Text="Eliminar" OnClick="btnEliminar_Click" OnClientClick="return confirm('Estas seguro de ejecutar esta accion?');" CssClass="btn btn-danger mb-1" />

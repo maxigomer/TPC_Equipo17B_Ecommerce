@@ -2,11 +2,10 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-   <%-- <div class="bg-dark text-white text-center p-5 rounded mb-4">
+    <%-- <div class="bg-dark text-white text-center p-5 rounded mb-4">
         <h1>Bienvenido a la tienda</h1>
         <p>Encontrá ofertas en todos los productos</p>
     </div>--%>
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <%--<h2>Listado de productos</h2>--%>
@@ -50,6 +49,21 @@
             </asp:Repeater>
 
         </div>
+    </div>--%>
+
+<%--    posible banner--%>
+
+<%--    <div class="carousel slide mb-6" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item">
+                <img src="https://www.antevenio.com/wp-content/uploads/2016/04/20-ejemplos-de-banners-creativos.jpg" />
+            </div>
+            <div class="carousel-item">
+                <img src="https://alexcastrovalin.com/wp-content/uploads/2019/11/que-es-un-banner-en-marketing-y-tipos-de-banners-con-ejemplos.jpg" />
+            </div>
+
+        </div>
+
     </div>--%>
 
     <div class="container my-5">
@@ -112,6 +126,7 @@
             </asp:Repeater>
 
         </div>
-    </div>s
+    </div>
+    s
 
 </asp:Content>

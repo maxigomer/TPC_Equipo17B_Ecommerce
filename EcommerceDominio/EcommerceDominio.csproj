@@ -47,6 +47,7 @@
     <Compile Include="Catalogo\Imagen.cs" />
     <Compile Include="Catalogo\Marca.cs" />
     <Compile Include="Catalogo\Producto.cs" />
+    <Compile Include="Catalogo\Coleccion.cs" />
     <Compile Include="Parametros\EstadoPedido.cs" />
     <Compile Include="Parametros\FormaEntrega.cs" />
     <Compile Include="Parametros\MetodoPago.cs" />

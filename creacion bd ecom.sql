@@ -146,6 +146,12 @@ CREATE TABLE COLECCIONES_MENU(
 )
 GO
 
+CREATE TABLE BANNERS(
+	Id integer NOT NULL PRIMARY KEY IDENTITY(1,1),
+	Url VARCHAR(255) NOT NULL
+)
+GO
+
 CREATE PROCEDURE spAltaCategoria(
 @nombre varchar(50)
 )
@@ -307,6 +313,19 @@ DELETE FROM MARCAS
 WHERE Id NOT IN (
 	SELECT DISTINCT IdMarca FROM PRODUCTOS WHERE IdMarca IS NOT NULL
 )
+END
+GO
+
+CREATE PROCEDURE spActualizarColecciones(
+@id INTEGER,
+@nombre VARCHAR(50),
+@idCriterio INTEGER,
+@criterio BIT,
+@estado BIT
+)
+AS
+BEGIN
+	UPDATE COLECCIONES_MENU SET Nombre = @nombre, IdCriterio = @idCriterio, Criterio = @criterio, Estado = @estado WHERE Id = @id
 END
 GO
 

@@ -30,10 +30,15 @@
                 </h2>
 
                 <h3 class="text-success">
-                    $
-                    <asp:Label ID="lblPrecio"
-                        runat="server" />
+                  $
+                <asp:Label ID="lblPrecio" runat="server" />
                 </h3>
+
+                <asp:Button ID="btnAgregarCarrito"
+                 runat="server"
+                 Text="Agregar al carrito"
+                 CssClass="btn btn-success mt-3"
+                 OnClick="btnAgregarCarrito_Click" />
 
                 <hr />
 

@@ -273,7 +273,8 @@ namespace negocio
                 }
                 else
                 {
-                    return new List<Producto>();
+                    return null;
+                    //return new List<Producto>();
                     
                 }
                 datos.setearParametros("id", idCriterio);

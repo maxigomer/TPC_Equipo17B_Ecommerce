@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using negocio;
+using EcommerceDominio.Catalogo;
 
 namespace ecommerce_web
 {
@@ -19,7 +20,17 @@ namespace ecommerce_web
                 {
                     if (Request.QueryString["id"] != null && Request.QueryString["criterio"] != null)
                     {
-                        rptProductos.DataSource = negocio.listarActivos(Request.QueryString["criterio"], int.Parse(Request.QueryString["id"]));
+                        List<Producto> lista = negocio.listarActivos(Request.QueryString["criterio"], int.Parse(Request.QueryString["id"]));
+                        
+                        if (lista.Count > 0)
+                        {
+                            rptProductos.DataSource = lista;
+                        }
+                        else
+                        {
+                            Session.Add("error", "La coleccion no contiene productos");
+                            Response.Redirect("Error404.aspx", false);
+                        }
                         rptProductos.DataBind();
 
                     }

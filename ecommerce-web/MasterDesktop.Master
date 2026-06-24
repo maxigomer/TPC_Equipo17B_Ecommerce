@@ -53,7 +53,16 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="Default.aspx">Inicio</a>
                     </li>
-                    <li class="nav-item">
+
+                    <asp:Repeater runat="server" ID="rpColecciones">
+                        <ItemTemplate>
+                            <li class="nav-item">
+                                <a class="nav-link active" href='Colecciones.aspx?id=<%#Eval("IdCriterio") %>&criterio=<%#Eval("Criterio") %>'><%#Eval("Nombre") %></a>
+                            </li>
+                        </ItemTemplate>
+                    </asp:Repeater>
+
+<%--                    <li class="nav-item">
                         <a class="nav-link active" href="#">Categoria</a>
                     </li>
                     <li class="nav-item">
@@ -61,7 +70,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="#">Categoria</a>
-                    </li>
+                    </li>--%>
 
                 </ul>
 

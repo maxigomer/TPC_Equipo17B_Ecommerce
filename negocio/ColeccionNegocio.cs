@@ -120,5 +120,66 @@ namespace negocio
 
         }
 
+
+        public List<Coleccion> listar(bool estado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Coleccion> lista = new List<Coleccion>();
+
+            try
+            {
+                string e = estado ? "1" : "0";
+                datos.setearConsulta("SELECT * FROM COLECCIONES_MENU WHERE Estado = " + e);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Coleccion aux = new Coleccion();
+
+                    aux.Id = (int)datos.Lector["Id"];
+                    if (datos.Lector["Nombre"] is DBNull)
+                    {
+                        aux.Nombre = "";
+                    }
+                    else
+                    {
+                        aux.Nombre = (string)datos.Lector["Nombre"];
+                    }
+                    if (datos.Lector["IdCriterio"] is DBNull)
+                    {
+                        aux.IdCriterio = 0;
+                    }
+                    else
+                    {
+                        aux.IdCriterio = (int)datos.Lector["IdCriterio"];
+                    }
+
+                    if (datos.Lector["Criterio"] is DBNull)
+                    {
+                        aux.Criterio = "";
+                    }
+                    else
+                    {
+                        aux.Criterio = (bool)datos.Lector["Criterio"] ? "Categoria" : "Marca";
+                    }
+                    aux.Estado = (bool)datos.Lector["Estado"];
+
+                    lista.Add(aux);
+
+                }
+                return lista;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
     }
 }

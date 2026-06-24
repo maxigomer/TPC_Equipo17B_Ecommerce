@@ -329,6 +329,24 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE spListarProductosActivos_FiltroMarca(
+@id INTEGER
+)
+AS
+BEGIN
+SELECT P.Id, Sku, P.Nombre, P.Descripcion, Precio, Costo, Stock , M.Nombre Marca, C.Nombre Categoria, IdCategoria, IdMarca, Estado FROM PRODUCTOS P, MARCAS M, CATEGORIAS C WHERE M.Id = P.IdMarca and C.Id = P.IdCategoria and Estado = 1 and P.IdMarca = @id
+END
+GO
+
+CREATE PROCEDURE spListarProductosActivos_FiltroCategoria(
+@id INTEGER
+)
+AS
+BEGIN
+SELECT P.Id, Sku, P.Nombre, P.Descripcion, Precio, Costo, Stock , M.Nombre Marca, C.Nombre Categoria, IdCategoria, IdMarca, Estado FROM PRODUCTOS P, MARCAS M, CATEGORIAS C WHERE M.Id = P.IdMarca and C.Id = P.IdCategoria and Estado = 1 and P.IdCategoria = @id
+END
+GO
+
 EXEC spAltaMarca 'Huawei'
 EXEC spAltaMarca 'Samsung'
 

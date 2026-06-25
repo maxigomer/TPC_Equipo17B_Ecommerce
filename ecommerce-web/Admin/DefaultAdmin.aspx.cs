@@ -165,5 +165,10 @@ namespace ecommerce_web
             }
 
         }
+
+        protected void btnUrlBanner_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -51,20 +51,13 @@
         </div>
     </div>--%>
 
-<%--    posible banner--%>
+    <%--    posible banner--%>
 
-<%--    <div class="carousel slide mb-6" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item">
-                <img src="https://www.antevenio.com/wp-content/uploads/2016/04/20-ejemplos-de-banners-creativos.jpg" />
-            </div>
-            <div class="carousel-item">
-                <img src="https://alexcastrovalin.com/wp-content/uploads/2019/11/que-es-un-banner-en-marketing-y-tipos-de-banners-con-ejemplos.jpg" />
-            </div>
-
-        </div>
-
-    </div>--%>
+    <div class="container-fluid px-0">
+        <a href="#">
+            <asp:Image runat="server" ID="imgBanner" AlternateText="Banner Principal" CssClass="img-fluid w-100" Style="max-height: 350px; object-fit: cover;" />
+        </a>
+    </div>
 
     <div class="container my-5">
         <h2 class="mb-4 text-center">Nuestro Catálogo</h2>
@@ -127,6 +120,5 @@
 
         </div>
     </div>
-    
 
 </asp:Content>

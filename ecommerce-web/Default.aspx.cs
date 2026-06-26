@@ -19,7 +19,7 @@ namespace ecommerce_web
 
                 rptProductos.DataSource = negocio.listarActivos();
                 rptProductos.DataBind();
-                imgBanner.ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPDg0Tnc6LbsdSr6DaEyTxaNlyKWiEAt5v0Z7lc7ZnZXvNtDHK7CZ_kSbd&s=10";
+                imgBanner.ImageUrl = BannerNegocio.Url();
             }
         }
     }

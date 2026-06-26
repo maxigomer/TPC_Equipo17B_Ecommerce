@@ -168,6 +168,21 @@ namespace ecommerce_web
 
         protected void btnUrlBanner_Click(object sender, EventArgs e)
         {
+            imgBanner.ImageUrl = txtUrlBanner.Text;
+
+        }
+
+        protected void btnActualizarBanner_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BannerNegocio.Actualizar(imgBanner.ImageUrl);
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+            }
 
         }
     }

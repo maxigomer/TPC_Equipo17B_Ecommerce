@@ -41,6 +41,9 @@
 
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
+            <div class="d-flex justify-content-end gap-2 p-1">
+                <asp:Button runat="server" ID="btnActualizarBanner" Text="Actualizar" OnClick="btnActualizarBanner_Click"  CssClass="btn btn-dark mb-1" />
+            </div>
             <div class="flex-column">
 
                 <div class="d-flex">

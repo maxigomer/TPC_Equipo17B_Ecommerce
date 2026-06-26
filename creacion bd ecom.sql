@@ -347,6 +347,16 @@ SELECT P.Id, Sku, P.Nombre, P.Descripcion, Precio, Costo, Stock , M.Nombre Marca
 END
 GO
 
+CREATE PROCEDURE sp_login(
+@usuario VARCHAR(50),
+@clave VARCHAR(50)
+)
+AS
+BEGIN
+SELECT U.Id, U.IdRol, R.Rol FROM USUARIOS U INNER JOIN ROLES R ON U.IdRol = R.Id WHERE U.Usuario = @usuario AND U.Clave = @clave
+END
+GO
+
 EXEC spAltaMarca 'Huawei'
 EXEC spAltaMarca 'Samsung'
 

@@ -16,7 +16,7 @@
                 <div class="row w-100 align-items-center">
                     <div class="col-2">
                         <a class="navbar-brand p-1">
-                            <img src="Assets/notion.svg" alt="Logo" width="50" height="50" />
+                            <img src='<%= ResolveUrl("Assets/notion.svg") %>' alt="Logo" width="50" height="50" />
                         </a>
 
                     </div>
@@ -32,13 +32,13 @@
                     <div class="col-2 d-flex justify-content-end">
 
                         <div class="d-flex">
-                            <img src="Assets/person.svg" class="bi bi-person m-1" alt="login" width="30" height="30" />
+                            <img src='<%= ResolveUrl("Assets/person.svg") %>' class="bi bi-person m-1" alt="login" width="30" height="30" />
                             <asp:Button ID="btnLogin" Text="Login" CssClass="btn btn-outline-info" runat="server" OnClick="btnLogin_Click" />
 
                         </div>
                         <div class="me-2 ps-3">
                             <a href="#" >
-                                <img src="Assets/cart.svg" class="bi bi-cart m-1" alt="Cart" width="30" height="30" />
+                                <img src='<%= ResolveUrl("~/Assets/cart.svg") %>' class="bi bi-cart m-1" alt="Cart" width="30" height="30" />
                             </a>
 
                         </div>
@@ -51,7 +51,7 @@
             <div class="container-fluid">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="Default.aspx">Inicio</a>
+                        <a class="nav-link active" href='<%= ResolveUrl("~/Default.aspx") %>'>Inicio</a>
                     </li>
 
                     <asp:Repeater runat="server" ID="rpColecciones">

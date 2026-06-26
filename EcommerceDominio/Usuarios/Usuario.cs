@@ -11,10 +11,12 @@ namespace EcommerceDominio.Usuarios
         public int Id { get; set; }
         public string NombreUsuario { get; set; }
         public string Clave { get; set; }
+        public Rol Rol { get; set; }
 
-        public int IdRol { get; set; }
-        public virtual Rol Rol { get; set; }
+        public Usuario(){
 
-        public virtual Cliente Cliente { get; set; }
+            Rol = new Rol();
+        }
+
     }
 }

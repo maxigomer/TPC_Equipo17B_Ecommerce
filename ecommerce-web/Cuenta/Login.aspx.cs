@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EcommerceDominio.Usuarios;
+using negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,11 +27,26 @@ namespace ecommerce_web
             if (txtEmail.Text == "admin@mail.com" && txtPassword.Text == "admin")
             {
                 Session["AdminLogueado"] = true;
-                Response.Redirect("Clientes.aspx", false);
+                Response.Redirect("~/Admin/DefaultAdmin.aspx", false);
             }
             else
             {
-                lblError.Text = "Credenciales incorrectas. Verifique y vuelva a intentar.";
+                Usuario usuario = new Usuario();
+                usuario.NombreUsuario = txtEmail.Text;
+                usuario.Clave = txtPassword.Text;
+
+                if (UsuarioNegocio.Login(usuario))
+                {
+                    int id = usuario.Id;
+                    int idRol = usuario.Rol.Id;
+                    string rol = usuario.Rol.NombreRol;
+
+                }
+                else
+                {
+                    lblError.Text = "Credenciales incorrectas. Verifique y vuelva a intentar.";
+
+                }
             }
         }
     }

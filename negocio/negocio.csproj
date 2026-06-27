@@ -48,6 +48,7 @@
     <Compile Include="ColeccionNegocio.cs" />
     <Compile Include="ImagenNegocio.cs" />
     <Compile Include="MarcaNegocio.cs" />
+    <Compile Include="PagoNegocio.cs" />
     <Compile Include="ProductoNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuarioNegocio.cs" />

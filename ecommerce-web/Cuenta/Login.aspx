@@ -19,7 +19,7 @@
             <asp:Button ID="btnLoginAcceder" runat="server" Text="Ingresar" CssClass="btn btn-info w-100 fw-bold mb-2" OnClick="btnLoginAcceder_Click" />
             <div class="text-center justify-content-center d-flex p-2 mb-3">
                 <p>¿No tenes cuenta todavia?</p>
-                <a href="#" class="ps-2" style="color: black;">Crear Cuenta</a>
+                <a href='<%= ResolveUrl("~/Cuenta/Register.aspx") %>' class="ps-2" style="color: black;">Crear Cuenta</a>
             </div>
             
             <asp:Label ID="lblError" runat="server" ForeColor="#FF9999" CssClass="text-center d-block"></asp:Label>

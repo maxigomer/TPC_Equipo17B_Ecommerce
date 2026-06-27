@@ -56,7 +56,7 @@ namespace ecommerce_web
                     ddMarca.SelectedValue = producto.Marca.Id.ToString();
                     txtStock.Text = producto.Stock.ToString();
                     txtSku.Text = producto.Sku;
-                    txtPrecio.Text = producto.Precio.ToString();
+                    txtPrecio.Text = ((decimal)producto.Precio).ToString(CultureInfo.InvariantCulture);
                     txtCosto.Text = ((decimal)producto.Costo).ToString(CultureInfo.InvariantCulture);
                     ddEstado.SelectedValue = producto.Estado ? "Activo" : "Draft";
                     btnAgregarProducto.Text = "Modificar";

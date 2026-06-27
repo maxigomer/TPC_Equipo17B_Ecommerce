@@ -17,9 +17,17 @@ namespace ecommerce_web
                 //continuación de consulta con base de datos para la carga de produtos
                 ProductoNegocio negocio = new ProductoNegocio();
 
-                rptProductos.DataSource = negocio.listarActivos();
-                rptProductos.DataBind();
-                imgBanner.ImageUrl = BannerNegocio.Url();
+                try
+                {
+                    rptProductos.DataSource = negocio.listarActivos();
+                    rptProductos.DataBind();
+                    imgBanner.ImageUrl = BannerNegocio.Url();
+
+                }
+                catch
+                {
+
+                }
             }
         }
     }

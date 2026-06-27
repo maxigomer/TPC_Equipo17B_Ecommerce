@@ -22,7 +22,7 @@ CREATE TABLE CLIENTES(
 	Id INTEGER NOT NULL PRIMARY KEY IDENTITY(1,1),
 	Nombre VARCHAR(50) NOT NULL,
 	Apellido VARCHAR(50) NOT NULL,
-	Dni VARCHAR(11) NOT NULL,
+	Dni VARCHAR(11) NULL,
 	Email VARCHAR(50) NOT NULL UNIQUE,
 	Telefono VARCHAR(15) NULL,
 	IdUsuario INTEGER NOT NULL FOREIGN KEY REFERENCES USUARIOS(Id) UNIQUE
@@ -357,6 +357,26 @@ SELECT U.Id, U.IdRol, R.Rol FROM USUARIOS U INNER JOIN ROLES R ON U.IdRol = R.Id
 END
 GO
 
+CREATE PROCEDURE spRegistrarCliente(
+@nombre VARCHAR(50),
+@apellido VARCHAR(50),
+@dni VARCHAR(11),
+@email VARCHAR(50),
+@telefono VARCHAR(15),
+@clave VARCHAR(255)
+)
+AS
+BEGIN
+	DECLARE @idUsuario INTEGER;
+	
+	INSERT INTO USUARIOS(Usuario,Clave,IdRol) VALUES(@email,@clave,2);
+	SET @idUsuario = SCOPE_IDENTITY();
+
+	INSERT INTO CLIENTES (Nombre,Apellido,Dni,Email,Telefono,IdUsuario) VALUES(@nombre,@apellido,@dni,@email,@telefono,@idUsuario);
+
+END
+GO
+
 EXEC spAltaMarca 'Huawei'
 EXEC spAltaMarca 'Samsung'
 
@@ -413,3 +433,5 @@ GO
 
 -- Agrego colecciones vacias
 INSERT INTO COLECCIONES_MENU (Nombre,IdCriterio,Criterio,Estado) VALUES (null,null,null,0), (null,null,null,0), (null,null,null,0), (null,null,null,0)
+
+INSERT INTO BANNERS(Url) VALUES('')

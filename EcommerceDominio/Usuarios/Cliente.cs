@@ -14,10 +14,13 @@ namespace EcommerceDominio.Usuarios
         public string DNI { get; set; }
         public string Email { get; set; }
         public string Telefono { get; set; }
+        public Usuario Usuario { get; set; }
 
-        public int IdUsuario { get; set; }
-        public virtual Usuario Usuario { get; set; }
+        public Cliente()
+        {
+            Usuario = new Usuario();
+        }
 
-        public virtual ICollection<Direccion> Direcciones { get; set; } = new List<Direccion>();
+
     }
 }

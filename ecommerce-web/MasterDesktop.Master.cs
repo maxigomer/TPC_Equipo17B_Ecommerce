@@ -23,7 +23,7 @@ namespace ecommerce_web
         }
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Cuenta/Login.aspx", false);
+            Response.Redirect("~/Cuenta/Login.aspx", false);
         }
     }
 }

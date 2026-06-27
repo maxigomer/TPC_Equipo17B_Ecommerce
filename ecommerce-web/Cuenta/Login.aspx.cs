@@ -29,7 +29,8 @@ namespace ecommerce_web
                 Session["AdminLogueado"] = true;
                 Response.Redirect("~/Admin/DefaultAdmin.aspx", false);
             }
-            else
+
+            try
             {
                 Usuario usuario = new Usuario();
                 usuario.NombreUsuario = txtEmail.Text;
@@ -40,6 +41,8 @@ namespace ecommerce_web
                     int id = usuario.Id;
                     int idRol = usuario.Rol.Id;
                     string rol = usuario.Rol.NombreRol;
+                    Session.Add("usuario", usuario);
+                    Response.Redirect("~/Default.aspx",false);
 
                 }
                 else
@@ -47,6 +50,13 @@ namespace ecommerce_web
                     lblError.Text = "Credenciales incorrectas. Verifique y vuelva a intentar.";
 
                 }
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                Response.Redirect("~/Error404.aspx", false);
+
             }
         }
     }

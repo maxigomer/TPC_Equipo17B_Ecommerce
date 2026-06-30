@@ -54,5 +54,22 @@ namespace ecommerce_web.Cart
                 carrito.Items[item.ItemIndex].Cantidad--;
 
         }
+
+        protected void btnEliminarItem_Click(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)sender;
+            RepeaterItem item = (RepeaterItem)btn.NamingContainer;
+            Carrito carrito = (Carrito)Session["carrito"];
+
+            try
+            {
+                carrito.Items.RemoveAt(item.ItemIndex);
+            }
+            catch
+            {
+
+            }
+
+        }
     }
 }

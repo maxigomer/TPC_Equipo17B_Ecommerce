@@ -43,8 +43,7 @@
                         </div>
 
                         <div class="ms-4">
-                            <asp:LinkButton runat="server" CssClass="btn btn-light rounded-circle">
-                                <i class="bi bi-x-lg"></i>
+                            <asp:LinkButton runat="server" ID="btnEliminarItem" CssClass="btn btn-danger rounded-circle" Text="X" OnClick="btnEliminarItem_Click">
                             </asp:LinkButton>
 
                         </div>

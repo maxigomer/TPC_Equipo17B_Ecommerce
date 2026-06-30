@@ -22,9 +22,31 @@ namespace ecommerce_web.Cart
         {
             try
             {
-                Carrito carrito = (Carrito)Session["carrito"];
-                rpCart.DataSource = carrito.Items;
-                rpCart.DataBind();
+                if (Session["carrito"] != null)
+                {
+
+                    Carrito carrito = (Carrito)Session["carrito"];
+                    if (carrito.Items.Count < 1)
+                    {
+                        pnlCarrito.Visible = false;
+                        pnlCarritoVacio.Visible = true;
+
+                    }
+                    else
+                    {
+                        rpCart.DataSource = carrito.Items;
+                        rpCart.DataBind();
+                        pnlCarrito.Visible = true;
+                        pnlCarritoVacio.Visible = false;
+
+                    }
+
+                }
+                else
+                {
+                    pnlCarrito.Visible = false;
+                    pnlCarritoVacio.Visible = true;
+                }
 
             }
             catch (Exception ex)

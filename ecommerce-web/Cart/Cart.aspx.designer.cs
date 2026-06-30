@@ -15,6 +15,33 @@ namespace ecommerce_web.Cart
     {
 
         /// <summary>
+        /// pnlCarrito control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlCarrito;
+
+        /// <summary>
+        /// lblSubtotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSubtotal;
+
+        /// <summary>
+        /// btnCheckout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCheckout;
+
+        /// <summary>
         /// rpCart control.
         /// </summary>
         /// <remarks>
@@ -22,5 +49,23 @@ namespace ecommerce_web.Cart
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rpCart;
+
+        /// <summary>
+        /// pnlCarritoVacio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlCarritoVacio;
+
+        /// <summary>
+        /// lnkProductos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkProductos;
     }
 }

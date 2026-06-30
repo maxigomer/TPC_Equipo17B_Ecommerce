@@ -29,16 +29,29 @@
                         runat="server" />
                 </h2>
 
-                <h3 class="text-success">
-                  $
+                <h3 class="text-success">$
                 <asp:Label ID="lblPrecio" runat="server" />
                 </h3>
 
-                <asp:Button ID="btnAgregarCarrito"
-                 runat="server"
-                 Text="Agregar al carrito"
-                 CssClass="btn btn-success mt-3"
-                 OnClick="btnAgregarCarrito_Click" />
+                <div class="d-flex align-items-center gap-3">
+
+                    <div class="input-group" style="width: 120px;">
+                        <asp:LinkButton ID="btnRestar" runat="server" CssClass="btn btn-outline-secondary" OnClick="btnRestar_Click">-</asp:LinkButton>
+                        <asp:TextBox ID="txtCantidad" runat="server" CssClass="form-control text-center" Text="1" ReadOnly="true" />
+                        <asp:LinkButton ID="btnSumar" runat="server" CssClass="btn btn-outline-secondary" OnClick="btnSumar_Click">+</asp:LinkButton>
+
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <asp:Button ID="btnAgregarCarrito"
+                            runat="server"
+                            Text="Agregar al carrito"
+                            CssClass="btn btn-success"
+                            OnClick="btnAgregarCarrito_Click" />
+
+
+                    </div>
+
+                </div>
 
                 <hr />
 

@@ -91,6 +91,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Cuenta\Perfil.aspx" />
     <Content Include="Cuenta\Register.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="DetalleProducto.aspx" />
@@ -135,6 +136,13 @@
     </Compile>
     <Compile Include="Colecciones.aspx.designer.cs">
       <DependentUpon>Colecciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cuenta\Perfil.aspx.cs">
+      <DependentUpon>Perfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cuenta\Perfil.aspx.designer.cs">
+      <DependentUpon>Perfil.aspx</DependentUpon>
     </Compile>
     <Compile Include="Cuenta\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>

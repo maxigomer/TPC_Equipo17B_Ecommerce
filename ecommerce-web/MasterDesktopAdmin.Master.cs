@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using EcommerceDominio.Usuarios;
 
 namespace ecommerce_web
 {
@@ -11,6 +12,16 @@ namespace ecommerce_web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["usuario"] != null)
+            {
+                Usuario usuario = (Usuario)Session["usuario"];
+
+                if(usuario.Rol.Id != 1)
+                {
+                    Response.Redirect("~/Default.aspx",false);
+                }
+
+            }
 
         }
 

@@ -20,15 +20,20 @@ namespace ecommerce_web
                 // dgvClientes.DataSource = negocio.Listar();
                 // dgvClientes.DataBind();
             }
+
+            if (Session["usuario"] != null)
+            {
+                Response.Redirect("~/Cuenta/Perfil.aspx", false);
+            }
         }
 
         protected void btnLoginAcceder_Click(object sender, EventArgs e)
         {
-            if (txtEmail.Text == "admin@mail.com" && txtPassword.Text == "admin")
-            {
-                Session["AdminLogueado"] = true;
-                Response.Redirect("~/Admin/DefaultAdmin.aspx", false);
-            }
+            //if (txtEmail.Text == "admin@mail.com" && txtPassword.Text == "admin")
+            //{
+            //    Session["AdminLogueado"] = true;
+            //    Response.Redirect("~/Admin/DefaultAdmin.aspx", false);
+            //}
 
             try
             {
@@ -42,7 +47,14 @@ namespace ecommerce_web
                     int idRol = usuario.Rol.Id;
                     string rol = usuario.Rol.NombreRol;
                     Session.Add("usuario", usuario);
-                    Response.Redirect("~/Default.aspx",false);
+                    if(usuario.Rol.Id == 1)
+                    {
+                        Response.Redirect("~/Admin/DefaultAdmin.aspx", false);
+                    }
+                    else
+                    {
+                        Response.Redirect("~/Default.aspx", false);
+                    }
 
                 }
                 else

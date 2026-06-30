@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using EcommerceDominio.Carrito;
 using negocio;
 
 namespace ecommerce_web
@@ -19,7 +20,27 @@ namespace ecommerce_web
                 rpColecciones.DataSource = coleccionNegocio.listar(true);
                 rpColecciones.DataBind();
             }
+            if (Session["usuario"] != null)
+            {
+                btnLogin.Text = "Perfil";
+            }
+
             
+        }
+
+        protected void Page_PreRender(object sender, EventArgs e)
+        {
+            if (Session["carrito"] != null)
+            {
+                Carrito carrito = (Carrito)Session["carrito"];
+                lblCantidadCarrito.Text = (carrito.Count()).ToString();
+                lblCantidadCarrito.Visible = true;
+            }
+            else
+            {
+                lblCantidadCarrito.Visible = false;
+            }
+
         }
         protected void btnLogin_Click(object sender, EventArgs e)
         {

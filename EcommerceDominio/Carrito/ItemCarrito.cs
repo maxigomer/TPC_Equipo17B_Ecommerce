@@ -15,7 +15,7 @@ namespace EcommerceDominio.Carrito
         public int Cantidad { get; set; }
         public decimal Precio { get; set; }
 
-        public virtual Carrito Carrito { get; set; }
-        public virtual Catalogo.Producto Producto { get; set; }
+        //public virtual Carrito Carrito { get; set; }
+        //public virtual Catalogo.Producto Producto { get; set; }
     }
 }

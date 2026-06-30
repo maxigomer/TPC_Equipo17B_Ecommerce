@@ -74,6 +74,7 @@
     <Content Include="Assets\person.svg" />
     <Content Include="Admin\CargaProducto.aspx" />
     <Content Include="Admin\Clientes.aspx" />
+    <Content Include="Cart\Cart.aspx" />
     <Content Include="Colecciones.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -129,6 +130,13 @@
     </Compile>
     <Compile Include="Admin\Clientes.aspx.designer.cs">
       <DependentUpon>Clientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cart\Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cart\Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
     </Compile>
     <Compile Include="Colecciones.aspx.cs">
       <DependentUpon>Colecciones.aspx</DependentUpon>

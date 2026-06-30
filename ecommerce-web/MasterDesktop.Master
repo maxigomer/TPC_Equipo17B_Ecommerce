@@ -37,7 +37,7 @@
 
                         </div>
                         <div class="me-2 ps-3">
-                            <a href="#" class="d-inline-block position-relative" >
+                            <a href='<%=ResolveUrl("~/Cart/Cart.aspx") %>' class="d-inline-block position-relative" >
                                 <img src='<%= ResolveUrl("~/Assets/cart.svg") %>' class="bi bi-cart m-1" alt="Cart" width="30" height="30" />
 
                                 <asp:Label runat="server" ID="lblCantidadCarrito" CssClass="cart-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" />

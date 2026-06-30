@@ -54,6 +54,9 @@ namespace ecommerce_web
                 item.Precio = producto.Precio;
                 item.IdProducto = producto.Id;
                 item.Cantidad = int.Parse(txtCantidad.Text);
+                item.Imagen = producto.ImagenPrincipal;
+                item.Nombre = producto.Nombre;
+                item.Sku = producto.Sku;
 
                 carrito.Items.Add(item);
                 Session.Add("carrito", carrito);

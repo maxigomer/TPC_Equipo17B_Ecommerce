@@ -61,7 +61,7 @@ namespace ecommerce_web.Cart
             try
             {
                 Carrito carrito = (Carrito)Session["carrito"];
-                if (PagoNegocio.ProcesarPago(txtNumeroTarjeta.Text, txtNombreTarjeta.Text, txtVencimientoTarjeta.Text, txtCodigoSeguridadTarjeta.Text, carrito.GetTotal()))
+                if (CheckoutNegocio.ProcesarCheckout(txtNumeroTarjeta.Text, txtNombreTarjeta.Text, txtVencimientoTarjeta.Text, txtCodigoSeguridadTarjeta.Text, carrito.GetTotal()))
                 {
                     Direccion direccion = new Direccion();
                     direccion.Calle = txtCalle.Text;

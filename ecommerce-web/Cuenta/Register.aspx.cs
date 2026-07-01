@@ -37,7 +37,7 @@ namespace ecommerce_web.Cuenta
                 cliente.Usuario.NombreUsuario = txtEmail.Text;
                 cliente.Telefono = txtTelefono.Text;
 
-                if(txtPassword.Text == txtConfirmarPassword.Text)
+                if (txtPassword.Text == txtConfirmarPassword.Text)
                 {
                     cliente.Usuario.Clave = txtPassword.Text;
                 }
@@ -54,17 +54,21 @@ namespace ecommerce_web.Cuenta
 
                     usuario.NombreUsuario = cliente.Email;
                     usuario.Clave = cliente.Usuario.Clave;
-                    usuario.Rol.Id = 2;
+                    if (UsuarioNegocio.Login(usuario))
+                    {
+                        Session.Add("usuario", usuario);
+                        Response.Redirect("~/Default.aspx", false);
 
-                    Session.Add("usuario", usuario);
-                    Response.Redirect("~/Default.aspx", false);
-                    
-                    
+                    }
+
+
+
+
                 }
 
-                
-                
-                  
+
+
+
             }
             catch (Exception ex)
             {

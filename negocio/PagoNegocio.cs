@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace negocio
 {
-    public class PagoNegocio
+    public static class PagoNegocio
     {
-        public bool ProcesarPago(string numeroTarjeta, string titular, string vencimiento, string cvv, decimal monto)
+        public static bool ProcesarPago(string numeroTarjeta, string titular, string vencimiento, string cvv, decimal monto)
             {
                 try
                 {

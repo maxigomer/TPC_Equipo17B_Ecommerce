@@ -88,6 +88,7 @@ namespace negocio
                 datos.ejecutarLectura();
                 datos.Lector.Read();
 
+                cliente.Id = (int)datos.Lector["Id"];
                 cliente.Nombre = (string)datos.Lector["Nombre"];
                 cliente.Apellido = (string)datos.Lector["Apellido"];
                 if (!(datos.Lector["Dni"] is DBNull))

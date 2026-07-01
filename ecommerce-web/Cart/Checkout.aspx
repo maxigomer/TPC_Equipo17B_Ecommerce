@@ -45,9 +45,22 @@
                         <asp:RegularExpressionValidator runat="server" ControlToValidate="txtDni" ValidationExpression="^\d{7,8}$" ErrorMessage="Ingrese un DNI Valido." CssClass="text-danger" Display="Dynamic" />
                         <asp:TextBox runat="server" CssClass="form-control mb-3" ID="txtDni" placeholder="DNI" />
 
-                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtDireccion" ErrorMessage="Campo Obligatorio" CssClass="text-danger" />
-                        <asp:TextBox runat="server" CssClass="form-control mb-3" ID="txtDireccion" placeholder="Direccion" />
-                        <asp:TextBox runat="server" CssClass="form-control mb-3" ID="txtDepartamento" placeholder="Departamento (Opcional)" />
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCalle" ErrorMessage="Campo Obligatorio" CssClass="text-danger" />
+                        <asp:TextBox runat="server" CssClass="form-control mb-3" ID="txtCalle" placeholder="Calle" />
+                        <div class="d-flex gap-3 mb-3">
+                            <div class="flex-grow-1">
+                                <asp:RegularExpressionValidator runat="server" ControlToValidate="txtNumeroCalle" ValidationExpression="^\d{3,4}$" ErrorMessage="Ingrese datos validos" CssClass="text-danger" Display="Dynamic" />
+                                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNumeroCalle" ErrorMessage="Campo Obligatorio" CssClass="text-danger"  Display="Dynamic"/>
+                                <asp:TextBox runat="server" CssClass="form-control mb-3" ID="txtNumeroCalle" placeholder="Numero o Altura" />
+
+                            </div>
+
+<%--                            <div class="flex-grow-1">
+                                <asp:RegularExpressionValidator runat="server" ControlToValidate="txtDepartamento" ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}$" ErrorMessage="Ingrese datos validos" CssClass="text-danger" Display="Dynamic" />
+                                <asp:TextBox runat="server" CssClass="form-control mb-3" ID="txtDepartamento" placeholder="Departamento (Opcional)" />
+
+                            </div>--%>
+                        </div>
 
                         <div class="d-flex gap-3 mb-3">
                             <div class="flex-grow-1">
@@ -57,19 +70,14 @@
                             </div>
 
                             <div class="flex-grow-1">
-                                <asp:RegularExpressionValidator runat="server" ControlToValidate="txtCiudad" ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}$" ErrorMessage="Ingrese datos validos" CssClass="text-danger" Display="Dynamic" />
-                                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCiudad" ErrorMessage="Campo Obligatorio" CssClass="text-danger" Display="Dynamic" />
-                                <asp:TextBox runat="server" CssClass="form-control" ID="txtCiudad" placeholder="Ciudad" />
+                                <asp:RegularExpressionValidator runat="server" ControlToValidate="txtLocalidad" ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}$" ErrorMessage="Ingrese datos validos" CssClass="text-danger" Display="Dynamic" />
+                                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtLocalidad" ErrorMessage="Campo Obligatorio" CssClass="text-danger"  Display="Dynamic"/>
+                                <asp:TextBox runat="server" CssClass="form-control" ID="txtLocalidad" placeholder="Localidad" />
                             </div>
-
-                            <div class="flex-grow-1">
-                                <asp:RegularExpressionValidator runat="server" ControlToValidate="txtProvincia" ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}$" ErrorMessage="Ingrese datos validos" CssClass="text-danger" Display="Dynamic" />
-                                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtProvincia" ErrorMessage="Campo Obligatorio" CssClass="text-danger" Display="Dynamic" />
-                                <asp:TextBox runat="server" CssClass="form-control" ID="txtProvincia" placeholder="Provincia" />
-                            </div>
-
 
                         </div>
+                        <asp:RegularExpressionValidator runat="server" ControlToValidate="txtObservaciones" ValidationExpression="^.{0,150}$" ErrorMessage="Las observaciones no pueden superar 150 caracteres" CssClass="text-danger" Display="Dynamic" />
+                        <asp:TextBox runat="server" CssClass="form-control" ID="txtObservaciones" placeholder="Observaciones (Opcional)" TextMode="MultiLine" Rows="5" />
                     </div>
 
                     <div class="mb-5">
@@ -99,7 +107,7 @@
                         <asp:TextBox runat="server" ID="txtDniTarjeta" CssClass="form-control mb-3" placeholder="DNI del titular de la tarjeta" />
 
                     </div>
-                    <asp:Button runat="server" ID="btnComprar" Text="Finalizar Compra" CssClass="btn btn-success btn-lg w-100" />
+                    <asp:Button runat="server" ID="btnComprar" Text="Finalizar Compra" CssClass="btn btn-success btn-lg w-100" OnClick="btnComprar_Click" />
                 </div>
 
             </div>

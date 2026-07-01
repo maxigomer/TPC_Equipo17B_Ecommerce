@@ -19,13 +19,13 @@ namespace negocio
             {
                 datos.setearProcedimiento("spAltaPedido");
                 datos.setearParametros("idCliente", cliente.Id);
-                if(direccion.Id != 0)
+                if (direccion.Id != 0)
                 {
                     datos.setearParametros("idDireccion", direccion.Id);
                 }
                 else
                 {
-                    datos.setearParametros("idDireccion", DireccionNegocio.AgregarScalar(cliente.Id,direccion));
+                    datos.setearParametros("idDireccion", DireccionNegocio.AgregarScalar(cliente.Id, direccion));
                 }
                 datos.setearParametros("idMetodoDePago", 1);
                 datos.setearParametros("fecha", DateTime.Now);
@@ -33,13 +33,15 @@ namespace negocio
                 datos.setearParametros("idFormaDeEntrega", 1);
                 idCompra = datos.ejecutarAccionScalar();
 
-                foreach(ItemCarrito item in carrito.Items)
+                foreach (ItemCarrito item in carrito.Items)
                 {
+                    datos.cerrarConexion();
                     datos.setearProcedimiento("spAltaItemPedido");
                     datos.setearParametros("idPedido", idCompra);
                     datos.setearParametros("idProducto", item.IdProducto);
                     datos.setearParametros("cantidad", item.Cantidad);
                     datos.setearParametros("precio", item.Subtotal);
+                    datos.ejecutarAccion();
                 }
 
             }
@@ -53,7 +55,7 @@ namespace negocio
                 datos.cerrarConexion();
             }
 
-                
+
         }
     }
 }

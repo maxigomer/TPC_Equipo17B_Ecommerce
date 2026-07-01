@@ -27,7 +27,7 @@ namespace ecommerce_web.Cart
                 rpResumenCarrito.DataSource = carrito.Items;
                 rpResumenCarrito.DataBind();
                 lblSubtotal.Text = "$" + carrito.GetTotal().ToString();
-                if(carrito.GetTotal() < 500000)
+                if (carrito.GetTotal() < 500000)
                 {
                     lblEnvio.Text = "$" + 100000;
                 }
@@ -40,19 +40,50 @@ namespace ecommerce_web.Cart
                 txtNombre.Text = cliente.Nombre;
                 txtApellido.Text = cliente.Apellido;
                 txtEmail.Text = cliente.Email;
-                
-                if(cliente.Telefono != "")
+
+                if (cliente.Telefono != "")
                 {
                     txtTelefono.Text = cliente.Telefono;
                 }
-                if(cliente.DNI != "")
+                if (cliente.DNI != "")
                 {
                     txtDni.Text = cliente.DNI;
                 }
-                
-                
+
+
             }
 
+        }
+
+        protected void btnComprar_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                Carrito carrito = (Carrito)Session["carrito"];
+                if (PagoNegocio.ProcesarPago(txtNumeroTarjeta.Text, txtNombreTarjeta.Text, txtVencimientoTarjeta.Text, txtCodigoSeguridadTarjeta.Text, carrito.GetTotal()))
+                {
+                    Direccion direccion = new Direccion();
+                    direccion.Calle = txtCalle.Text;
+                    direccion.Numero = int.Parse(txtNumeroCalle.Text);
+                    direccion.Localidad = txtLocalidad.Text;
+                    direccion.CodigoPostal = txtCodigoPostal.Text;
+                    direccion.Observaciones = txtObservaciones.Text;
+                    Usuario usuario = (Usuario)Session["usuario"];
+
+
+                    PedidoNegocio.Compra((Carrito)Session["carrito"], UsuarioNegocio.GetCliente(usuario.Id), direccion);
+                    Response.Redirect("~/Default.aspx", false);
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                Response.Redirect("~/Error404.aspx", false);
+            }
         }
     }
 }

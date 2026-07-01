@@ -47,12 +47,12 @@ namespace ecommerce_web
                     int idRol = usuario.Rol.Id;
                     string rol = usuario.Rol.NombreRol;
                     Session.Add("usuario", usuario);
-                    if(usuario.Rol.Id == 1)
+                    if (usuario.Rol.Id == 1)
                     {
                         Response.Redirect("~/Admin/DefaultAdmin.aspx", false);
                     }
                     else
-                    {                   
+                    {
                         Response.Redirect("~/Default.aspx", false);
                     }
 

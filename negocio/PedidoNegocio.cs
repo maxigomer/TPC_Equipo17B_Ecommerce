@@ -117,7 +117,7 @@ namespace negocio
                 aux.Cliente.Id = (int)datos.Lector["IdCliente"];
                 aux.Cliente.Nombre = (string)datos.Lector["Nombre"];
                 aux.Cliente.Apellido = (string)datos.Lector["Apellido"];
-                aux.IdDireccion = (int)datos.Lector["IdDireccion"];
+                aux.Direccion.Id = (int)datos.Lector["IdDireccion"];
                 aux.IdMetodoDePago = (int)datos.Lector["IdMetodoDePago"];
                 aux.Fecha = (DateTime)datos.Lector["Fecha"];
                 aux.Precio = (decimal)datos.Lector["Precio"];

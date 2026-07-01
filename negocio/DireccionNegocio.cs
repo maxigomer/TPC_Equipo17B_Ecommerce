@@ -38,6 +38,40 @@ namespace negocio
                 datos.cerrarConexion();
             }
 
+
         }
+
+        public static Direccion Listar(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Direccion direccion = new Direccion();
+
+            try
+            {
+                datos.setearConsulta("SELECT * FROM DIRECCIONES WHERE Id = " + id);
+                datos.ejecutarLectura();
+                datos.Lector.Read();
+
+                direccion.Id = id;
+                direccion.IdCliente = (int)datos.Lector["IdCliente"];
+                direccion.Calle = (string)datos.Lector["Calle"];
+                direccion.Numero = (int)datos.Lector["Numero"];
+                direccion.Localidad = (string)datos.Lector["Localidad"];
+                direccion.CodigoPostal = (string)datos.Lector["CodigoPostal"];
+                direccion.Observaciones = (string)datos.Lector["Observaciones"];
+
+                return direccion;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        } 
     }
 }

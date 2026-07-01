@@ -17,10 +17,15 @@ namespace ecommerce_web.Admin
             {
                 try
                 {
+                    ClienteNegocio clienteNegocio = new ClienteNegocio();
                     Pedido pedido = PedidoNegocio.Listar(int.Parse(Request.QueryString["id"].ToString()));
                     rpResumenPedido.DataSource = pedido.Items;
                     rpResumenPedido.DataBind();
                     lblTotal.Text = "$" + pedido.Precio;
+                    pedido.Cliente = clienteNegocio.ObtenerPorUsuario(pedido.Cliente.Id);
+                    lblNombre.Text = pedido.Cliente.NombreCompleto;
+                    lblEmail.Text = pedido.Cliente.Email;
+                    lblTelefono.Text = pedido.Cliente.Telefono;
 
                 }
                 catch

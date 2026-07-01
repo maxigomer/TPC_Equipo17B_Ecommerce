@@ -11,6 +11,7 @@ namespace EcommerceDominio.Pedidos
     {
         public int Id { get; set; }
         public Cliente Cliente { get; set; }
+        public Direccion Direccion { get; set; }
         public int IdDireccion {  get; set; }
         public int IdMetodoDePago { get; set; }
         public DateTime Fecha { get; set; }
@@ -24,6 +25,7 @@ namespace EcommerceDominio.Pedidos
         public Pedido()
         {
             Cliente = new Cliente();
+            Direccion = new Direccion();
             Items = new List<ItemPedido>();
         }
 

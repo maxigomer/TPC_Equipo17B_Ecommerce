@@ -14,6 +14,13 @@ namespace EcommerceDominio.Usuarios
         public int Numero { get; set; }
         public string Localidad { get; set; }
         public string CodigoPostal { get; set; }
+        public string DireccionCompleta
+        {
+            get
+            {
+                return Calle + " " + Numero + ", " + CodigoPostal + " " + Localidad;
+            }
+        }
         public string Observaciones { get; set; }
 
         public virtual Cliente Cliente { get; set; }

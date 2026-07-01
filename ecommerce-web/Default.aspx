@@ -54,9 +54,19 @@
     <%--    posible banner--%>
 
     <div class="container-fluid px-0">
-        <a href="#">
-            <asp:Image runat="server" ID="imgBanner" AlternateText="Banner Principal" CssClass="img-fluid w-100" Style="max-height: 350px; object-fit: cover;" />
+        <div class="container mt-4">
+    <div class="bg-dark text-white rounded-4 p-5 shadow">
+        <h1 class="display-5 fw-bold">Bienvenido a C# Store</h1>
+
+        <p class="lead">
+            Descubrí nuestros productos con los mejores precios.
+        </p>
+
+        <a href="#productos" class="btn btn-warning btn-lg">
+            Ver catálogo
         </a>
+    </div>
+</div>
     </div>
 
     <div class="container my-5">

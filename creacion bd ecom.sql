@@ -377,6 +377,48 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE spAltaPedido(
+@idCliente INTEGER,
+@idDireccion INTEGER,
+@idMetodoDePago INTEGER,
+@fecha DATETIME,
+@precio DECIMAL(18,2),
+@idFormaDeEntrega INTEGER
+)
+AS
+BEGIN
+INSERT INTO PEDIDOS (IdCliente,IdDireccion,IdMetodoDePago,Fecha,Precio,IdFormaDeEntrega,IdEstado) VALUES (@idCliente,@idDireccion,@idMetodoDePago,@fecha,@precio,@idFormaDeEntrega,1)
+SELECT SCOPE_IDENTITY();
+END
+GO
+
+CREATE PROCEDURE spAltaDireccion(
+@idCliente INTEGER,
+@calle VARCHAR(50),
+@numero INTEGER,
+@localidad VARCHAR(50),
+@codigoPostal VARCHAR(20),
+@observaciones VARCHAR(150)
+)
+AS
+BEGIN
+INSERT INTO DIRECCIONES (IdCliente,Calle,Numero,Localidad,CodigoPostal,Observaciones) VALUES(@idCliente,@calle,@numero,@localidad,@codigoPostal,@observaciones)
+SELECT SCOPE_IDENTITY();
+END
+GO
+
+CREATE PROCEDURE spAltaItemPedido(
+@idPedido INTEGER,
+@idProducto INTEGER,
+@cantidad INTEGER,
+@precio DECIMAL(18,2)
+)
+AS
+BEGIN
+INSERT INTO ITEM_PEDIDOS (IdPedido,IdProducto,Cantidad,Precio) VALUES (@idPedido,@idProducto,@cantidad,@precio)
+END
+GO
+
 EXEC spAltaMarca 'Huawei'
 EXEC spAltaMarca 'Samsung'
 

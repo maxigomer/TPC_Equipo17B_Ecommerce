@@ -155,7 +155,7 @@
     <Compile Include="Cart\Checkout.aspx.designer.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Cart\CompraExitosa.aspx.cs>
+    <Compile Include="Cart\CompraExitosa.aspx.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

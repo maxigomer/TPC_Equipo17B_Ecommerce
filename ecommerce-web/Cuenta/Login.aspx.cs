@@ -52,7 +52,7 @@ namespace ecommerce_web
                         Response.Redirect("~/Admin/DefaultAdmin.aspx", false);
                     }
                     else
-                    {
+                    {                   
                         Response.Redirect("~/Default.aspx", false);
                     }
 
@@ -67,6 +67,7 @@ namespace ecommerce_web
             catch (Exception ex)
             {
                 Session.Add("error", ex);
+
                 Response.Redirect("~/Error404.aspx", false);
 
             }

@@ -28,7 +28,8 @@ namespace negocio
                     aux.DNI = (string)datos.Lector["Dni"];
                     aux.Email = (string)datos.Lector["Email"];
 
-                    if (!(datos.Lector["Telefono"] != DBNull.Value))
+                    //if (!(datos.Lector["Telefono"] != DBNull.Value))
+                    if (datos.Lector["Telefono"] != DBNull.Value)
                     {
                         aux.Telefono = (string)datos.Lector["Telefono"];
                     }
@@ -51,5 +52,59 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+        public Cliente ObtenerPorUsuario(int idUsuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Cliente cliente = null;
+
+            try
+            {
+                datos.setearConsulta(@"
+            SELECT Id, Nombre, Apellido, Dni, Email, Telefono, IdUsuario
+            FROM Clientes
+            WHERE IdUsuario = @IdUsuario");
+
+                datos.setearParametros("IdUsuario", idUsuario);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    cliente = new Cliente();
+
+                    cliente.Id = (int)datos.Lector["Id"];
+                    cliente.Nombre = (string)datos.Lector["Nombre"];
+                    cliente.Apellido = (string)datos.Lector["Apellido"];
+
+                    if (datos.Lector["Dni"] != DBNull.Value)
+                        cliente.DNI = datos.Lector["Dni"].ToString();
+
+                    cliente.Email = (string)datos.Lector["Email"];
+
+                    if (datos.Lector["Telefono"] != DBNull.Value)
+                        cliente.Telefono = datos.Lector["Telefono"].ToString();
+                    else
+                        cliente.Telefono = "-";
+
+                    // Este es el Id del usuario asociado
+                    cliente.Usuario.Id = (int)datos.Lector["IdUsuario"];
+                }
+
+                return cliente;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void Modificar(Cliente cliente)
+        {
+
+        }
+
     }
 }

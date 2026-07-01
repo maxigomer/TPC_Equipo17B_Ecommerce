@@ -1,11 +1,12 @@
-﻿using System;
+﻿using EcommerceDominio.Carrito;
+using EcommerceDominio.Usuarios;
+using negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using EcommerceDominio.Carrito;
-using negocio;
 
 namespace ecommerce_web
 {
@@ -22,10 +23,17 @@ namespace ecommerce_web
             }
             if (Session["usuario"] != null)
             {
+                Usuario usuario = (Usuario)Session["usuario"];
+
                 btnLogin.Text = "Perfil";
+                System.Diagnostics.Debug.WriteLine("Usuario en sesión: " + usuario.Id);
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("NO HAY USUARIO EN SESION");
             }
 
-            
+
         }
 
         protected void Page_PreRender(object sender, EventArgs e)

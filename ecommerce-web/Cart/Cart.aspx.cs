@@ -97,15 +97,10 @@ namespace ecommerce_web.Cart
 
         protected void btnCheckout_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
-            Response.Redirect("~/Default.aspx");
-=======
             if (Session["usuario"] != null)
             {
                 Response.Redirect("~/Cart/Checkout.aspx", false);
             }
-
->>>>>>> 67db495d6a2c7008cd810ccdc0bc891f02ebf7af
         }
     }
 }

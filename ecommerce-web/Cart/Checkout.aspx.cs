@@ -74,7 +74,7 @@ namespace ecommerce_web.Cart
 
                     PedidoNegocio.Compra((Carrito)Session["carrito"], UsuarioNegocio.GetCliente(usuario.Id), direccion);
                     Session["carrito"] = null;
-                    Response.Redirect("~/Default.aspx", false);
+                    Response.Redirect("~/Cart/CompraExitosa.aspx", false);
 
 
                 }

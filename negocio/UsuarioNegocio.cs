@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
 using EcommerceDominio.Usuarios;
@@ -75,6 +76,42 @@ namespace negocio
                 datos.cerrarConexion();
             }
 
+        }
+
+        public static Cliente GetCliente(int idUsuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Cliente cliente = new Cliente();
+            try
+            {
+                datos.setearConsulta("SELECT Id, Nombre, Apellido, Dni, Email, Telefono FROM CLIENTES WHERE IdUsuario = " + idUsuario);
+                datos.ejecutarLectura();
+                datos.Lector.Read();
+
+                cliente.Nombre = (string)datos.Lector["Nombre"];
+                cliente.Apellido = (string)datos.Lector["Apellido"];
+                if (!(datos.Lector["Dni"] is DBNull))
+                    cliente.DNI = (string)datos.Lector["Dni"];
+                else
+                    cliente.DNI = "";
+                cliente.Email = (string)datos.Lector["Email"];
+                if (!(datos.Lector["Telefono"] is DBNull))
+                    cliente.Telefono = (string)datos.Lector["Telefono"];
+                else
+                    cliente.Telefono = "";
+
+                return cliente;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
         public static void Registrar(Cliente cliente)

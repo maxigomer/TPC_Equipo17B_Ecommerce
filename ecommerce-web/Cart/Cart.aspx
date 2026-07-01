@@ -47,7 +47,7 @@
 
                                 <div class="input-group">
                                     <asp:LinkButton runat="server" ID="btnRestarCantidad" CssClass="btn btn-outline-secondary" OnClick="btnRestarCantidad_Click">-</asp:LinkButton>
-                                    <asp:TextBox runat="server" CssClass="form-control text-center" Text='<%# Eval("Cantidad") %>' />
+                                    <asp:TextBox runat="server" CssClass="form-control text-center" Text='<%# Eval("Cantidad") %>' Enabled="false" />
                                     <asp:LinkButton runat="server" ID="btnSumarCantidad" CssClass="btn btn-outline-secondary" OnClick="btnSumarCantidad_Click">+</asp:LinkButton>
                                 </div>
                             </div>

@@ -52,6 +52,7 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+<<<<<<< HEAD
         public Cliente ObtenerPorUsuario(int idUsuario)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -105,6 +106,8 @@ namespace negocio
         {
 
         }
+=======
+>>>>>>> c88148f6fc77aa1e423c17fb06abb639ca154da0
 
     }
 }

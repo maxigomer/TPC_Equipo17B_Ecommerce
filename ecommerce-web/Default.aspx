@@ -106,9 +106,6 @@
                             <div class="card-footer bg-transparent border-top-0 p-3">
                                 <div class="d-grid gap-2">
                                     <asp:Button runat="server" ID="btnAgregarCarrito" CssClass="btn btn-success" CommandArgument='<%# Eval("Id") %>' OnClick="btnAgregarCarrito_Click" Text="Agregar al Carrito" />
-<%--                                    <a href='Carrito.aspx?idProducto=<%# Eval("Id") %>' class="btn btn-success">
-                                        <i class="bi bi-cart-plus"></i>Agregar al carrito
-                                    </a>--%>
                                     <a href='DetalleProducto.aspx?id=<%# Eval("Id") %>' class="btn btn-outline-secondary btn-sm">Ver detalle
                                     </a>
                                 </div>

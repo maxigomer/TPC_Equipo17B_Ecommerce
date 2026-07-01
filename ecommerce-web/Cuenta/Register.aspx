@@ -11,7 +11,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
         <div class="card bg-secondary text-white p-4 shadow" style="width: 100%; max-width: 400px;">
-            <h3 class="text-center mb-4">Ingreso</h3>
+            <h3 class="text-center mb-4">Crear cuenta</h3>
             <div class="mb-3">
                 <label class="form-label">Nombre</label>
                 <asp:RequiredFieldValidator ErrorMessage="*" CssClass="validacion" ControlToValidate="txtNombre" runat="server" />

@@ -30,11 +30,12 @@
                 <div class="col-md-6 mb-3">
                     <label>DNI</label>
                     <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control"/>
+                    <asp:Label ID="lblDni" runat="server" CssClass="text-warning small"/>
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label>Email</label>
-                    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"/>
+                    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" ReadOnly="true"/>
                 </div>
 
                 <div class="col-md-6 mb-3">
@@ -44,17 +45,11 @@
 
             </div>
 
-            <asp:Button
-                ID="btnGuardar"
-                runat="server"
-                Text="Guardar Cambios"
-                CssClass="btn btn-success"
-                OnClick="btnGuardar_Click"/>
+            <asp:Button ID="btnGuardar" runat="server" Text="Guardar Cambios" CssClass="btn btn-success" OnClick="btnGuardar_Click"/>
 
-            <asp:Label
-                ID="lblMensaje"
-                runat="server"
-                CssClass="ms-3 fw-bold text-success"/>
+            <asp:Button ID="btnCerrarSesion" runat="server" Text="Cerrar sesión" CssClass="btn btn-outline-danger ms-2" OnClick="btnCerrarSesion_Click" />
+
+            <asp:Label ID="lblMensaje" runat="server" CssClass="ms-3 fw-bold text-success"/>
 
         </div>
 

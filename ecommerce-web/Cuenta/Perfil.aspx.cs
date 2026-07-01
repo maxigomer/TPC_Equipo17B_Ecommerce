@@ -22,7 +22,7 @@ namespace ecommerce_web.Cuenta
                 }
 
                 Usuario usuario = (Usuario)Session["usuario"];
-
+                
                 ClienteNegocio negocio = new ClienteNegocio();
 
                 Cliente cliente = negocio.ObtenerPorUsuario(usuario.Id);
@@ -34,7 +34,14 @@ namespace ecommerce_web.Cuenta
                     txtDNI.Text = cliente.DNI;
                     txtEmail.Text = cliente.Email;
                     txtTelefono.Text = cliente.Telefono;
+
+                    if (string.IsNullOrWhiteSpace(cliente.DNI))
+                    {
+                        lblDni.Text = "Todavía no registraste tu DNI.";
+                    }
                 }
+
+             
             }
         }
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -72,6 +79,14 @@ namespace ecommerce_web.Cuenta
 
             lblMensaje.Text = "Perfil actualizado correctamente.";
             lblMensaje.CssClass = "text-success";
+        }
+
+        protected void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.Abandon();
+
+            Response.Redirect("~/Default.aspx", false);
         }
     }
 }

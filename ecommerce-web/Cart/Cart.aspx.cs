@@ -93,5 +93,10 @@ namespace ecommerce_web.Cart
             }
 
         }
+
+        protected void btnCheckout_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Default.aspx");
+        }
     }
 }

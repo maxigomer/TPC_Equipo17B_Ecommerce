@@ -34,5 +34,16 @@ namespace EcommerceDominio.Carrito
             }
             return contador;
         }
+        
+        public decimal GetTotal()
+        {
+            decimal total = 0;
+
+            foreach(ItemCarrito item in Items)
+            {
+                total += (item.Cantidad * item.Precio);
+            }
+            return total;
+        }
     }
 }

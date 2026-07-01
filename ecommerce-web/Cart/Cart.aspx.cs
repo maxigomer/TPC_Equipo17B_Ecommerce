@@ -38,6 +38,7 @@ namespace ecommerce_web.Cart
                         rpCart.DataBind();
                         pnlCarrito.Visible = true;
                         pnlCarritoVacio.Visible = false;
+                        lblSubtotal.Text = "$" + (carrito.GetTotal()).ToString();
 
                     }
 
@@ -90,6 +91,15 @@ namespace ecommerce_web.Cart
             catch
             {
 
+            }
+
+        }
+
+        protected void btnCheckout_Click(object sender, EventArgs e)
+        {
+            if (Session["usuario"] != null)
+            {
+                Response.Redirect("~/Cart/Checkout.aspx", false);
             }
 
         }

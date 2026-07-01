@@ -435,3 +435,6 @@ GO
 INSERT INTO COLECCIONES_MENU (Nombre,IdCriterio,Criterio,Estado) VALUES (null,null,null,0), (null,null,null,0), (null,null,null,0), (null,null,null,0)
 
 INSERT INTO BANNERS(Url) VALUES('')
+
+USE ECOMMERCE_DB 
+SELECT * FROM Clientes

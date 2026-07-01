@@ -52,7 +52,6 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-<<<<<<< HEAD
         public Cliente ObtenerPorUsuario(int idUsuario)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -60,10 +59,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta(@"
-            SELECT Id, Nombre, Apellido, Dni, Email, Telefono, IdUsuario
-            FROM Clientes
-            WHERE IdUsuario = @IdUsuario");
+                datos.setearConsulta(@"SELECT Id, Nombre, Apellido, Dni, Email, Telefono, IdUsuario FROM Clientes WHERE IdUsuario = @IdUsuario");
 
                 datos.setearParametros("IdUsuario", idUsuario);
                 datos.ejecutarLectura();
@@ -85,8 +81,6 @@ namespace negocio
                         cliente.Telefono = datos.Lector["Telefono"].ToString();
                     else
                         cliente.Telefono = "-";
-
-                    // Este es el Id del usuario asociado
                     cliente.Usuario.Id = (int)datos.Lector["IdUsuario"];
                 }
 
@@ -104,10 +98,30 @@ namespace negocio
 
         public void Modificar(Cliente cliente)
         {
+            AccesoDatos datos = new AccesoDatos();
 
+            try
+            {
+                datos.setearConsulta(@"UPDATE CLIENTES SET Nombre = @Nombre, Apellido = @Apellido, Dni = @Dni, Email = @Email, Telefono = @Telefono WHERE IdUsuario = @IdUsuario");
+
+                datos.setearParametros("Nombre", cliente.Nombre);
+                datos.setearParametros("Apellido", cliente.Apellido);
+                datos.setearParametros("Dni", cliente.DNI);
+                datos.setearParametros("Email", cliente.Email);
+
+                if (string.IsNullOrWhiteSpace(cliente.Telefono) || cliente.Telefono == "-")
+                    datos.setearParametros("Telefono", DBNull.Value);
+                else
+                    datos.setearParametros("Telefono", cliente.Telefono);
+
+                datos.setearParametros("IdUsuario", cliente.Usuario.Id);
+
+                datos.ejecutarAccion();
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
-=======
->>>>>>> c88148f6fc77aa1e423c17fb06abb639ca154da0
-
     }
 }

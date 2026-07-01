@@ -1,4 +1,5 @@
-﻿using System;
+﻿using negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,8 +14,24 @@ namespace ecommerce_web
         {
             if (!IsPostBack)
             {
-                
+                Session.Add("listaPedidos", PedidoNegocio.Listar());
+                dgvPedidos.DataSource = Session["listaPedidos"];
+                dgvPedidos.DataBind();
+
             }
+        }
+
+        protected void dgvPedidos_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                int id = Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "Id"));
+
+                e.Row.Attributes["onclick"] = $"window.location='DetallePedido.aspx?id={id}';";
+
+                e.Row.Style["cursor"] = "pointer";
+            }
+
         }
     }
 }

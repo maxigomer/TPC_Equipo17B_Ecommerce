@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminCategorias.aspx" />
+    <Content Include="Admin\DetallePedido.aspx" />
     <Content Include="Assets\cart.svg" />
     <Content Include="Assets\notion.svg" />
     <Content Include="Assets\person.svg" />
@@ -131,6 +132,13 @@
     </Compile>
     <Compile Include="Admin\Clientes.aspx.designer.cs">
       <DependentUpon>Clientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\DetallePedido.aspx.cs">
+      <DependentUpon>DetallePedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\DetallePedido.aspx.designer.cs">
+      <DependentUpon>DetallePedido.aspx</DependentUpon>
     </Compile>
     <Compile Include="Cart\Cart.aspx.cs">
       <DependentUpon>Cart.aspx</DependentUpon>

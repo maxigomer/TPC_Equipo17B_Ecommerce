@@ -16,6 +16,14 @@ namespace EcommerceDominio.Usuarios
         public string Telefono { get; set; }
         public Usuario Usuario { get; set; }
 
+        public string NombreCompleto
+        {
+            get
+            {
+                return Nombre + " " + Apellido;
+            }
+        }
+
         public Cliente()
         {
             Usuario = new Usuario();

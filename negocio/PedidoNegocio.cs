@@ -100,5 +100,65 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public static Pedido Listar(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT P.Id,P.IdCliente,C.Nombre,C.Apellido,P.IdDireccion,P.IdMetodoDePago,P.Fecha,P.Precio,P.IdFormaDeEntrega,P.IdEstado, E.Estado FROM PEDIDOS P, CLIENTES C, ESTADOS_DE_PEDIDO E WHERE P.IdCliente = C.Id AND P.IdEstado = E.Id AND P.Id = " + id);
+                datos.ejecutarLectura();
+                datos.Lector.Read();
+
+                Pedido aux = new Pedido();
+
+                aux.Id = (int)datos.Lector["Id"];
+                aux.Cliente.Id = (int)datos.Lector["IdCliente"];
+                aux.Cliente.Nombre = (string)datos.Lector["Nombre"];
+                aux.Cliente.Apellido = (string)datos.Lector["Apellido"];
+                aux.IdDireccion = (int)datos.Lector["IdDireccion"];
+                aux.IdMetodoDePago = (int)datos.Lector["IdMetodoDePago"];
+                aux.Fecha = (DateTime)datos.Lector["Fecha"];
+                aux.Precio = (decimal)datos.Lector["Precio"];
+                aux.IdFormaEntrega = (int)datos.Lector["IdFormaDeEntrega"];
+                aux.IdEstado = Convert.ToInt32(datos.Lector["IdEstado"]);
+                aux.Estado = (string)datos.Lector["Estado"];
+
+                datos.cerrarConexion();
+
+                datos.setearConsulta("SELECT I.Id,I.IdPedido, I.IdProducto,I.Cantidad, I.Precio, P.Sku, P.Nombre, Img.Url FROM ITEM_PEDIDOS I \r\nINNER JOIN PRODUCTOS P ON I.IdProducto = P.Id\r\nOUTER APPLY( SELECT TOP 1 Url FROM IMAGENES WHERE IdProducto = I.IdProducto ORDER BY Id) Img WHERE I.IdPedido = " + id);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    ItemPedido item = new ItemPedido();
+                    item.Id = (int)datos.Lector["Id"];
+                    item.IdPedido = (int)datos.Lector["IdPedido"];
+                    item.IdProducto = (int)datos.Lector["IdProducto"];
+                    item.Cantidad = Convert.ToInt32(datos.Lector["Cantidad"]);
+                    item.Precio = (decimal)datos.Lector["Precio"];
+                    item.Sku = (string)datos.Lector["Sku"];
+                    item.Nombre = (string)datos.Lector["Nombre"];
+                    item.Imagen = (string)datos.Lector["Url"];
+
+                    aux.Items.Add(item);
+                    
+                    
+                }
+                return aux;
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

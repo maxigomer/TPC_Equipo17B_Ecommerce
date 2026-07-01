@@ -19,9 +19,12 @@ namespace EcommerceDominio.Pedidos
         public int IdEstado { get; set; }
         public string Estado {  get; set; }
 
+        public List<ItemPedido> Items { get; set; }
+
         public Pedido()
         {
             Cliente = new Cliente();
+            Items = new List<ItemPedido>();
         }
 
     }

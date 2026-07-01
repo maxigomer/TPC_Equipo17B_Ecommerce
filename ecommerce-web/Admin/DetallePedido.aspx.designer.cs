@@ -51,6 +51,33 @@ namespace ecommerce_web.Admin
         protected global::System.Web.UI.WebControls.Button btnGuardarObservacion;
 
         /// <summary>
+        /// pnlObservaciones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlObservaciones;
+
+        /// <summary>
+        /// rpObservaciones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rpObservaciones;
+
+        /// <summary>
+        /// pnlObservacionesVacias control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlObservacionesVacias;
+
+        /// <summary>
         /// lblNombre control.
         /// </summary>
         /// <remarks>

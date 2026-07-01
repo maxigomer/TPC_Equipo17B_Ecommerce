@@ -86,7 +86,7 @@ namespace ecommerce_web
             {
                 lista = (List<int>)Session["idChecked"];
 
-                foreach(int id in lista)
+                foreach (int id in lista)
                 {
                     pnegocio.eliminar(id);
 
@@ -100,9 +100,20 @@ namespace ecommerce_web
 
         }
 
-        protected void btnFiltrar_Click(object sender, EventArgs e) 
+        protected void btnFiltrar_Click(object sender, EventArgs e)
         {
-            
+
+        }
+
+        protected void dgvProductos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvProductos.PageIndex = e.NewPageIndex;
+
+            ProductoNegocio negocio = new ProductoNegocio();
+            Session.Add("listaProductos", negocio.listar());
+            dgvProductos.DataSource = Session["listaProductos"];
+            dgvProductos.DataBind();
+
         }
     }
 }

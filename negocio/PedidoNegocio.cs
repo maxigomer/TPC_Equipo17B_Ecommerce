@@ -160,5 +160,59 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public static void ListarObservaciones(Pedido pedido)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT * FROM OBSERVACIONES_PEDIDOS WHERE IdPedido = " + pedido.Id);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    ObservacionPedido aux = new ObservacionPedido();
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.IdPedido = (int)datos.Lector["IdPedido"];
+                    aux.Observacion = (string)datos.Lector["Observacion"];
+
+                    pedido.Observaciones.Add(aux);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public static void AgregarObservacion(ObservacionPedido obs)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("INSERT INTO OBSERVACIONES_PEDIDOS (IdPedido,Observacion) VALUES (@idPedido,@observacion)");
+                datos.setearParametros("@idPedido", obs.IdPedido);
+                datos.setearParametros("@observacion", obs.Observacion);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

@@ -19,6 +19,7 @@ namespace ecommerce_web.Admin
                 {
                     ClienteNegocio clienteNegocio = new ClienteNegocio();
                     Pedido pedido = PedidoNegocio.Listar(int.Parse(Request.QueryString["id"].ToString()));
+                    pedido.Direccion = DireccionNegocio.Listar(pedido.Direccion.Id);
                     rpResumenPedido.DataSource = pedido.Items;
                     rpResumenPedido.DataBind();
                     lblTotal.Text = "$" + pedido.Precio;
@@ -26,6 +27,24 @@ namespace ecommerce_web.Admin
                     lblNombre.Text = pedido.Cliente.NombreCompleto;
                     lblEmail.Text = pedido.Cliente.Email;
                     lblTelefono.Text = pedido.Cliente.Telefono;
+                    lblDireccion.Text = pedido.Direccion.DireccionCompleta;
+
+
+                    PedidoNegocio.ListarObservaciones(pedido);
+                    if (pedido.Observaciones.Count() > 0)
+                    {
+                        pnlObservacionesVacias.Visible = false;
+                        pnlObservaciones.Visible = true;
+                        rpObservaciones.DataSource = pedido.Observaciones;
+                        rpObservaciones.DataBind();
+
+                    }
+                    else
+                    {
+                        pnlObservacionesVacias.Visible = true;
+                        pnlObservaciones.Visible = false;
+                    }
+
 
                 }
                 catch
@@ -37,6 +56,37 @@ namespace ecommerce_web.Admin
             {
                 Response.Redirect("~/Admin/Pedidos.aspx", false);
             }
+
+        }
+
+        protected void Page_PreRender(object sender, EventArgs e)
+        {
+
+            Pedido pedido = PedidoNegocio.Listar(int.Parse(Request.QueryString["id"].ToString()));
+            PedidoNegocio.ListarObservaciones(pedido);
+            if (pedido.Observaciones.Count() > 0)
+            {
+                pnlObservacionesVacias.Visible = false;
+                pnlObservaciones.Visible = true;
+                rpObservaciones.DataSource = pedido.Observaciones;
+                rpObservaciones.DataBind();
+
+            }
+            else
+            {
+                pnlObservacionesVacias.Visible = true;
+                pnlObservaciones.Visible = false;
+            }
+
+        }
+
+
+        protected void btnGuardarObservacion_Click(object sender, EventArgs e)
+        {
+            ObservacionPedido obs = new ObservacionPedido();
+            obs.IdPedido = int.Parse(Request.QueryString["id"].ToString());
+            obs.Observacion = txtObservaciones.Text;
+            PedidoNegocio.AgregarObservacion(obs);
 
         }
     }

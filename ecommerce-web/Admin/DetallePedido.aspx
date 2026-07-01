@@ -49,11 +49,31 @@
                 </div>
 
                 <div class="card-body">
+                    <asp:RegularExpressionValidator runat="server" ControlToValidate="txtObservaciones" ValidationExpression="^.{0,150}$" ErrorMessage="Las observaciones no pueden superar 150 caracteres" CssClass="text-danger" Display="Dynamic" />
                     <asp:TextBox ID="txtObservaciones" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="5" MaxLength="150" />
                     <div class="d-flex justify-content-between mt-2">
                         <span class="text-muted">Maximo 150 caracteres</span>
-                        <asp:Button ID="btnGuardarObservacion" runat="server" CssClass="btn btn-primary" Text="Guardar" />
+                        <asp:Button ID="btnGuardarObservacion" runat="server" CssClass="btn btn-primary" Text="Guardar" OnClick="btnGuardarObservacion_Click" />
                     </div>
+
+                    <asp:Panel ID="pnlObservaciones" runat="server">
+                        <hr />
+
+                        <h6 class="fw-bold mb-3">Historial de Observaciones</h6>
+
+                        <asp:Repeater ID="rpObservaciones" runat="server">
+                            <ItemTemplate>
+                                <div class="border rounded p-3 mb-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <strong><%# Eval("Observacion") %></strong>
+                                    </div>
+                                </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </asp:Panel>
+                    <asp:Panel ID="pnlObservacionesVacias" runat="server">
+                        <div class="text-center text-muted py-3">No hay Observaciones para este pedido.</div>
+                    </asp:Panel>
                 </div>
             </div>
 

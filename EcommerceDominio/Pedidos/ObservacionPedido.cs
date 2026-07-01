@@ -11,7 +11,5 @@ namespace EcommerceDominio.Pedidos
         public int Id { get; set; }
         public int IdPedido { get; set; }
         public string Observacion { get; set; }
-
-        public virtual Pedido Pedido { get; set; }
     }
 }

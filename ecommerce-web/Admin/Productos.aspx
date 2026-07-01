@@ -9,7 +9,7 @@
             <asp:Button runat="server" ID="btnCargaProducto" Text="Nuevo Producto" OnClick="btnCargaProducto_Click" CssClass="btn btn-dark mb-1" />
     </div>
     <asp:GridView runat="server" ID="dgvProductos" CssClass="table table-white caption-top" AutoGenerateColumns="false"
-        DataKeyNames="Id" AllowPaging="true" PageSize="10">
+        DataKeyNames="Id" AllowPaging="true" PageSize="10" OnPageIndexChanging="dgvProductos_PageIndexChanging">
         <Columns>
             <asp:TemplateField>
                 <ItemTemplate>

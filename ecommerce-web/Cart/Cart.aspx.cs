@@ -101,6 +101,10 @@ namespace ecommerce_web.Cart
             {
                 Response.Redirect("~/Cart/Checkout.aspx", false);
             }
+            else
+            {
+                
+            }
 
         }
     }

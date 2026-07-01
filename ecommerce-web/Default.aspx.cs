@@ -21,10 +21,26 @@ namespace ecommerce_web
 
                 try
                 {
-                    Session.Add("listaProductos", negocio.listarActivos());
+                    List<Producto> lista = negocio.listarActivos();
+
+                    string buscar = Request.QueryString["buscar"];
+
+                    if (!string.IsNullOrWhiteSpace(buscar))
+                    {
+                        lista = lista.Where(x =>
+                            x.Nombre.ToLower().Contains(buscar.ToLower())
+                        ).ToList();
+                    }
+
+                    Session["listaProductos"] = lista;
+                    rptProductos.DataSource = lista;
+                    rptProductos.DataBind();
+                    
+                    imgBanner.ImageUrl = BannerNegocio.Url();
+                    /*Session.Add("listaProductos", negocio.listarActivos());
                     rptProductos.DataSource = (List<Producto>)Session["listaProductos"];
                     rptProductos.DataBind();
-                    imgBanner.ImageUrl = BannerNegocio.Url();
+                    imgBanner.ImageUrl = BannerNegocio.Url();*/
 
                 }
                 catch

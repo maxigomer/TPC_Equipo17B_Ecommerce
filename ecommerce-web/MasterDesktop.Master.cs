@@ -25,12 +25,12 @@ namespace ecommerce_web
             {
                 Usuario usuario = (Usuario)Session["usuario"];
 
-                btnLogin.Text = "Perfil";
+                btnLogin.Text = "Mi Perfil";
                 System.Diagnostics.Debug.WriteLine("Usuario en sesión: " + usuario.Id);
             }
             else
             {
-                System.Diagnostics.Debug.WriteLine("NO HAY USUARIO EN SESION");
+                System.Diagnostics.Debug.WriteLine("Iniciar sesion");
             }
 
 
@@ -53,6 +53,13 @@ namespace ecommerce_web
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Cuenta/Login.aspx", false);
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string texto = txtBuscar.Text.Trim();
+
+            Response.Redirect("~/Default.aspx?buscar=" + Server.UrlEncode(texto), false);
         }
     }
 }

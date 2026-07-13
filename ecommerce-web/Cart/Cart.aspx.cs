@@ -103,8 +103,16 @@ namespace ecommerce_web.Cart
             }
             else
             {
-                
+                ClientScript.RegisterClientScriptBlock(GetType(), "MostrarModal", $@"window.addEventListener('load', function () {{
+                    var modal = new bootstrap.Modal(document.getElementById('{modalLogin.ClientID}')); modal.show(); }});", true);
+
+
             }
+        }
+
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

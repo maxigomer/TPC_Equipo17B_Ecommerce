@@ -91,4 +91,39 @@
 
     </asp:Panel>
 
+    <div id="modalLogin" runat="server" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-secondary text-white shadow">
+
+                <div class="modal-header border-0">
+                    <h3 class="modal-title w-100 text-center">Ingreso</h3>
+                    <button type="button" class="btn-close btn btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body p-4">
+
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" placeholder="ejemplo@email.com"></asp:TextBox>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Clave</label>
+                        <asp:TextBox runat="server" ID="txtPassword" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                    </div>
+
+                    <asp:Button runat="server" ID="btnLogin" Text="Ingresar" CssClass="btn btn-info w-100 fw-bold mb-2" OnClick="btnLogin_Click" />
+
+                    <div class="text-center d-flex justify-content-center p-2 mb-3">
+                        <p class="mb-0">No tenes cuenta todavia?</p>
+                        <a href='<%= ResolveUrl("~/Cuenta/Register.aspx") %>' class="ps-2" style="color: black;">Crear Cuenta</a>
+                    </div>
+
+                    <asp:Label ID="lblError" runat="server" ForeColor="#FF9999" CssClass="text-center d-block"></asp:Label>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </asp:Content>

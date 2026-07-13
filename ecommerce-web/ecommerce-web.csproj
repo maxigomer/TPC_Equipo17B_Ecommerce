@@ -78,7 +78,6 @@
     <Content Include="Cart\Cart.aspx" />
     <Content Include="Cart\Checkout.aspx" />
     <Content Include="Colecciones.aspx" />
-    <Content Include="CompraExitosa.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />

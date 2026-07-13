@@ -19,6 +19,7 @@ namespace ecommerce_web
                 Session.Add("listadoColecciones", coleccion.listar());
                 dgvColeccionesMenu.DataSource = Session["listadoColecciones"];
                 dgvColeccionesMenu.DataBind();
+                
 
             }
 
@@ -56,6 +57,7 @@ namespace ecommerce_web
 
 
                 negocio.Actualizar(colecciones);
+                Session.Add("listadoColecciones", colecciones);
 
             }
             catch (Exception ex)
@@ -99,6 +101,11 @@ namespace ecommerce_web
                         ddlFiltro.DataTextField = "Nombre";
                         ddlFiltro.DataBind();
 
+                        if(coleccion.IdCriterio != 0)
+                        {
+                            ddlFiltro.SelectedValue = coleccion.IdCriterio.ToString();
+                        }
+
                     }
                     else if (ddlCriterio.SelectedValue == "Categoria")
                     {
@@ -107,6 +114,12 @@ namespace ecommerce_web
                         ddlFiltro.DataValueField = "Id";
                         ddlFiltro.DataTextField = "Nombre";
                         ddlFiltro.DataBind();
+
+                        if(coleccion.IdCriterio != 0)
+                        {
+                            ddlFiltro.SelectedValue = coleccion.IdCriterio.ToString();
+                        }
+                       
 
                     }
 

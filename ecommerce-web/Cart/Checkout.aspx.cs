@@ -100,5 +100,16 @@ namespace ecommerce_web.Cart
             pnlRetirarLocal.Visible = rbRetirarLocal.Checked;
 
         }
+
+        protected void cvMetodoEntrega_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = rbEnvio.Checked || rbRetirarLocal.Checked;
+
+        }
+        protected void cvMetodoPago_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = rbTarjeta.Checked || rbTransferencia.Checked;
+
+        }
     }
 }

@@ -47,6 +47,10 @@
 
                         <asp:UpdatePanel runat="server">
                             <ContentTemplate>
+
+                                <asp:CustomValidator runat="server" ID="cvMetodoEntrega" ErrorMessage="Debe seleccionar un metodo de entrega" CssClass="text-danger"
+                                    display="Dynamic"  OnServerValidate="cvMetodoEntrega_ServerValidate" ClientValidationFunction="validarMetodoEntrega" />
+
                                 <div class="card shadow-sm mb-3 p-3">
                                     <div class="form-check">
                                         <asp:RadioButton runat="server" ID="rbEnvio" GroupName="MetodoEntrega" AutoPostBack="true" OnCheckedChanged="MetodoEntrega_CheckedChanged" />
@@ -94,6 +98,12 @@
 
                                 <asp:Panel ID="pnlRetirarLocal" runat="server" Visible="false">
                                     <div class="card bg-light shadow-sm border-0 p-4 mb-3">
+                                        <h6>Retiras en Casa Central</h6>
+                                        <p>Avenida Santa Maria de las Conchas 4055, Rincon de Milberg, Tigre, Buenos Aires, 1648</p>
+                                        <ul>
+                                            <li>Lunes a Viernes, de 10:00 a 18:00</li>
+                                        </ul>
+                                        
                                     </div>
                                 </asp:Panel>
                             </ContentTemplate>
@@ -109,6 +119,9 @@
 
                         <asp:UpdatePanel runat="server">
                             <ContentTemplate>
+
+                                <asp:CustomValidator runat="server" ID="cvMetodoPago" ErrorMessage="Debe seleccionar un metodo de pago" CssClass="text-danger"
+                                    display="Dynamic"  OnServerValidate="cvMetodoPago_ServerValidate" ClientValidationFunction="validarMetodoPago" />
 
                                 <div class="card shadow-sm mb-3 p-3">
                                     <div class="form-check">

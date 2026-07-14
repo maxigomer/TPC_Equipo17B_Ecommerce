@@ -78,6 +78,15 @@ namespace ecommerce_web.Cart
         protected global::System.Web.UI.WebControls.TextBox txtDni;
 
         /// <summary>
+        /// cvMetodoEntrega control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cvMetodoEntrega;
+
+        /// <summary>
         /// rbEnvio control.
         /// </summary>
         /// <remarks>
@@ -157,6 +166,15 @@ namespace ecommerce_web.Cart
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtObservaciones;
+
+        /// <summary>
+        /// cvMetodoPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cvMetodoPago;
 
         /// <summary>
         /// rbTarjeta control.

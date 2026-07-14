@@ -22,6 +22,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager runat="server" ID="ScriptManager1"></asp:ScriptManager>
         <div class="d-flex min-vh-100">
             <div class="checkout-izquierda flex-grow-1">
                 <div class="mx-auto" style="max-width: 700px;">
@@ -32,11 +33,6 @@
                         <asp:TextBox runat="server" ID="txtTelefono" CssClass="form-control" placeholder="Telefono (Opcional)" />
                         <asp:RegularExpressionValidator runat="server" ControlToValidate="txtTelefono" ValidationExpression="^\+?[0-9\s-]{7,20}$" ErrorMessage="Ingrese un numero de telefono valido." ForeColor="Red" />
 
-                    </div>
-
-                    <div class="mb-5">
-                        <h4 class="mb-3">Direccion de Envio</h4>
-
                         <div class="d-flex gap-3 mb-3">
                             <asp:TextBox runat="server" CssClass="form-control" ID="txtNombre" Enabled="false" />
                             <asp:TextBox runat="server" CssClass="form-control" ID="txtApellido" Enabled="false" />
@@ -44,38 +40,66 @@
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="txtDni" ErrorMessage="Campo Obligatorio" CssClass="text-danger" Display="Dynamic" />
                         <asp:RegularExpressionValidator runat="server" ControlToValidate="txtDni" ValidationExpression="^\d{7,8}$" ErrorMessage="Ingrese un DNI Valido." CssClass="text-danger" Display="Dynamic" />
                         <asp:TextBox runat="server" CssClass="form-control mb-3" ID="txtDni" placeholder="DNI" />
+                    </div>
 
-                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCalle" ErrorMessage="Campo Obligatorio" CssClass="text-danger" />
-                        <asp:TextBox runat="server" CssClass="form-control mb-3" ID="txtCalle" placeholder="Calle" />
-                        <div class="d-flex gap-3 mb-3">
-                            <div class="flex-grow-1">
-                                <asp:RegularExpressionValidator runat="server" ControlToValidate="txtNumeroCalle" ValidationExpression="^\d{3,4}$" ErrorMessage="Ingrese datos validos" CssClass="text-danger" Display="Dynamic" />
-                                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNumeroCalle" ErrorMessage="Campo Obligatorio" CssClass="text-danger"  Display="Dynamic"/>
-                                <asp:TextBox runat="server" CssClass="form-control mb-3" ID="txtNumeroCalle" placeholder="Numero o Altura" />
+                    <div class="mb-5">
+                        <h4 class="mb-3">Metodo de Entrega</h4>
 
-                            </div>
+                        <asp:UpdatePanel runat="server">
+                            <ContentTemplate>
+                                <div class="card shadow-sm mb-3 p-3">
+                                    <div class="form-check">
+                                        <asp:RadioButton runat="server" ID="rbEnvio" GroupName="MetodoEntrega" AutoPostBack="true" OnCheckedChanged="MetodoEntrega_CheckedChanged" />
+                                        <label class="form-check-label fw-semibold" for="<%= rbEnvio.ClientID %>">Envio a Domicilio</label>
+                                    </div>
+                                </div>
 
-<%--                            <div class="flex-grow-1">
-                                <asp:RegularExpressionValidator runat="server" ControlToValidate="txtDepartamento" ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}$" ErrorMessage="Ingrese datos validos" CssClass="text-danger" Display="Dynamic" />
-                                <asp:TextBox runat="server" CssClass="form-control mb-3" ID="txtDepartamento" placeholder="Departamento (Opcional)" />
+                                <div class="card shadow-sm mb-3 p-3">
+                                    <div class="form-check">
+                                        <asp:RadioButton runat="server" ID="rbRetirarLocal" GroupName="MetodoEntrega" AutoPostBack="true" OnCheckedChanged="MetodoEntrega_CheckedChanged" />
+                                        <label class="form-check-label fw-semibold" for="<%= rbRetirarLocal.ClientID %>">Retirar por Sucursal</label>
+                                    </div>
+                                </div>
 
-                            </div>--%>
-                        </div>
+                                <asp:Panel ID="pnlEnvio" runat="server" Visible="false">
+                                    <div class="card bg-light shadow-sm border-0 p-4 mb-3">
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCalle" ErrorMessage="Campo Obligatorio" CssClass="text-danger" />
+                                        <asp:TextBox runat="server" CssClass="form-control mb-3" ID="txtCalle" placeholder="Calle" />
+                                        <div class="d-flex gap-3 mb-3">
+                                            <div class="flex-grow-1">
+                                                <asp:RegularExpressionValidator runat="server" ControlToValidate="txtNumeroCalle" ValidationExpression="^\d{3,4}$" ErrorMessage="Ingrese datos validos" CssClass="text-danger" Display="Dynamic" />
+                                                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNumeroCalle" ErrorMessage="Campo Obligatorio" CssClass="text-danger" Display="Dynamic" />
+                                                <asp:TextBox runat="server" CssClass="form-control mb-3" ID="txtNumeroCalle" placeholder="Numero o Altura" />
 
-                        <div class="d-flex gap-3 mb-3">
-                            <div class="flex-grow-1">
-                                <asp:RegularExpressionValidator runat="server" ControlToValidate="txtCodigoPostal" ValidationExpression="^([A-Za-z]\d{4}[A-Za-z]{3}|\d{4})$" ErrorMessage="Ingrese un Codigo Postal Valido" CssClass="text-danger" Display="Dynamic" />
-                                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCodigoPostal" ErrorMessage="Campo Obligatorio" CssClass="text-danger" Display="Dynamic" />
-                                <asp:TextBox runat="server" CssClass="form-control" ID="txtCodigoPostal" placeholder="Codigo Postal" />
-                            </div>
+                                            </div>
+                                        </div>
 
-                            <div class="flex-grow-1">
-                                <asp:RegularExpressionValidator runat="server" ControlToValidate="txtLocalidad" ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}$" ErrorMessage="Ingrese datos validos" CssClass="text-danger" Display="Dynamic" />
-                                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtLocalidad" ErrorMessage="Campo Obligatorio" CssClass="text-danger"  Display="Dynamic"/>
-                                <asp:TextBox runat="server" CssClass="form-control" ID="txtLocalidad" placeholder="Localidad" />
-                            </div>
+                                        <div class="d-flex gap-3 mb-3">
+                                            <div class="flex-grow-1">
+                                                <asp:RegularExpressionValidator runat="server" ControlToValidate="txtCodigoPostal" ValidationExpression="^([A-Za-z]\d{4}[A-Za-z]{3}|\d{4})$" ErrorMessage="Ingrese un Codigo Postal Valido" CssClass="text-danger" Display="Dynamic" />
+                                                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCodigoPostal" ErrorMessage="Campo Obligatorio" CssClass="text-danger" Display="Dynamic" />
+                                                <asp:TextBox runat="server" CssClass="form-control" ID="txtCodigoPostal" placeholder="Codigo Postal" />
+                                            </div>
 
-                        </div>
+                                            <div class="flex-grow-1">
+                                                <asp:RegularExpressionValidator runat="server" ControlToValidate="txtLocalidad" ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,50}$" ErrorMessage="Ingrese datos validos" CssClass="text-danger" Display="Dynamic" />
+                                                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtLocalidad" ErrorMessage="Campo Obligatorio" CssClass="text-danger" Display="Dynamic" />
+                                                <asp:TextBox runat="server" CssClass="form-control" ID="txtLocalidad" placeholder="Localidad" />
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </asp:Panel>
+
+                                <asp:Panel ID="pnlRetirarLocal" runat="server" Visible="false">
+                                    <div class="card bg-light shadow-sm border-0 p-4 mb-3">
+                                    </div>
+                                </asp:Panel>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+
+
                         <asp:RegularExpressionValidator runat="server" ControlToValidate="txtObservaciones" ValidationExpression="^.{0,150}$" ErrorMessage="Las observaciones no pueden superar 150 caracteres" CssClass="text-danger" Display="Dynamic" />
                         <asp:TextBox runat="server" CssClass="form-control" ID="txtObservaciones" placeholder="Observaciones (Opcional)" TextMode="MultiLine" Rows="5" />
                     </div>
@@ -83,28 +107,66 @@
                     <div class="mb-5">
                         <h3 class="mb-3">Metodo de Pago</h3>
 
-                        <asp:RegularExpressionValidator runat="server" ControlToValidate="txtNumeroTarjeta" ValidationExpression="^\d{13,19}$" ErrorMessage="Ingrese datos validos" CssClass="text-danger" Display="Dynamic" />
-                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNumeroTarjeta" ErrorMessage="Campo Obligatorio" CssClass="text-danger" Display="Dynamic" />
-                        <asp:TextBox runat="server" ID="txtNumeroTarjeta" CssClass="form-control mb-3" placeholder="Numero de Tarjeta" />
-                        <div class="d-flex gap-3 mb-3">
-                            <div class="flex-grow-1">
-                                <asp:RegularExpressionValidator runat="server" ControlToValidate="txtVencimientoTarjeta" ValidationExpression="^(0[1-9]|1[0-2])\/\d{2}$" ErrorMessage="Ingrese datos validos" CssClass="text-danger" Display="Dynamic" />
-                                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtVencimientoTarjeta" ErrorMessage="Campo Obligatorio" CssClass="text-danger" Display="Dynamic" />
-                                <asp:TextBox runat="server" CssClass="form-control" ID="txtVencimientoTarjeta" placeholder="Fecha de vencimioento (MM/YY)" />
-                            </div>
-                            <div class="flex-grow-1">
-                                <asp:RegularExpressionValidator runat="server" ControlToValidate="txtCodigoSeguridadTarjeta" ValidationExpression="^\d{3,4}$" ErrorMessage="Ingrese datos validos" CssClass="text-danger" Display="Dynamic" />
-                                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCodigoSeguridadTarjeta" ErrorMessage="Campo Obligatorio" CssClass="text-danger" Display="Dynamic" />
-                                <asp:TextBox runat="server" CssClass="form-control" ID="txtCodigoSeguridadTarjeta" placeholder="Codigo de Seguridad" />
-                            </div>
-                        </div>
-                        <asp:RegularExpressionValidator runat="server" ControlToValidate="txtNombreTarjeta" ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{3,60}$" ErrorMessage="Ingrese datos validos" CssClass="text-danger" Display="Dynamic" />
-                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNombreTarjeta" ErrorMessage="Campo Obligatorio" CssClass="text-danger" Display="Dynamic" />
-                        <asp:TextBox runat="server" ID="txtNombreTarjeta" CssClass="form-control mb-3" placeholder="Nombre del titular de la Tarjeta" />
+                        <asp:UpdatePanel runat="server">
+                            <ContentTemplate>
 
-                        <asp:RegularExpressionValidator runat="server" ControlToValidate="txtDniTarjeta" ValidationExpression="^\d{7,8}$" ErrorMessage="Ingrese un DNI valido" CssClass="text-danger" Display="Dynamic" />
-                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtDniTarjeta" ErrorMessage="Campo Obligatorio" CssClass="text-danger" Display="Dynamic" />
-                        <asp:TextBox runat="server" ID="txtDniTarjeta" CssClass="form-control mb-3" placeholder="DNI del titular de la tarjeta" />
+                                <div class="card shadow-sm mb-3 p-3">
+                                    <div class="form-check">
+                                        <asp:RadioButton runat="server" ID="rbTarjeta" GroupName="MetodoPago" AutoPostBack="true" OnCheckedChanged="MetodoPago_CheckedChanged" />
+                                        <label class="form-check-label fw-semibold" for="<%= rbTarjeta.ClientID %>">Tarjeta de Credito/Debito</label>
+                                    </div>
+                                </div>
+
+                                <div class="card shadow-sm mb-3 p-3">
+                                    <div class="form-check">
+                                        <asp:RadioButton runat="server" ID="rbTransferencia" GroupName="MetodoPago" AutoPostBack="true" OnCheckedChanged="MetodoPago_CheckedChanged" />
+                                        <label class="form-check-label fw-semibold" for="<%= rbTransferencia.ClientID %>">Transferencia Bancaria</label>
+                                    </div>
+                                </div>
+
+                                <asp:Panel ID="pnlTarjeta" runat="server" Visible="false">
+                                    <div class="card bg-light shadow-sm border-0 p-4 mb-3">
+                                        <asp:RegularExpressionValidator runat="server" ControlToValidate="txtNumeroTarjeta" ValidationExpression="^\d{13,19}$" ErrorMessage="Ingrese datos validos" CssClass="text-danger" Display="Dynamic" />
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNumeroTarjeta" ErrorMessage="Campo Obligatorio" CssClass="text-danger" Display="Dynamic" />
+                                        <asp:TextBox runat="server" ID="txtNumeroTarjeta" CssClass="form-control mb-3" placeholder="Numero de Tarjeta" />
+                                        <div class="d-flex gap-3 mb-3">
+                                            <div class="flex-grow-1">
+                                                <asp:RegularExpressionValidator runat="server" ControlToValidate="txtVencimientoTarjeta" ValidationExpression="^(0[1-9]|1[0-2])\/\d{2}$" ErrorMessage="Ingrese datos validos" CssClass="text-danger" Display="Dynamic" />
+                                                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtVencimientoTarjeta" ErrorMessage="Campo Obligatorio" CssClass="text-danger" Display="Dynamic" />
+                                                <asp:TextBox runat="server" CssClass="form-control" ID="txtVencimientoTarjeta" placeholder="Fecha de vencimioento (MM/YY)" />
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <asp:RegularExpressionValidator runat="server" ControlToValidate="txtCodigoSeguridadTarjeta" ValidationExpression="^\d{3,4}$" ErrorMessage="Ingrese datos validos" CssClass="text-danger" Display="Dynamic" />
+                                                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCodigoSeguridadTarjeta" ErrorMessage="Campo Obligatorio" CssClass="text-danger" Display="Dynamic" />
+                                                <asp:TextBox runat="server" CssClass="form-control" ID="txtCodigoSeguridadTarjeta" placeholder="Codigo de Seguridad" />
+                                            </div>
+                                        </div>
+                                        <asp:RegularExpressionValidator runat="server" ControlToValidate="txtNombreTarjeta" ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{3,60}$" ErrorMessage="Ingrese datos validos" CssClass="text-danger" Display="Dynamic" />
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNombreTarjeta" ErrorMessage="Campo Obligatorio" CssClass="text-danger" Display="Dynamic" />
+                                        <asp:TextBox runat="server" ID="txtNombreTarjeta" CssClass="form-control mb-3" placeholder="Nombre del titular de la Tarjeta" />
+
+                                        <asp:RegularExpressionValidator runat="server" ControlToValidate="txtDniTarjeta" ValidationExpression="^\d{7,8}$" ErrorMessage="Ingrese un DNI valido" CssClass="text-danger" Display="Dynamic" />
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtDniTarjeta" ErrorMessage="Campo Obligatorio" CssClass="text-danger" Display="Dynamic" />
+                                        <asp:TextBox runat="server" ID="txtDniTarjeta" CssClass="form-control mb-3" placeholder="DNI del titular de la tarjeta" />
+                                    </div>
+
+                                </asp:Panel>
+
+                                <asp:Panel ID="pnlTransferencia" runat="server" Visible="false">
+                                    <div class="card bg-light shadow-sm border-0 p-4 mb-3">
+                                        <label class="mb-3">Ingrese el numero de documento del titular de la cuenta desde la que se va a realizar la transferencia.</label>
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtDniTransferencia" ErrorMessage="Campo Obligatorio" CssClass="text-danger" Display="Dynamic" />
+                                        <asp:RegularExpressionValidator runat="server" ControlToValidate="txtDniTransferencia" ValidationExpression="^\d{7,8}$" ErrorMessage="Ingrese un DNI Valido." CssClass="text-danger" Display="Dynamic" />
+                                        <asp:TextBox runat="server" CssClass="form-control mb-3" ID="txtDniTransferencia" placeholder="DNI" />
+                                        <p class="mb-0 text-muted">Una vez finalizada la compra vas a recibir los datos necesarios para realizar la transferencia</p>
+
+                                    </div>
+
+                                </asp:Panel>
+
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+
 
                     </div>
                     <asp:Button runat="server" ID="btnComprar" Text="Finalizar Compra" CssClass="btn btn-success btn-lg w-100" OnClick="btnComprar_Click" />

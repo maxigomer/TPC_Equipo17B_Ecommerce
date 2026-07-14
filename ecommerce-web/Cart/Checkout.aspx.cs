@@ -86,5 +86,19 @@ namespace ecommerce_web.Cart
                 Response.Redirect("~/Error404.aspx", false);
             }
         }
+
+        protected void MetodoPago_CheckedChanged(object sender, EventArgs e)
+        {
+            pnlTarjeta.Visible = rbTarjeta.Checked;
+            pnlTransferencia.Visible = rbTransferencia.Checked;
+
+        }
+
+        protected void MetodoEntrega_CheckedChanged(object sender, EventArgs e)
+        {
+            pnlEnvio.Visible = rbEnvio.Checked;
+            pnlRetirarLocal.Visible = rbRetirarLocal.Checked;
+
+        }
     }
 }

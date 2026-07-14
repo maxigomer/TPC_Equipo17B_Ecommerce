@@ -1,4 +1,6 @@
 ﻿using EcommerceDominio.Carrito;
+using EcommerceDominio.Usuarios;
+using negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +54,8 @@ namespace ecommerce_web.Cart
             }
             catch (Exception ex)
             {
+                Session.Add("error", ex);
+                Response.Redirect("~/Error404.aspx", false);
 
             }
 
@@ -103,15 +107,50 @@ namespace ecommerce_web.Cart
             }
             else
             {
-                ClientScript.RegisterClientScriptBlock(GetType(), "MostrarModal", $@"window.addEventListener('load', function () {{
-                    var modal = new bootstrap.Modal(document.getElementById('{modalLogin.ClientID}')); modal.show(); }});", true);
-
-
+                MostrarModalLogin();
+                lblError.Text = "";
             }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Usuario usuario = new Usuario();
+                usuario.NombreUsuario = txtEmail.Text;
+                usuario.Clave = txtPassword.Text;
+
+                if (UsuarioNegocio.Login(usuario))
+                {
+                    int id = usuario.Id;
+                    int idRol = usuario.Rol.Id;
+                    string rol = usuario.Rol.NombreRol;
+                    Session.Add("usuario", usuario);
+
+                    Response.Redirect("~/Cart/Checkout.aspx", false);
+
+                }
+                else
+                {
+                    MostrarModalLogin();
+                    lblError.Text = "Credenciales incorrectas. Verifique y vuelva a intentar.";
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                Response.Redirect("~/Error404.aspx", false);
+
+            }
+
+        }
+
+        private void MostrarModalLogin()
+        {
+            ClientScript.RegisterClientScriptBlock(GetType(), "MostrarModal", $@"window.addEventListener('load', function () {{
+                    var modal = new bootstrap.Modal(document.getElementById('{modalLogin.ClientID}')); modal.show(); }});", true);
 
         }
     }

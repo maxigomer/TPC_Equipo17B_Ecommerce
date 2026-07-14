@@ -24,6 +24,15 @@ namespace ecommerce_web.Cart
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+
+        /// <summary>
         /// txtEmail control.
         /// </summary>
         /// <remarks>
@@ -69,6 +78,33 @@ namespace ecommerce_web.Cart
         protected global::System.Web.UI.WebControls.TextBox txtDni;
 
         /// <summary>
+        /// rbEnvio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbEnvio;
+
+        /// <summary>
+        /// rbRetirarLocal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbRetirarLocal;
+
+        /// <summary>
+        /// pnlEnvio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlEnvio;
+
+        /// <summary>
         /// txtCalle control.
         /// </summary>
         /// <remarks>
@@ -105,6 +141,15 @@ namespace ecommerce_web.Cart
         protected global::System.Web.UI.WebControls.TextBox txtLocalidad;
 
         /// <summary>
+        /// pnlRetirarLocal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlRetirarLocal;
+
+        /// <summary>
         /// txtObservaciones control.
         /// </summary>
         /// <remarks>
@@ -112,6 +157,33 @@ namespace ecommerce_web.Cart
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtObservaciones;
+
+        /// <summary>
+        /// rbTarjeta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbTarjeta;
+
+        /// <summary>
+        /// rbTransferencia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbTransferencia;
+
+        /// <summary>
+        /// pnlTarjeta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlTarjeta;
 
         /// <summary>
         /// txtNumeroTarjeta control.
@@ -157,6 +229,24 @@ namespace ecommerce_web.Cart
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDniTarjeta;
+
+        /// <summary>
+        /// pnlTransferencia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlTransferencia;
+
+        /// <summary>
+        /// txtDniTransferencia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDniTransferencia;
 
         /// <summary>
         /// btnComprar control.

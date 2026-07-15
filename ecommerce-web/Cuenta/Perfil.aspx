@@ -20,17 +20,20 @@
                 <div class="col-md-6 mb-3">
                     <label>Nombre</label>
                     <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"/>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNombre" ErrorMessage="Campo Obligatorio" CssClass="text-danger" Display="Dynamic" />
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label>Apellido</label>
                     <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control"/>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="txtApellido" ErrorMessage="Campo Obligatorio" CssClass="text-danger" Display="Dynamic" />
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label>DNI</label>
                     <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control"/>
                     <asp:Label ID="lblDni" runat="server" CssClass="text-warning small"/>
+                    <asp:RegularExpressionValidator runat="server" ControlToValidate="txtDNI" ValidationExpression="^\d{7,8}$" ErrorMessage="Ingrese un DNI Valido." CssClass="text-danger" Display="Dynamic" />
                 </div>
 
                 <div class="col-md-6 mb-3">
@@ -41,6 +44,7 @@
                 <div class="col-md-6 mb-3">
                     <label>Teléfono</label>
                     <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control"/>
+                    <asp:RegularExpressionValidator runat="server" ControlToValidate="txtTelefono" ValidationExpression="^\+?[0-9\s-]{7,20}$" ErrorMessage="Ingrese un numero de telefono valido." ForeColor="Red" />
                 </div>
 
             </div>

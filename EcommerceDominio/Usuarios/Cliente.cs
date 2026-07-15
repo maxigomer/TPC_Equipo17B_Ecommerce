@@ -15,6 +15,9 @@ namespace EcommerceDominio.Usuarios
         public string Email { get; set; }
         public string Telefono { get; set; }
         public Usuario Usuario { get; set; }
+        public List<Direccion> Direcciones { get; set; }
+
+
 
         public string NombreCompleto
         {
@@ -27,6 +30,7 @@ namespace EcommerceDominio.Usuarios
         public Cliente()
         {
             Usuario = new Usuario();
+            Direcciones = new List<Direccion>();
         }
 
 

@@ -100,6 +100,24 @@ namespace negocio
                     cliente.Telefono = (string)datos.Lector["Telefono"];
                 else
                     cliente.Telefono = "";
+                datos.cerrarConexion();
+
+                datos.setearConsulta("SELECT Id, Calle, Numero, Localidad, CodigoPostal, Observaciones FROM DIRECCIONES WHERE IdCliente = " + idUsuario);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Direccion aux = new Direccion();
+
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Calle = (string)datos.Lector["Calle"];
+                    aux.Numero = (int)datos.Lector["Numero"];
+                    aux.Localidad = (string)datos.Lector["Localidad"];
+                    aux.CodigoPostal = (string)datos.Lector["CodigoPostal"];
+                    aux.Observaciones = (string)datos.Lector["Observaciones"];
+
+                    cliente.Direcciones.Add(aux);
+                }
 
                 return cliente;
 

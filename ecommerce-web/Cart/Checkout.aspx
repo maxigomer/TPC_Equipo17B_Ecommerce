@@ -66,6 +66,7 @@
                                 </div>
 
                                 <asp:Panel ID="pnlEnvio" runat="server" Visible="false">
+                                    <asp:DropDownList runat="server" ID="ddlDirecciones" CssClass="form-select"></asp:DropDownList>
                                     <div class="card bg-light shadow-sm border-0 p-4 mb-3">
                                         <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCalle" ErrorMessage="Campo Obligatorio" CssClass="text-danger" />
                                         <asp:TextBox runat="server" CssClass="form-control mb-3" ID="txtCalle" placeholder="Calle" />
@@ -210,10 +211,10 @@
 
                         </ItemTemplate>
                     </asp:Repeater>
-                    <div class="d-flex gap-2 mb-5">
+<%--                    <div class="d-flex gap-2 mb-5">
                         <asp:TextBox runat="server" CssClass="form-control" placeholder="Codigo de Descuento" />
                         <asp:Button runat="server" Text="Aplicar" CssClass="btn btn-outline-secondary" />
-                    </div>
+                    </div>--%>
 
                     <div class="mt-auto">
                         <hr />

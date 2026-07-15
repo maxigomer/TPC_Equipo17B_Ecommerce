@@ -50,6 +50,14 @@ namespace ecommerce_web.Cart
                     txtDni.Text = cliente.DNI;
                 }
 
+                if(cliente.Direcciones.Count() > 0)
+                {
+                    ddlDirecciones.DataSource = cliente.Direcciones;
+                    ddlDirecciones.DataValueField = "Id";
+                    ddlDirecciones.DataTextField = "DireccionCompleta";
+                    ddlDirecciones.DataBind();
+                }
+
 
             }
 

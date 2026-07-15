@@ -177,9 +177,8 @@ GO
 -- 6. Finalmente, creamos los 3 Pedidos
 -- Estructura: IdCliente, IdDireccion, IdMetodoDePago, Fecha, Precio, IdFormaDeEntrega, IdEstado
 INSERT INTO PEDIDOS (IdCliente, IdDireccion, IdMetodoDePago, Fecha, Precio, IdFormaDeEntrega, IdEstado) VALUES 
-(1, 1, 2, GETDATE(), 15500.50, 1, 1), -- Facundo, Envío, Pendiente, por Mercado Pago
-(2, 2, 1, GETDATE(), 8990.00, 1, 2),  -- María, Envío, Enviado, Tarjeta de Crédito
-(3, 3, 3, '2026-06-10', 45000.00, 2, 3); -- Carlos, Retiro, Entregado, Transferencia
+(2, 1, 1, GETDATE(), 8990.00, 1, 2),  -- María, Envío, Enviado, Tarjeta de Crédito
+(3, 2, 2, '2026-06-10', 45000.00, 2, 3); -- Carlos, Retiro, Entregado, Transferencia
 GO
 
 -- Agrego colecciones vacias

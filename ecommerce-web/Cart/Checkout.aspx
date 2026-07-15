@@ -49,7 +49,7 @@
                             <ContentTemplate>
 
                                 <asp:CustomValidator runat="server" ID="cvMetodoEntrega" ErrorMessage="Debe seleccionar un metodo de entrega" CssClass="text-danger"
-                                    display="Dynamic"  OnServerValidate="cvMetodoEntrega_ServerValidate" ClientValidationFunction="validarMetodoEntrega" />
+                                    Display="Dynamic" OnServerValidate="cvMetodoEntrega_ServerValidate" ClientValidationFunction="validarMetodoEntrega" />
 
                                 <div class="card shadow-sm mb-3 p-3">
                                     <div class="form-check">
@@ -92,6 +92,8 @@
                                             </div>
 
                                         </div>
+                                        <asp:RegularExpressionValidator runat="server" ControlToValidate="txtObservaciones" ValidationExpression="^.{0,150}$" ErrorMessage="Las observaciones no pueden superar 150 caracteres" CssClass="text-danger" Display="Dynamic" />
+                                        <asp:TextBox runat="server" CssClass="form-control" ID="txtObservaciones" placeholder="Observaciones (Opcional)" TextMode="MultiLine" Rows="5" />
 
                                     </div>
                                 </asp:Panel>
@@ -103,15 +105,13 @@
                                         <ul>
                                             <li>Lunes a Viernes, de 10:00 a 18:00</li>
                                         </ul>
-                                        
+
                                     </div>
                                 </asp:Panel>
                             </ContentTemplate>
                         </asp:UpdatePanel>
 
 
-                        <asp:RegularExpressionValidator runat="server" ControlToValidate="txtObservaciones" ValidationExpression="^.{0,150}$" ErrorMessage="Las observaciones no pueden superar 150 caracteres" CssClass="text-danger" Display="Dynamic" />
-                        <asp:TextBox runat="server" CssClass="form-control" ID="txtObservaciones" placeholder="Observaciones (Opcional)" TextMode="MultiLine" Rows="5" />
                     </div>
 
                     <div class="mb-5">
@@ -121,7 +121,7 @@
                             <ContentTemplate>
 
                                 <asp:CustomValidator runat="server" ID="cvMetodoPago" ErrorMessage="Debe seleccionar un metodo de pago" CssClass="text-danger"
-                                    display="Dynamic"  OnServerValidate="cvMetodoPago_ServerValidate" ClientValidationFunction="validarMetodoPago" />
+                                    Display="Dynamic" OnServerValidate="cvMetodoPago_ServerValidate" ClientValidationFunction="validarMetodoPago" />
 
                                 <div class="card shadow-sm mb-3 p-3">
                                     <div class="form-check">
@@ -182,7 +182,7 @@
 
 
                     </div>
-                    <asp:Button runat="server" ID="btnComprar" Text="Finalizar Compra" CssClass="btn btn-success btn-lg w-100" OnClick="btnComprar_Click" />
+                    <asp:Button runat="server" ID="btnComprar" Text="Finalizar Compra" CssClass="btn btn-success btn-lg w-100" OnClick="btnComprar_Click" CausesValidation="true" />
                 </div>
 
             </div>

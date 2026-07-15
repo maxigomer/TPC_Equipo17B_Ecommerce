@@ -19,7 +19,6 @@ namespace ecommerce_web.Admin
                 {
                     ClienteNegocio clienteNegocio = new ClienteNegocio();
                     Pedido pedido = PedidoNegocio.Listar(int.Parse(Request.QueryString["id"].ToString()));
-                    pedido.Direccion = DireccionNegocio.Listar(pedido.Direccion.Id);
                     rpResumenPedido.DataSource = pedido.Items;
                     rpResumenPedido.DataBind();
                     lblTotal.Text = "$" + pedido.Precio;
@@ -27,7 +26,19 @@ namespace ecommerce_web.Admin
                     lblNombre.Text = pedido.Cliente.NombreCompleto;
                     lblEmail.Text = pedido.Cliente.Email;
                     lblTelefono.Text = pedido.Cliente.Telefono;
-                    lblDireccion.Text = pedido.Direccion.DireccionCompleta;
+
+
+                    if (pedido.Direccion.Id == -1)
+                    {
+                        lblDireccion.Text = "Cliente retira en el local";
+
+                    }
+                    else
+                    {
+                        pedido.Direccion = DireccionNegocio.Listar(pedido.Direccion.Id);
+                        lblDireccion.Text = pedido.Direccion.DireccionCompleta;
+
+                    }
 
 
                     PedidoNegocio.ListarObservaciones(pedido);

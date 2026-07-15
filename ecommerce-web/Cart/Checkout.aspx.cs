@@ -57,27 +57,55 @@ namespace ecommerce_web.Cart
 
         protected void btnComprar_Click(object sender, EventArgs e)
         {
+            Page.Validate();
+
+            if (!Page.IsValid)
+            {
+                return;
+
+            }
 
             try
             {
                 Carrito carrito = (Carrito)Session["carrito"];
-                if (CheckoutNegocio.ProcesarCheckout(txtNumeroTarjeta.Text, txtNombreTarjeta.Text, txtVencimientoTarjeta.Text, txtCodigoSeguridadTarjeta.Text, carrito.GetTotal()))
+                Direccion direccion = new Direccion();
+                Usuario usuario = (Usuario)Session["usuario"];
+
+                if (rbEnvio.Checked)
                 {
-                    Direccion direccion = new Direccion();
                     direccion.Calle = txtCalle.Text;
                     direccion.Numero = int.Parse(txtNumeroCalle.Text);
                     direccion.Localidad = txtLocalidad.Text;
                     direccion.CodigoPostal = txtCodigoPostal.Text;
                     direccion.Observaciones = txtObservaciones.Text;
-                    Usuario usuario = (Usuario)Session["usuario"];
 
+                }
+                else if (rbRetirarLocal.Checked)
+                {
+                    direccion.Id = -1;
+                }
 
-                    PedidoNegocio.Compra((Carrito)Session["carrito"], UsuarioNegocio.GetCliente(usuario.Id), direccion);
+                if (rbTarjeta.Checked)
+                {
+                    if (CheckoutNegocio.ProcesarCheckout(txtNumeroTarjeta.Text, txtNombreTarjeta.Text, txtVencimientoTarjeta.Text, txtCodigoSeguridadTarjeta.Text, carrito.GetTotal()))
+                    {
+                        PedidoNegocio.Compra((Carrito)Session["carrito"], UsuarioNegocio.GetCliente(usuario.Id), direccion,1);
+                        Session["carrito"] = null;
+                        Response.Redirect("~/Cart/CompraExitosa.aspx", false);
+
+                    }
+
+                }
+                else if (rbTransferencia.Checked)
+                {
+                    PedidoNegocio.Compra((Carrito)Session["carrito"], UsuarioNegocio.GetCliente(usuario.Id), direccion,2,txtDniTransferencia.Text);
                     Session["carrito"] = null;
                     Response.Redirect("~/Cart/CompraExitosa.aspx", false);
 
 
                 }
+
+
 
             }
             catch (Exception ex)

@@ -150,15 +150,6 @@ namespace ecommerce_web.Cart
         protected global::System.Web.UI.WebControls.TextBox txtLocalidad;
 
         /// <summary>
-        /// pnlRetirarLocal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlRetirarLocal;
-
-        /// <summary>
         /// txtObservaciones control.
         /// </summary>
         /// <remarks>
@@ -166,6 +157,15 @@ namespace ecommerce_web.Cart
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtObservaciones;
+
+        /// <summary>
+        /// pnlRetirarLocal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlRetirarLocal;
 
         /// <summary>
         /// cvMetodoPago control.

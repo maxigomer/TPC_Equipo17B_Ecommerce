@@ -93,7 +93,8 @@ GO
 
 CREATE TABLE METODOS_DE_PAGO(
 	Id INTEGER NOT NULL PRIMARY KEY IDENTITY(1,1),
-	Nombre VARCHAR(50) NOT NULL
+	Nombre VARCHAR(50) NOT NULL,
+	Estado BIT NOT NULL DEFAULT 1
 )
 GO
 
@@ -426,5 +427,41 @@ CREATE PROCEDURE spActualizarEstadoPedido(
 AS
 BEGIN
 UPDATE PEDIDOS SET IdEstado = @idEstado	WHERE Id = @idPedido
+END
+GO
+
+CREATE PROCEDURE spListarMetodosPago
+AS
+BEGIN
+SELECT Id, Nombre, Estado FROM METODOS_DE_PAGO
+END
+GO
+
+CREATE PROCEDURE spAltaMetodoPago(
+@nombre VARCHAR(50)
+)
+AS
+BEGIN
+INSERT INTO METODOS_DE_PAGO (Nombre, Estado) VALUES (@nombre, 1)
+END
+GO
+
+CREATE PROCEDURE spModificarMetodoPago(
+@id INTEGER,
+@nombre VARCHAR(50)
+)
+AS
+BEGIN
+UPDATE METODOS_DE_PAGO SET Nombre = @nombre WHERE Id = @id
+END
+GO
+
+CREATE PROCEDURE spBajaLogicaMetodoPago(
+@id INTEGER,
+@estado BIT
+)
+AS
+BEGIN
+UPDATE METODOS_DE_PAGO SET Estado = @estado WHERE Id = @id
 END
 GO

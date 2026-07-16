@@ -1,4 +1,4 @@
-﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -74,6 +74,7 @@
     <Content Include="Assets\notion.svg" />
     <Content Include="Assets\person.svg" />
     <Content Include="Admin\CargaProducto.aspx" />
+    <Content Include="Admin\AdminMetodosPago.aspx" />
     <Content Include="Admin\Clientes.aspx" />
     <Content Include="Cart\Cart.aspx" />
     <Content Include="Cart\Checkout.aspx" />
@@ -118,6 +119,13 @@
     </Compile>
     <Compile Include="AdminCategorias.aspx.designer.cs">
       <DependentUpon>AdminCategorias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminMetodosPago.aspx.cs">
+      <DependentUpon>AdminMetodosPago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminMetodosPago.aspx.designer.cs">
+      <DependentUpon>AdminMetodosPago.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\CargaProducto.aspx.cs">
       <DependentUpon>CargaProducto.aspx</DependentUpon>

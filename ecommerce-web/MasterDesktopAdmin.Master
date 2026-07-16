@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterDesktopAdmin.master.cs" Inherits="ecommerce_web.MasterDesktopAdmin" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterDesktopAdmin.master.cs" Inherits="ecommerce_web.MasterDesktopAdmin" %>
 
 <!DOCTYPE html>
 
@@ -71,6 +71,9 @@
                         </li>
                         <li>
                             <a href="Productos.aspx" class="nav-link text-white">Productos</a>
+                        </li>
+                        <li>
+                            <a href="AdminMetodosPago.aspx" class="nav-link text-white">Métodos de Pago</a>
                         </li>
 
                     </ul>

@@ -48,7 +48,7 @@ namespace ecommerce_web
 
                 if (ddlEstado != null)
                 {
-                    ddlEstado.DataSource = PedidoNegocio.ListarEstados();
+                   // ddlEstado.DataSource = PedidoNegocio.ListarEstados();
                     ddlEstado.DataTextField = "Estado";
                     ddlEstado.DataValueField = "Id";
                     ddlEstado.DataBind();
@@ -85,10 +85,10 @@ namespace ecommerce_web
 
 
 
-                PedidoNegocio.CambiarEstado(
+                /*PedidoNegocio.CambiarEstado(
                     idPedido,
                     nuevoEstado
-                );
+                );*/
 
                 CargarPedidos();
             }

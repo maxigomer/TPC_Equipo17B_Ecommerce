@@ -418,3 +418,13 @@ BEGIN
 INSERT INTO ITEM_PEDIDOS (IdPedido,IdProducto,Cantidad,Precio) VALUES (@idPedido,@idProducto,@cantidad,@precio)
 END
 GO
+
+CREATE PROCEDURE spActualizarEstadoPedido(
+@idPedido INTEGER,
+@idEstado TINYINT
+)
+AS
+BEGIN
+UPDATE PEDIDOS SET IdEstado = @idEstado	WHERE Id = @idPedido
+END
+GO

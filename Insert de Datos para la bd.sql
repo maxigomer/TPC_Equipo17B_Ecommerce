@@ -171,7 +171,7 @@ GO
 -- 5. Llenamos las tablas paramétricas que necesita un Pedido
 INSERT INTO METODOS_DE_PAGO (Nombre) VALUES ('Tarjeta de Crédito'), ('Transferencia Bancaria');
 INSERT INTO FORMAS_DE_ENTREGA (Nombre) VALUES ('Envío a Domicilio'), ('Retiro en Sucursal');
-INSERT INTO ESTADOS_DE_PEDIDO (Estado) VALUES ('Pendiente'), ('Enviado'), ('Entregado');
+INSERT INTO ESTADOS_DE_PEDIDO (Estado) VALUES ('Pendiente'), ('Enviado'), ('Entregado'), ('Cancelado');
 GO
 
 -- 6. Finalmente, creamos los 3 Pedidos

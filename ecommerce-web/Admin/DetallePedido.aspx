@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager runat="server" ID="ScriptManager1"></asp:ScriptManager>
     <div class="d-flex gap-4 align-items-start">
         <!-- Izquierda -->
         <div class="flex-grow-1">
@@ -81,6 +82,22 @@
 
         <!-- Derecha -->
         <div class="d-flex flex-column gap-3" style="width: 350px;">
+            <asp:UpdatePanel runat="server">
+                <ContentTemplate>
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h5 class="mb-0">Estado</h5>
+                        </div>
+                        <div class="card-body">
+                            <asp:DropDownList runat="server" ID="ddlEstado" CssClass="form-select" OnSelectedIndexChanged="ddlEstado_SelectedIndexChanged"></asp:DropDownList>
+
+                        </div>
+
+                    </div>
+
+                </ContentTemplate>
+            </asp:UpdatePanel>
+
             <div class="card shadow-sm">
                 <div class="card-header">
                     <h5 class="mb-0">Cliente</h5>

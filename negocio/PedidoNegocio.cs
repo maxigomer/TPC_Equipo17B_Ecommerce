@@ -1,4 +1,5 @@
 ﻿using EcommerceDominio.Carrito;
+using EcommerceDominio.Parametros;
 using EcommerceDominio.Pedidos;
 using EcommerceDominio.Usuarios;
 using System;
@@ -304,6 +305,39 @@ namespace negocio
             finally
             {
                 datos.cerrarConexion();
+            }
+        }
+
+        public static List<EstadoPedido> ListarEstadosPedido()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                List<EstadoPedido> lista = new List<EstadoPedido>();
+
+                datos.setearConsulta("SELECT * FROM ESTADOS_DE_PEDIDO");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    EstadoPedido aux = new EstadoPedido();
+                    aux.Id = Convert.ToInt32(datos.Lector["Id"]);
+                    aux.Estado = (string)datos.Lector["Estado"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+                
             }
         }
     }

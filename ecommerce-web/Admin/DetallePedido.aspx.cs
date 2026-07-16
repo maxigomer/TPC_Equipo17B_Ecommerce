@@ -27,6 +27,18 @@ namespace ecommerce_web.Admin
                     lblEmail.Text = pedido.Cliente.Email;
                     lblTelefono.Text = pedido.Cliente.Telefono;
 
+                    if (!IsPostBack)
+                    {
+                        ddlEstado.DataSource = PedidoNegocio.ListarEstadosPedido();
+                        ddlEstado.DataValueField = "Id";
+                        ddlEstado.DataTextField = "Estado";
+                        ddlEstado.DataBind();
+                        ddlEstado.SelectedValue = pedido.IdEstado.ToString();
+
+                    }
+                    
+
+
 
                     if (pedido.Direccion.Id == -1)
                     {
@@ -73,20 +85,28 @@ namespace ecommerce_web.Admin
         protected void Page_PreRender(object sender, EventArgs e)
         {
 
-            Pedido pedido = PedidoNegocio.Listar(int.Parse(Request.QueryString["id"].ToString()));
-            PedidoNegocio.ListarObservaciones(pedido);
-            if (pedido.Observaciones.Count() > 0)
+            try
             {
-                pnlObservacionesVacias.Visible = false;
-                pnlObservaciones.Visible = true;
-                rpObservaciones.DataSource = pedido.Observaciones;
-                rpObservaciones.DataBind();
+                Pedido pedido = PedidoNegocio.Listar(int.Parse(Request.QueryString["id"].ToString()));
+                PedidoNegocio.ListarObservaciones(pedido);
+                if (pedido.Observaciones.Count() > 0)
+                {
+                    pnlObservacionesVacias.Visible = false;
+                    pnlObservaciones.Visible = true;
+                    rpObservaciones.DataSource = pedido.Observaciones;
+                    rpObservaciones.DataBind();
+
+                }
+                else
+                {
+                    pnlObservacionesVacias.Visible = true;
+                    pnlObservaciones.Visible = false;
+                }
 
             }
-            else
+            catch
             {
-                pnlObservacionesVacias.Visible = true;
-                pnlObservaciones.Visible = false;
+                Response.Redirect("~/Admin/Pedidos.aspx", false);
             }
 
         }

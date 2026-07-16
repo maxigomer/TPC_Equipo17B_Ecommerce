@@ -50,12 +50,19 @@ namespace ecommerce_web.Cart
                     txtDni.Text = cliente.DNI;
                 }
 
-                if(cliente.Direcciones.Count() > 0)
+                if (!IsPostBack)
                 {
-                    ddlDirecciones.DataSource = cliente.Direcciones;
-                    ddlDirecciones.DataValueField = "Id";
-                    ddlDirecciones.DataTextField = "DireccionCompleta";
-                    ddlDirecciones.DataBind();
+                    if (cliente.Direcciones.Count() > 0)
+                    {
+                        ddlDirecciones.DataSource = cliente.Direcciones;
+                        ddlDirecciones.DataValueField = "Id";
+                        ddlDirecciones.DataTextField = "DireccionCompleta";
+                        ddlDirecciones.DataBind();
+
+                    }
+                    
+                    ddlDirecciones.Items.Insert(0, new ListItem("Nueva direccion", "0"));
+
                 }
 
 
@@ -81,6 +88,7 @@ namespace ecommerce_web.Cart
 
                 if (rbEnvio.Checked)
                 {
+                    direccion.Id = int.Parse(ddlDirecciones.SelectedValue);
                     direccion.Calle = txtCalle.Text;
                     direccion.Numero = int.Parse(txtNumeroCalle.Text);
                     direccion.Localidad = txtLocalidad.Text;
@@ -97,7 +105,7 @@ namespace ecommerce_web.Cart
                 {
                     if (CheckoutNegocio.ProcesarCheckout(txtNumeroTarjeta.Text, txtNombreTarjeta.Text, txtVencimientoTarjeta.Text, txtCodigoSeguridadTarjeta.Text, carrito.GetTotal()))
                     {
-                        PedidoNegocio.Compra((Carrito)Session["carrito"], UsuarioNegocio.GetCliente(usuario.Id), direccion,1);
+                        PedidoNegocio.Compra((Carrito)Session["carrito"], UsuarioNegocio.GetCliente(usuario.Id), direccion, 1);
                         Session["carrito"] = null;
                         Response.Redirect("~/Cart/CompraExitosa.aspx", false);
 
@@ -106,7 +114,7 @@ namespace ecommerce_web.Cart
                 }
                 else if (rbTransferencia.Checked)
                 {
-                    PedidoNegocio.Compra((Carrito)Session["carrito"], UsuarioNegocio.GetCliente(usuario.Id), direccion,2,txtDniTransferencia.Text);
+                    PedidoNegocio.Compra((Carrito)Session["carrito"], UsuarioNegocio.GetCliente(usuario.Id), direccion, 2, txtDniTransferencia.Text);
                     Session["carrito"] = null;
                     Response.Redirect("~/Cart/CompraExitosa.aspx", false);
 
@@ -145,6 +153,47 @@ namespace ecommerce_web.Cart
         protected void cvMetodoPago_ServerValidate(object source, ServerValidateEventArgs args)
         {
             args.IsValid = rbTarjeta.Checked || rbTransferencia.Checked;
+
+        }
+
+        protected void ddlDirecciones_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idDireccion = int.Parse(ddlDirecciones.SelectedValue);
+
+            if(idDireccion == 0)
+            {
+                txtCalle.Enabled = true;
+                txtCodigoPostal.Enabled = true;
+                txtLocalidad.Enabled = true;
+                txtNumeroCalle.Enabled = true;
+                txtObservaciones.Enabled = true;
+
+                txtCalle.Text = "";
+                txtCodigoPostal.Text = "";
+                txtLocalidad.Text = "";
+                txtNumeroCalle.Text = "";
+                txtObservaciones.Text = "";
+
+            }
+            else
+            {
+                Direccion direccion = DireccionNegocio.Listar(idDireccion);
+
+                txtCalle.Text = direccion.Calle;
+                txtCodigoPostal.Text = direccion.CodigoPostal;
+                txtLocalidad.Text = direccion.Localidad;
+                txtNumeroCalle.Text = direccion.Numero.ToString();
+                txtObservaciones.Text = direccion.Observaciones;
+
+                txtCalle.Enabled = false;
+                txtCodigoPostal.Enabled = false;
+                txtLocalidad.Enabled = false;
+                txtNumeroCalle.Enabled = false;
+                txtObservaciones.Enabled = false;
+
+            }
+
+
 
         }
     }

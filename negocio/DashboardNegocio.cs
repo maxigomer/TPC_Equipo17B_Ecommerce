@@ -76,27 +76,36 @@ namespace negocio
         /// <summary>
         /// Retorna ingresos agrupados por mes para el período indicado (gráfico de líneas).
         /// </summary>
-        public static List<VentaMensual> ObtenerVentasPorMes(DateTime desde, DateTime hasta)
+        public static List<VentaMensual> ObtenerVentasPorMes(DateTime desde, DateTime hasta, string tipoCriterio = "", int idCriterio = 0)
         {
             AccesoDatos datos = new AccesoDatos();
             List<VentaMensual> lista = new List<VentaMensual>();
 
             try
             {
-                string query = @"
+                // Filtro por criterio: si se especifica Marca/Categoria filtramos pedidos que contengan productos de ese criterio
+                string whereCriterio = "";
+                if (tipoCriterio == "Marca")
+                    whereCriterio = " AND EXISTS (SELECT 1 FROM ITEM_PEDIDOS IP INNER JOIN PRODUCTOS PR ON IP.IdProducto = PR.Id WHERE IP.IdPedido = P.Id AND PR.IdMarca = @idCriterio)";
+                else if (tipoCriterio == "Categoria")
+                    whereCriterio = " AND EXISTS (SELECT 1 FROM ITEM_PEDIDOS IP INNER JOIN PRODUCTOS PR ON IP.IdProducto = PR.Id WHERE IP.IdPedido = P.Id AND PR.IdCategoria = @idCriterio)";
+
+                string query = $@"
                     SELECT 
-                        YEAR(Fecha) AS Anio,
-                        MONTH(Fecha) AS Mes,
-                        SUM(Precio) AS Total,
-                        COUNT(Id) AS CantPedidos
-                    FROM PEDIDOS
-                    WHERE Fecha >= @desde AND Fecha <= @hasta
-                    GROUP BY YEAR(Fecha), MONTH(Fecha)
+                        YEAR(P.Fecha) AS Anio,
+                        MONTH(P.Fecha) AS Mes,
+                        SUM(P.Precio) AS Total,
+                        COUNT(P.Id) AS CantPedidos
+                    FROM PEDIDOS P
+                    WHERE P.Fecha >= @desde AND P.Fecha <= @hasta
+                    {whereCriterio}
+                    GROUP BY YEAR(P.Fecha), MONTH(P.Fecha)
                     ORDER BY Anio, Mes";
 
                 datos.setearConsulta(query);
                 datos.setearParametros("@desde", desde);
                 datos.setearParametros("@hasta", hasta);
+                if (!string.IsNullOrEmpty(tipoCriterio)) datos.setearParametros("@idCriterio", idCriterio);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -120,14 +129,20 @@ namespace negocio
         /// <summary>
         /// Retorna ingresos agrupados por categoría (gráfico de Doughnut).
         /// </summary>
-        public static List<VentaPorCriterio> ObtenerVentasPorCategoria(DateTime desde, DateTime hasta)
+        public static List<VentaPorCriterio> ObtenerVentasPorCategoria(DateTime desde, DateTime hasta, string tipoCriterio = "", int idCriterio = 0)
         {
             AccesoDatos datos = new AccesoDatos();
             List<VentaPorCriterio> lista = new List<VentaPorCriterio>();
 
             try
             {
-                string query = @"
+                string whereCriterio = "";
+                if (tipoCriterio == "Marca")
+                    whereCriterio = " AND P.IdMarca = @idCriterio";
+                else if (tipoCriterio == "Categoria")
+                    whereCriterio = " AND P.IdCategoria = @idCriterio";
+
+                string query = $@"
                     SELECT 
                         C.Nombre AS Criterio,
                         SUM(IP.Precio) AS Total,
@@ -137,12 +152,14 @@ namespace negocio
                     INNER JOIN CATEGORIAS C ON P.IdCategoria = C.Id
                     INNER JOIN PEDIDOS PD ON IP.IdPedido = PD.Id
                     WHERE PD.Fecha >= @desde AND PD.Fecha <= @hasta
+                    {whereCriterio}
                     GROUP BY C.Nombre
                     ORDER BY Total DESC";
 
                 datos.setearConsulta(query);
                 datos.setearParametros("@desde", desde);
                 datos.setearParametros("@hasta", hasta);
+                if (!string.IsNullOrEmpty(tipoCriterio)) datos.setearParametros("@idCriterio", idCriterio);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -165,13 +182,17 @@ namespace negocio
         /// <summary>
         /// Retorna el top N de productos más vendidos por unidades vendidas.
         /// </summary>
-        public static List<ProductoVenta> ObtenerTopProductos(DateTime desde, DateTime hasta, int top = 5)
+        public static List<ProductoVenta> ObtenerTopProductos(DateTime desde, DateTime hasta, int top = 5, string tipoCriterio = "", int idCriterio = 0)
         {
             AccesoDatos datos = new AccesoDatos();
             List<ProductoVenta> lista = new List<ProductoVenta>();
 
             try
             {
+                string whereCriterio = "";
+                if (tipoCriterio == "Marca") whereCriterio = " AND P.IdMarca = @idCriterio";
+                else if (tipoCriterio == "Categoria") whereCriterio = " AND P.IdCategoria = @idCriterio";
+
                 string query = $@"
                     SELECT TOP {top}
                         P.Nombre,
@@ -182,12 +203,14 @@ namespace negocio
                     INNER JOIN PRODUCTOS P ON IP.IdProducto = P.Id
                     INNER JOIN PEDIDOS PD ON IP.IdPedido = PD.Id
                     WHERE PD.Fecha >= @desde AND PD.Fecha <= @hasta
+                    {whereCriterio}
                     GROUP BY P.Id, P.Nombre, P.Sku
                     ORDER BY UnidadesVendidas DESC";
 
                 datos.setearConsulta(query);
                 datos.setearParametros("@desde", desde);
                 datos.setearParametros("@hasta", hasta);
+                if (!string.IsNullOrEmpty(tipoCriterio)) datos.setearParametros("@idCriterio", idCriterio);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -211,20 +234,25 @@ namespace negocio
         /// <summary>
         /// Retorna productos activos que no tuvieron ninguna venta en el período.
         /// </summary>
-        public static List<ProductoVenta> ObtenerProductosSinVentas(DateTime desde, DateTime hasta)
+        public static List<ProductoVenta> ObtenerProductosSinVentas(DateTime desde, DateTime hasta, string tipoCriterio = "", int idCriterio = 0)
         {
             AccesoDatos datos = new AccesoDatos();
             List<ProductoVenta> lista = new List<ProductoVenta>();
 
             try
             {
-                string query = @"
+                string whereCriterio = "";
+                if (tipoCriterio == "Marca") whereCriterio = " AND P.IdMarca = @idCriterio";
+                else if (tipoCriterio == "Categoria") whereCriterio = " AND P.IdCategoria = @idCriterio";
+
+                string query = $@"
                     SELECT 
                         P.Nombre,
                         P.Sku,
                         ISNULL(P.Stock, 0) AS Stock
                     FROM PRODUCTOS P
                     WHERE P.Estado = 1
+                    {whereCriterio}
                     AND P.Id NOT IN (
                         SELECT DISTINCT IP.IdProducto 
                         FROM ITEM_PEDIDOS IP
@@ -236,6 +264,7 @@ namespace negocio
                 datos.setearConsulta(query);
                 datos.setearParametros("@desde", desde);
                 datos.setearParametros("@hasta", hasta);
+                if (!string.IsNullOrEmpty(tipoCriterio)) datos.setearParametros("@idCriterio", idCriterio);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())

@@ -29,6 +29,9 @@ namespace ecommerce_web.Admin
 
         private void CargarFiltroCriterio()
         {
+            // Guardar selección previa para no perder la elección del usuario en postbacks parciales
+            string prevSelection = ddlFiltroValor.SelectedValue;
+
             ddlFiltroValor.Items.Clear();
             ddlFiltroValor.Items.Add(new ListItem("Todos", "0"));
 
@@ -43,6 +46,19 @@ namespace ecommerce_web.Admin
                 CategoriaNegocio catNeg = new CategoriaNegocio();
                 foreach (var c in catNeg.listar())
                     ddlFiltroValor.Items.Add(new ListItem(c.Nombre, c.Id.ToString()));
+            }
+
+            // Intentar restaurar la selección anterior si existe en la lista nueva
+            try
+            {
+                if (!string.IsNullOrEmpty(prevSelection) && ddlFiltroValor.Items.FindByValue(prevSelection) != null)
+                    ddlFiltroValor.SelectedValue = prevSelection;
+                else
+                    ddlFiltroValor.SelectedIndex = 0; // "Todos"
+            }
+            catch
+            {
+                ddlFiltroValor.SelectedIndex = 0;
             }
         }
 
@@ -66,23 +82,23 @@ namespace ecommerce_web.Admin
             litProductos.Text   = kpi.ProductosActivos.ToString("N0");
 
             // ── Gráfico de líneas: ventas por mes ──
-            var ventasMes = DashboardNegocio.ObtenerVentasPorMes(desde, hasta);
+            var ventasMes = DashboardNegocio.ObtenerVentasPorMes(desde, hasta, tipoCriterio, idCriterio);
             hfVentasMeses.Value   = string.Join("|", ventasMes.Select(v => v.MesNombre));
             hfVentasTotales.Value = string.Join("|", ventasMes.Select(v => ((long)v.Total).ToString()));
 
             // ── Gráfico doughnut: ventas por categoría ──
-            var ventasCat = DashboardNegocio.ObtenerVentasPorCategoria(desde, hasta);
+            var ventasCat = DashboardNegocio.ObtenerVentasPorCategoria(desde, hasta, tipoCriterio, idCriterio);
             hfCategoriaNombres.Value = string.Join("|", ventasCat.Select(c => c.Nombre));
             hfCategoriaTotales.Value = string.Join("|", ventasCat.Select(c => ((long)c.Total).ToString()));
 
             // ── Top productos ──
-            var topProductos = DashboardNegocio.ObtenerTopProductos(desde, hasta, 5);
+            var topProductos = DashboardNegocio.ObtenerTopProductos(desde, hasta, 5, tipoCriterio, idCriterio);
             _maxUnidades = topProductos.Any() ? topProductos.Max(p => p.UnidadesVendidas) : 1;
             rpTopProductos.DataSource = topProductos;
             rpTopProductos.DataBind();
 
             // ── Productos sin ventas ──
-            var sinVentas = DashboardNegocio.ObtenerProductosSinVentas(desde, hasta);
+            var sinVentas = DashboardNegocio.ObtenerProductosSinVentas(desde, hasta, tipoCriterio, idCriterio);
             if (sinVentas.Any())
             {
                 rpSinVentas.DataSource = sinVentas;
@@ -109,8 +125,18 @@ namespace ecommerce_web.Admin
 
         protected void btnAplicar_Click(object sender, EventArgs e)
         {
-            CargarFiltroCriterio();
+            // Mostrar valores para depuración rápida
+            litDebug.Text = $"Criterio SelectedValue='{ddlCriterio.SelectedValue}' | Filtro SelectedValue='{ddlFiltroValor.SelectedValue}'";
+
+            // No recargamos el ddlFiltroValor aquí porque eso resetea la selección del usuario.
             CargarDashboard();
+        }
+
+        // ── Manejador cuando se cambia el criterio (marca / categoría) ─────────
+        protected void ddlCriterio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Recarga las opciones del ddlFiltroValor sin aplicar aún los demás filtros
+            CargarFiltroCriterio();
         }
 
         // ── Helpers para la vista ──────────────────────────────────────────────

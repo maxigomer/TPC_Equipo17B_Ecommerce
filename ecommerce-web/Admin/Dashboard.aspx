@@ -169,7 +169,7 @@
                 <div>
                     <label>Criterio</label>
                     <asp:DropDownList runat="server" ID="ddlCriterio" CssClass="form-select" style="width:150px;"
-                        AutoPostBack="false">
+                        AutoPostBack="true" OnSelectedIndexChanged="ddlCriterio_SelectedIndexChanged">
                         <asp:ListItem Value="">Todos</asp:ListItem>
                         <asp:ListItem Value="Marca">Por Marca</asp:ListItem>
                         <asp:ListItem Value="Categoria">Por Categoria</asp:ListItem>
@@ -183,7 +183,12 @@
                     <asp:Button runat="server" ID="btnAplicar" Text="Aplicar Filtros" CssClass="btn btn-filter"
                         OnClick="btnAplicar_Click" />
                 </div>
-            </div>
+
+                <!-- Debug: valores seleccionados (temporal) -->
+                <div style="width:100%;">
+                    <asp:Literal runat="server" ID="litDebug" />
+                </div>
+            </div
 
             <!-- ── KPI Cards ───────────────────────────── -->
             <div class="kpi-grid">

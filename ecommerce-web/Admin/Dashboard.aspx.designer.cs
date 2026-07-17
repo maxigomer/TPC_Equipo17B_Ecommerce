@@ -78,6 +78,11 @@ namespace ecommerce_web.Admin
         protected global::System.Web.UI.WebControls.Button btnAplicar;
 
         /// <summary>
+        /// Control litDebug.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.Literal litDebug;
+
+        /// <summary>
         /// Control litIngresos.
         /// </summary>
         /// <remarks>

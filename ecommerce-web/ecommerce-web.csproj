@@ -76,6 +76,7 @@
     <Content Include="Admin\CargaProducto.aspx" />
     <Content Include="Admin\AdminMetodosPago.aspx" />
     <Content Include="Admin\Clientes.aspx" />
+    <Content Include="Admin\Dashboard.aspx" />
     <Content Include="Cart\Cart.aspx" />
     <Content Include="Cart\Checkout.aspx" />
     <Content Include="Colecciones.aspx" />
@@ -140,6 +141,10 @@
     </Compile>
     <Compile Include="Admin\Clientes.aspx.designer.cs">
       <DependentUpon>Clientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\DetallePedido.aspx.cs">
       <DependentUpon>DetallePedido.aspx</DependentUpon>

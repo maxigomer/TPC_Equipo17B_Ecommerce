@@ -89,7 +89,7 @@
                             <h5 class="mb-0">Estado</h5>
                         </div>
                         <div class="card-body">
-                            <asp:DropDownList runat="server" ID="ddlEstado" CssClass="form-select" OnSelectedIndexChanged="ddlEstado_SelectedIndexChanged"></asp:DropDownList>
+                            <asp:DropDownList runat="server" ID="ddlEstado" CssClass="form-select" OnSelectedIndexChanged="ddlEstado_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
 
                         </div>
 

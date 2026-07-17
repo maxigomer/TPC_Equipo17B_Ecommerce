@@ -120,5 +120,13 @@ namespace ecommerce_web.Admin
             PedidoNegocio.AgregarObservacion(obs);
 
         }
+
+        protected void ddlEstado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idEstado = int.Parse(ddlEstado.SelectedValue);
+            int idPedido = int.Parse(Request.QueryString["id"].ToString());
+            PedidoNegocio.ActualizarEstadoPedido(idPedido, idEstado);
+
+        }
     }
 }

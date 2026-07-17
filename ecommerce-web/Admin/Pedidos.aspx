@@ -10,7 +10,7 @@
         </div>
 
         <div class="table-responsive">
-            <asp:GridView ID="dgvPedidos" runat="server" CssClass="table table-dark table-striped table-hover table-bordered" AutoGenerateColumns="false" DataKeyNames="Id" OnRowDataBound="dgvPedidos_RowDataBound" OnRowCommand="dgvPedidos_RowCommand">
+            <asp:GridView ID="dgvPedidos" runat="server" CssClass="table table-dark table-striped table-hover table-bordered" AutoGenerateColumns="false" DataKeyNames="Id" OnRowDataBound="dgvPedidos_RowDataBound" >
 
     <Columns>
 
@@ -24,7 +24,7 @@
 
         <asp:BoundField HeaderText="Estado" DataField="Estado" />
 
-        <asp:TemplateField HeaderText="Cambiar Estado">
+<%--        <asp:TemplateField HeaderText="Cambiar Estado">
 
             <ItemTemplate>
 
@@ -45,7 +45,7 @@
 
             </ItemTemplate>
 
-        </asp:TemplateField>
+        </asp:TemplateField>--%>
 
 
     </Columns>

@@ -42,57 +42,57 @@ namespace ecommerce_web
 
                 e.Row.Style["cursor"] = "pointer";
 
-                DropDownList ddlEstado =
-                    (DropDownList)e.Row.FindControl("ddlEstado");
+                //DropDownList ddlEstado =
+                //    (DropDownList)e.Row.FindControl("ddlEstado");
 
 
-                if (ddlEstado != null)
-                {
-                   // ddlEstado.DataSource = PedidoNegocio.ListarEstados();
-                    ddlEstado.DataTextField = "Estado";
-                    ddlEstado.DataValueField = "Id";
-                    ddlEstado.DataBind();
+                //if (ddlEstado != null)
+                //{
+                //   // ddlEstado.DataSource = PedidoNegocio.ListarEstados();
+                //    ddlEstado.DataTextField = "Estado";
+                //    ddlEstado.DataValueField = "Id";
+                //    ddlEstado.DataBind();
 
 
-                    int estadoActual =
-                        Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "IdEstado"));
+                //    int estadoActual =
+                //        Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "IdEstado"));
 
 
-                    ddlEstado.SelectedValue = estadoActual.ToString();
-                }
+                //    ddlEstado.SelectedValue = estadoActual.ToString();
+                //}
             }
         }
 
-        protected void dgvPedidos_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName == "CambiarEstado")
-            {
+        //protected void dgvPedidos_RowCommand(object sender, GridViewCommandEventArgs e)
+        //{
+        //    if (e.CommandName == "CambiarEstado")
+        //    {
 
-                int idPedido = Convert.ToInt32(e.CommandArgument);
-
-
-                Button btn = (Button)e.CommandSource;
+        //        int idPedido = Convert.ToInt32(e.CommandArgument);
 
 
-                GridViewRow fila = (GridViewRow)btn.NamingContainer;
+        //        Button btn = (Button)e.CommandSource;
 
 
-                DropDownList ddlEstado = (DropDownList)fila.FindControl("ddlEstado");
+        //        GridViewRow fila = (GridViewRow)btn.NamingContainer;
 
 
-                int nuevoEstado =
-                    Convert.ToInt32(ddlEstado.SelectedValue);
+        //        DropDownList ddlEstado = (DropDownList)fila.FindControl("ddlEstado");
+
+
+        //        int nuevoEstado =
+        //            Convert.ToInt32(ddlEstado.SelectedValue);
 
 
 
-                /*PedidoNegocio.CambiarEstado(
-                    idPedido,
-                    nuevoEstado
-                );*/
+        //        /*PedidoNegocio.CambiarEstado(
+        //            idPedido,
+        //            nuevoEstado
+        //        );*/
 
-                CargarPedidos();
-            }
-        }
+        //        CargarPedidos();
+        //    }
+        //}
 
     }
 }

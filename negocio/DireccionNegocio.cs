@@ -3,6 +3,7 @@ using EcommerceDominio.Usuarios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,6 +39,85 @@ namespace negocio
                 datos.cerrarConexion();
             }
 
+
+        }
+        public static void Agregar(int idCliente, Direccion direccion)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("spAltaDireccion");
+                datos.setearParametros("idCliente", idCliente);
+                datos.setearParametros("calle", direccion.Calle);
+                datos.setearParametros("numero", direccion.Numero);
+                datos.setearParametros("localidad", direccion.Localidad);
+                datos.setearParametros("codigoPostal", direccion.CodigoPostal);
+                datos.setearParametros("observaciones", direccion.Observaciones);
+
+                datos.ejecutarAccion();
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+
+        }
+
+        public static void Modificar(Direccion direccion)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("spModificarDireccion");
+                datos.setearParametros("id",direccion.Id);
+                datos.setearParametros("calle", direccion.Calle);
+                datos.setearParametros("numero", direccion.Numero);
+                datos.setearParametros("localidad", direccion.Localidad);
+                datos.setearParametros("codigoPostal", direccion.CodigoPostal);
+                datos.setearParametros("observaciones", direccion.Observaciones);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public static void Eliminar(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("DELETE FROM DIRECCIONES WHERE Id = " + id);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
 
         }
 

@@ -465,3 +465,17 @@ BEGIN
 UPDATE METODOS_DE_PAGO SET Estado = @estado WHERE Id = @id
 END
 GO
+
+CREATE PROCEDURE spModificarDireccion(
+@id INTEGER,
+@calle VARCHAR(50),
+@numero INTEGER,
+@localidad VARCHAR(50),
+@codigoPostal VARCHAR(20),
+@observaciones VARCHAR(150)
+)
+AS
+BEGIN
+UPDATE DIRECCIONES SET Calle = @calle, Numero = @numero, Localidad = @localidad, CodigoPostal = @codigoPostal, Observaciones = @observaciones WHERE Id = @id;
+END
+GO

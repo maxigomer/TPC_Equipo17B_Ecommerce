@@ -27,6 +27,37 @@
         <p class="text-muted">
             Tu pedido fue registrado correctamente.
         </p>
+        <asp:Panel ID="pnlTransferencia" runat="server" Visible="false">
+
+    <div class="alert alert-warning mt-4 text-start">
+
+        <h4>Datos para realizar la transferencia</h4>
+
+        <hr />
+
+        <p>
+            <strong>Alias:</strong> PacheTech.PT
+        </p>
+
+        <p>
+            <strong>CVU:</strong> 7482913100007483097815
+        </p>
+
+        <p>
+            <strong>Banco:</strong> Banco Nación
+        </p>
+
+        <p>
+            <strong>Titular:</strong> PacheTech SA
+        </p>
+
+        <p class="mb-0">
+            Una vez realizada la transferencia, envíanos el comprobante para confirmar tu pedido.
+        </p>
+
+    </div>
+
+</asp:Panel>
 
         <asp:Button
             ID="btnInicio"

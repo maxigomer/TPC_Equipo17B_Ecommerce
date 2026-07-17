@@ -66,7 +66,7 @@
             </div>
 
             <div class="card-body">
-                <asp:DropDownList runat="server" ID="ddlDirecciones" CssClass="form-select mb-3" ></asp:DropDownList>
+                <asp:DropDownList runat="server" ID="ddlDirecciones" CssClass="form-select mb-3" OnSelectedIndexChanged="ddlDirecciones_SelectedIndexChanged" AutoPostBack="true" ></asp:DropDownList>
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCalle" ErrorMessage="Campo Obligatorio" CssClass="text-danger" />
                 <asp:TextBox runat="server" CssClass="form-control mb-3" ID="txtCalle" placeholder="Calle" />
                 <div class="d-flex gap-3 mb-3">
@@ -93,7 +93,9 @@
 
                 </div>
                 <asp:RegularExpressionValidator runat="server" ControlToValidate="txtObservaciones" ValidationExpression="^.{0,150}$" ErrorMessage="Las observaciones no pueden superar 150 caracteres" CssClass="text-danger" Display="Dynamic" />
-                <asp:TextBox runat="server" CssClass="form-control" ID="txtObservaciones" placeholder="Observaciones (Opcional)" TextMode="MultiLine" Rows="5" />
+                <asp:TextBox runat="server" CssClass="form-control mb-3" ID="txtObservaciones" placeholder="Observaciones (Opcional)" TextMode="MultiLine" Rows="5" />
+                <asp:Button ID="btnGuardarDireccion" runat="server" Text="Guardar Direccion" CssClass="btn btn-success" OnClick="btnGuardarDireccion_Click" />
+                <asp:Button ID="btnEliminarDireccion" runat="server" Text="Eliminar Direccion" CssClass="btn btn-outline-danger ms-2" OnClick="btnEliminarDireccion_Click" Visible="false"  />
 
             </div>
 

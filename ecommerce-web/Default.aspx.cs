@@ -36,7 +36,7 @@ namespace ecommerce_web
                     rptProductos.DataSource = lista;
                     rptProductos.DataBind();
                     
-                    //imgBanner.ImageUrl = BannerNegocio.Url();
+                   //imgBanner.ImageUrl = BannerNegocio.Url();
                     /*Session.Add("listaProductos", negocio.listarActivos());
                     rptProductos.DataSource = (List<Producto>)Session["listaProductos"];
                     rptProductos.DataBind();

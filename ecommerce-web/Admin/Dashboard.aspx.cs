@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace ecommerce_web.Admin
 {
-    public partial class Dashboard : Page
+    public partial class Dashboard : System.Web.UI.Page
     {
         // Guarda el máximo de unidades vendidas del top productos para las barras de progreso
         private int _maxUnidades = 1;

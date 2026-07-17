@@ -7,7 +7,13 @@ namespace ecommerce_web.Cart
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["MetodoPago"] != null &&
+                Session["MetodoPago"].ToString() == "Transferencia")
+            {
+                //pnlTransferencia.Visible = true;
 
+                Session.Remove("MetodoPago");
+            }
         }
 
         protected void btnInicio_Click(object sender, EventArgs e)

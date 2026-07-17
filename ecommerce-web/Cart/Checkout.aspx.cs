@@ -132,7 +132,7 @@ namespace ecommerce_web.Cart
                     else if (idMetodo == 2) // Transferencia
                     {
                         PedidoNegocio.Compra((Carrito)Session["carrito"], UsuarioNegocio.GetCliente(usuario.Id), direccion, idMetodo, txtDniTransferencia.Text);
-                        
+
                         try
                         {
                             EmailNegocio emailService = new EmailNegocio();
@@ -143,9 +143,12 @@ namespace ecommerce_web.Cart
                         }
                         catch (Exception) { }
 
+                        Session["MetodoPago"] = "Transferencia";
+
                         Session["carrito"] = null;
                         Response.Redirect("~/Cart/CompraExitosa.aspx", false);
                     }
+               
                     else // Otros metodos
                     {
                         PedidoNegocio.Compra((Carrito)Session["carrito"], UsuarioNegocio.GetCliente(usuario.Id), direccion, idMetodo);

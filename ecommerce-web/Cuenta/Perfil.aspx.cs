@@ -22,10 +22,11 @@ namespace ecommerce_web.Cuenta
                 }
 
                 Usuario usuario = (Usuario)Session["usuario"];
-                
-                ClienteNegocio negocio = new ClienteNegocio();
+                Cliente cliente = UsuarioNegocio.GetCliente(usuario.Id);
 
-                Cliente cliente = negocio.ObtenerPorUsuario(usuario.Id);
+                //ClienteNegocio negocio = new ClienteNegocio();
+
+                //Cliente cliente = negocio.ObtenerPorUsuario(usuario.Id);
 
                 if (cliente != null)
                 {
@@ -39,9 +40,11 @@ namespace ecommerce_web.Cuenta
                     {
                         lblDni.Text = "Todavía no registraste tu DNI.";
                     }
+
+                    ActualizarDdlDirecciones();
                 }
 
-             
+
             }
         }
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -87,6 +90,106 @@ namespace ecommerce_web.Cuenta
             Session.Abandon();
 
             Response.Redirect("~/Default.aspx", false);
+        }
+
+        protected void ddlDirecciones_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idDireccion = int.Parse(ddlDirecciones.SelectedValue);
+
+            if (idDireccion == 0)
+            {
+
+                txtCalle.Text = "";
+                txtCodigoPostal.Text = "";
+                txtLocalidad.Text = "";
+                txtNumeroCalle.Text = "";
+                txtObservaciones.Text = "";
+                btnGuardarDireccion.Text = "Guardar Direccion";
+                btnEliminarDireccion.Visible = false;
+
+            }
+            else
+            {
+                Direccion direccion = DireccionNegocio.Listar(idDireccion);
+
+                txtCalle.Text = direccion.Calle;
+                txtCodigoPostal.Text = direccion.CodigoPostal;
+                txtLocalidad.Text = direccion.Localidad;
+                txtNumeroCalle.Text = direccion.Numero.ToString();
+                txtObservaciones.Text = direccion.Observaciones;
+                btnGuardarDireccion.Text = "Modificar Direccion";
+                btnEliminarDireccion.Visible = true;
+
+            }
+
+        }
+
+        protected void btnGuardarDireccion_Click(object sender, EventArgs e)
+        {
+            Direccion direccion = new Direccion();
+            Usuario usuario = (Usuario)Session["usuario"];
+            Cliente cliente = UsuarioNegocio.GetCliente(usuario.Id);
+            int idDireccion = int.Parse(ddlDirecciones.SelectedValue);
+
+            if (idDireccion == 0)
+            {
+                direccion.Calle = txtCalle.Text;
+                direccion.CodigoPostal = txtCodigoPostal.Text;
+                direccion.Localidad = txtLocalidad.Text;
+                direccion.Numero = int.Parse(txtNumeroCalle.Text);
+                direccion.Observaciones = txtObservaciones.Text;
+
+                DireccionNegocio.Agregar(cliente.Id, direccion);
+
+            }
+            else
+            {
+                direccion.Calle = txtCalle.Text;
+                direccion.CodigoPostal = txtCodigoPostal.Text;
+                direccion.Localidad = txtLocalidad.Text;
+                direccion.Numero = int.Parse(txtNumeroCalle.Text);
+                direccion.Observaciones = txtObservaciones.Text;
+                direccion.Id = idDireccion;
+                DireccionNegocio.Modificar(direccion);
+
+            }
+            ActualizarDdlDirecciones();
+
+
+
+        }
+
+        protected void btnEliminarDireccion_Click(object sender, EventArgs e)
+        {
+            int idDireccion = int.Parse(ddlDirecciones.SelectedValue);
+            DireccionNegocio.Eliminar(idDireccion);
+            ActualizarDdlDirecciones();
+
+
+        }
+
+        protected void ActualizarDdlDirecciones()
+        {
+            Usuario usuario = (Usuario)Session["usuario"];
+            Cliente cliente = UsuarioNegocio.GetCliente(usuario.Id);
+
+            if (cliente.Direcciones.Count() > 0)
+            {
+                cliente = UsuarioNegocio.GetCliente(usuario.Id);
+                ddlDirecciones.DataSource = cliente.Direcciones;
+                ddlDirecciones.DataValueField = "Id";
+                ddlDirecciones.DataTextField = "DireccionCompleta";
+                ddlDirecciones.DataBind();
+
+                txtCalle.Text = "";
+                txtCodigoPostal.Text = "";
+                txtLocalidad.Text = "";
+                txtNumeroCalle.Text = "";
+                txtObservaciones.Text = "";
+                btnGuardarDireccion.Text = "Guardar Direccion";
+            }
+            ddlDirecciones.Items.Insert(0, new ListItem("Nueva direccion", "0"));
+
         }
     }
 }

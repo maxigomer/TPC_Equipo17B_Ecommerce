@@ -115,6 +115,7 @@ namespace negocio
                     aux.Localidad = (string)datos.Lector["Localidad"];
                     aux.CodigoPostal = (string)datos.Lector["CodigoPostal"];
                     aux.Observaciones = (string)datos.Lector["Observaciones"];
+                    
 
                     cliente.Direcciones.Add(aux);
                 }

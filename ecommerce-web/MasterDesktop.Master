@@ -8,6 +8,8 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="shortcut icon" href="/Assets/icono.ico" type="image/x-icon">
+
 </head>
 <body class="d-flex flex-column min-vh-100">
     <form id="form1" runat="server" class="d-flex flex-column flex-grow-1">
@@ -19,14 +21,9 @@
                             <a class="navbar-brand d-flex align-items-center"
                                 href='<%= ResolveUrl("~/Default.aspx") %>'>
 
-                                <img src='<%= ResolveUrl("~/Assets/Logo.png") %>'
-                                    width="55"
-                                    height="55"
-                                    class="me-2" />
-
-                                <%--  <span class="text-white fw-bold fs-4">
-            C# Store
-        </span>--%>
+                                <img src='<%= ResolveUrl("~/Assets/PacheTech.png") %>' height="75" class="me-2" />
+                                <%--  <img src='<%= ResolveUrl("~/Assets/Logo.png") %>' width="55" height="55" class="me-2" /> --%>
+                                <%--  <span class="text-white fw-bold fs-4"> C# Store </span> --%>
 
                             </a>
                         </div>
@@ -97,7 +94,7 @@
     </form>
     <footer class="bg-dark text-light mt-auto py-4">
         <div class="container text-center">
-            <h4 class="fw-bold">C# Store</h4>
+            <h4 class="fw-bold">PacheTech</h4>
 
             <p class="mb-1">
                 Tu tienda online de tecnología

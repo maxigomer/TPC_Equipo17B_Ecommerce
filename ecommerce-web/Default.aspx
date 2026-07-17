@@ -56,15 +56,15 @@
     <div class="container-fluid px-0">
         <div class="container mt-4">
     <div class="bg-dark text-white rounded-4 p-5 shadow">
-        <h1 class="display-5 fw-bold">Bienvenido a C# Store</h1>
+        <h1 class="display-5 fw-bold">Bienvenido a PacheTech</h1>
 
         <p class="lead">
             Descubrí nuestros productos con los mejores precios.
         </p>
 
-        <a href="#productos" class="btn btn-warning btn-lg">
+          <%-- <a href="#productos" class="btn btn-warning btn-lg">
             Ver catálogo
-        </a>
+        </a> --%>
     </div>
 </div>
     </div>

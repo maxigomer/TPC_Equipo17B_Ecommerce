@@ -1,4 +1,4 @@
-﻿using EcommerceDominio.Carrito;
+using EcommerceDominio.Carrito;
 using EcommerceDominio.Usuarios;
 using negocio;
 using System;
@@ -63,6 +63,10 @@ namespace ecommerce_web.Cart
                     
                     ddlDirecciones.Items.Insert(0, new ListItem("Nueva direccion", "0"));
 
+                    MetodoPagoNegocio metodoNegocio = new MetodoPagoNegocio();
+                    rblMetodosPago.DataSource = metodoNegocio.Listar().Where(m => m.Estado == true).ToList();
+                    rblMetodosPago.DataBind();
+
                 }
 
 
@@ -101,29 +105,65 @@ namespace ecommerce_web.Cart
                     direccion.Id = -1;
                 }
 
-                if (rbTarjeta.Checked)
+                if (!string.IsNullOrEmpty(rblMetodosPago.SelectedValue))
                 {
-                    if (CheckoutNegocio.ProcesarCheckout(txtNumeroTarjeta.Text, txtNombreTarjeta.Text, txtVencimientoTarjeta.Text, txtCodigoSeguridadTarjeta.Text, carrito.GetTotal()))
+                    int idMetodo = int.Parse(rblMetodosPago.SelectedValue);
+
+                    if (idMetodo == 1) // Tarjeta
                     {
-                        PedidoNegocio.Compra((Carrito)Session["carrito"], UsuarioNegocio.GetCliente(usuario.Id), direccion, 1);
+                        if (CheckoutNegocio.ProcesarCheckout(txtNumeroTarjeta.Text, txtNombreTarjeta.Text, txtVencimientoTarjeta.Text, txtCodigoSeguridadTarjeta.Text, carrito.GetTotal()))
+                        {
+                            PedidoNegocio.Compra((Carrito)Session["carrito"], UsuarioNegocio.GetCliente(usuario.Id), direccion, idMetodo);
+                            
+                            try
+                            {
+                                EmailNegocio emailService = new EmailNegocio();
+                                string asunto = "¡Confirmación de Compra!";
+                                string cuerpo = $"Hola {txtNombre.Text},<br><br>Hemos recibido tu pedido correctamente pagado con tarjeta. El total fue de ${carrito.GetTotal()}.<br><br>¡Gracias por tu compra!";
+                                emailService.ArmarCorreo(txtEmail.Text, asunto, cuerpo);
+                                emailService.EnviarEmail();
+                            }
+                            catch (Exception) { }
+
+                            Session["carrito"] = null;
+                            Response.Redirect("~/Cart/CompraExitosa.aspx", false);
+                        }
+                    }
+                    else if (idMetodo == 2) // Transferencia
+                    {
+                        PedidoNegocio.Compra((Carrito)Session["carrito"], UsuarioNegocio.GetCliente(usuario.Id), direccion, idMetodo, txtDniTransferencia.Text);
+                        
+                        try
+                        {
+                            EmailNegocio emailService = new EmailNegocio();
+                            string asunto = "¡Confirmación de Compra (Pendiente de Transferencia)!";
+                            string cuerpo = $"Hola {txtNombre.Text},<br><br>Hemos recibido tu pedido. El total a transferir es de ${carrito.GetTotal()}.<br>Recuerda enviar el comprobante de transferencia con tu DNI ({txtDniTransferencia.Text}) para que procesemos tu envío.<br><br>¡Gracias por tu compra!";
+                            emailService.ArmarCorreo(txtEmail.Text, asunto, cuerpo);
+                            emailService.EnviarEmail();
+                        }
+                        catch (Exception) { }
+
                         Session["carrito"] = null;
                         Response.Redirect("~/Cart/CompraExitosa.aspx", false);
-
                     }
+                    else // Otros metodos
+                    {
+                        PedidoNegocio.Compra((Carrito)Session["carrito"], UsuarioNegocio.GetCliente(usuario.Id), direccion, idMetodo);
+                        
+                        try
+                        {
+                            EmailNegocio emailService = new EmailNegocio();
+                            string asunto = "¡Confirmación de Compra!";
+                            string cuerpo = $"Hola {txtNombre.Text},<br><br>Hemos recibido tu pedido por un total de ${carrito.GetTotal()}.<br><br>¡Gracias por tu compra!";
+                            emailService.ArmarCorreo(txtEmail.Text, asunto, cuerpo);
+                            emailService.EnviarEmail();
+                        }
+                        catch (Exception) { }
 
-                }
-                else if (rbTransferencia.Checked)
-                {
-                    PedidoNegocio.Compra((Carrito)Session["carrito"], UsuarioNegocio.GetCliente(usuario.Id), direccion, 2, txtDniTransferencia.Text);
-                    Session["carrito"] = null;
-                    Response.Redirect("~/Cart/CompraExitosa.aspx", false);
-
-
-                }
-
-
-
-            }
+                        Session["carrito"] = null;
+                        Response.Redirect("~/Cart/CompraExitosa.aspx", false);
+                    }
+                }            }
             catch (Exception ex)
             {
                 Session.Add("error", ex);
@@ -133,9 +173,8 @@ namespace ecommerce_web.Cart
 
         protected void MetodoPago_CheckedChanged(object sender, EventArgs e)
         {
-            pnlTarjeta.Visible = rbTarjeta.Checked;
-            pnlTransferencia.Visible = rbTransferencia.Checked;
-
+            pnlTarjeta.Visible = rblMetodosPago.SelectedValue == "1";
+            pnlTransferencia.Visible = rblMetodosPago.SelectedValue == "2";
         }
 
         protected void MetodoEntrega_CheckedChanged(object sender, EventArgs e)
@@ -152,7 +191,7 @@ namespace ecommerce_web.Cart
         }
         protected void cvMetodoPago_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            args.IsValid = rbTarjeta.Checked || rbTransferencia.Checked;
+            args.IsValid = !string.IsNullOrEmpty(rblMetodosPago.SelectedValue);
 
         }
 

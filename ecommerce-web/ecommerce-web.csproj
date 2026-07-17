@@ -105,6 +105,7 @@
     <Content Include="Admin\Productos.aspx" />
     <Content Include="Cuenta\Login.aspx" />
     <Content Include="Admin\Pedidos.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -145,6 +146,9 @@
     <Compile Include="Admin\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\DetallePedido.aspx.cs">
       <DependentUpon>DetallePedido.aspx</DependentUpon>
@@ -229,6 +233,9 @@
     </Compile>
     <Compile Include="Cuenta\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="MasterDesktop.Master.cs">
       <DependentUpon>MasterDesktop.Master</DependentUpon>

@@ -92,6 +92,12 @@
             </asp:ContentPlaceHolder>
         </div>
     </form>
+
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <img src="/Assets/PacheTech2.png" alt="Logo" width="200" />
+    </div>
+
+
     <footer class="bg-dark text-light mt-auto py-4">
         <div class="container text-center">
             <!--<h4 class="fw-bold">PacheTech</h4> -->

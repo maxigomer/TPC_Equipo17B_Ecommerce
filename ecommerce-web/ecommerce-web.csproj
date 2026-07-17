@@ -79,6 +79,7 @@
     <Content Include="Admin\Dashboard.aspx" />
     <Content Include="Cart\Cart.aspx" />
     <Content Include="Cart\Checkout.aspx" />
+    <Content Include="Cart\CompraExitosa.aspx" />
     <Content Include="Colecciones.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -174,11 +175,11 @@
       <DependentUpon>Checkout.aspx</DependentUpon>
     </Compile>
     <Compile Include="Cart\CompraExitosa.aspx.cs">
-      <DependentUpon>Checkout.aspx</DependentUpon>
+      <DependentUpon>CompraExistosa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Cart\CompraExitosa.aspx.designer.cs">
-      <DependentUpon>Checkout.aspx</DependentUpon>
+      <DependentUpon>CompraExitosa.aspx</DependentUpon>
     </Compile>
     <Compile Include="Colecciones.aspx.cs">
       <DependentUpon>Colecciones.aspx</DependentUpon>

@@ -49,7 +49,7 @@ namespace ecommerce_web
                     Session.Add("usuario", usuario);
                     if (usuario.Rol.Id == 1)
                     {
-                        Response.Redirect("~/Admin/DefaultAdmin.aspx", false);
+                        Response.Redirect("~/Admin/Dashboard.aspx", false);
                     }
                     else
                     {

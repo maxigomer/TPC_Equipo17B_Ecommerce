@@ -47,6 +47,7 @@
     <Compile Include="CheckoutNegocio.cs" />
     <Compile Include="ClienteNegocio.cs" />
     <Compile Include="ColeccionNegocio.cs" />
+    <Compile Include="DashboardNegocio.cs" />
     <Compile Include="DireccionNegocio.cs" />
     <Compile Include="EmailNegocio.cs" />
     <Compile Include="ImagenNegocio.cs" />

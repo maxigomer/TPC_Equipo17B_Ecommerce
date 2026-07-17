@@ -1,4 +1,4 @@
-﻿using negocio;
+using negocio;
 using EcommerceDominio.Usuarios;
 using System;
 using System.Collections.Generic;
@@ -56,6 +56,20 @@ namespace ecommerce_web.Cuenta
                     usuario.Clave = cliente.Usuario.Clave;
                     if (UsuarioNegocio.Login(usuario))
                     {
+                        // Enviar correo de bienvenida
+                        try
+                        {
+                            EmailNegocio emailService = new EmailNegocio();
+                            string asunto = "¡Bienvenido a TuEcommerce!";
+                            string cuerpo = $"Hola {cliente.Nombre},<br><br>Gracias por registrarte en nuestra plataforma. ¡Esperamos que disfrutes comprando con nosotros!";
+                            emailService.ArmarCorreo(cliente.Email, asunto, cuerpo);
+                            emailService.EnviarEmail();
+                        }
+                        catch (Exception)
+                        {
+                            // Ignorar error de correo para no interrumpir el registro
+                        }
+
                         Session.Add("usuario", usuario);
                         Response.Redirect("~/Default.aspx", false);
 

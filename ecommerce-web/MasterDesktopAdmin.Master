@@ -59,23 +59,25 @@
                     <hr />
                     <ul class="nav nav-pills flex-column mb-auto">
                         <li class="nav-item">
-                            <a href="DefaultAdmin.aspx" class="nav-link active" aria-current="page">
-                                Inicio
+                            <a href="Dashboard.aspx" class="nav-link active" aria-current="page">
+                                📊 Dashboard
                             </a>
                         </li>
                         <li>
-                            <a href="Pedidos.aspx" class="nav-link text-white">Pedidos</a>
+                            <a href="Pedidos.aspx" class="nav-link text-white">🛒 Pedidos</a>
                         </li>
                         <li>
-                            <a href="Clientes.aspx" class="nav-link text-white">Clientes</a>
+                            <a href="Clientes.aspx" class="nav-link text-white">👥 Clientes</a>
                         </li>
                         <li>
-                            <a href="Productos.aspx" class="nav-link text-white">Productos</a>
+                            <a href="Productos.aspx" class="nav-link text-white">📦 Productos</a>
                         </li>
                         <li>
-                            <a href="AdminMetodosPago.aspx" class="nav-link text-white">Métodos de Pago</a>
+                            <a href="AdminMetodosPago.aspx" class="nav-link text-white">💳 Métodos de Pago</a>
                         </li>
-
+                        <li>
+                            <a href="DefaultAdmin.aspx" class="nav-link text-white">⚙️ Config. Home</a>
+                        </li>
                     </ul>
 
 

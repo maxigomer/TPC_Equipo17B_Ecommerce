@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Checkout.aspx.cs" Inherits="ecommerce_web.Cart.Checkout" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Checkout.aspx.cs" Inherits="ecommerce_web.Cart.Checkout" %>
 
 <!DOCTYPE html>
 
@@ -125,17 +125,8 @@
                                     Display="Dynamic" OnServerValidate="cvMetodoPago_ServerValidate" ClientValidationFunction="validarMetodoPago" />
 
                                 <div class="card shadow-sm mb-3 p-3">
-                                    <div class="form-check">
-                                        <asp:RadioButton runat="server" ID="rbTarjeta" GroupName="MetodoPago" AutoPostBack="true" OnCheckedChanged="MetodoPago_CheckedChanged" />
-                                        <label class="form-check-label fw-semibold" for="<%= rbTarjeta.ClientID %>">Tarjeta de Credito/Debito</label>
-                                    </div>
-                                </div>
-
-                                <div class="card shadow-sm mb-3 p-3">
-                                    <div class="form-check">
-                                        <asp:RadioButton runat="server" ID="rbTransferencia" GroupName="MetodoPago" AutoPostBack="true" OnCheckedChanged="MetodoPago_CheckedChanged" />
-                                        <label class="form-check-label fw-semibold" for="<%= rbTransferencia.ClientID %>">Transferencia Bancaria</label>
-                                    </div>
+                                    <asp:RadioButtonList runat="server" ID="rblMetodosPago" AutoPostBack="true" OnSelectedIndexChanged="MetodoPago_CheckedChanged" DataValueField="Id" DataTextField="Nombre" CellPadding="10">
+                                    </asp:RadioButtonList>
                                 </div>
 
                                 <asp:Panel ID="pnlTarjeta" runat="server" Visible="false">

@@ -337,8 +337,32 @@ namespace negocio
             finally
             {
                 datos.cerrarConexion();
-                
+
             }
+        }
+
+        public static void ActualizarEstadoPedido(int idPedido, int idEstado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("spActualizarEstadoPedido");
+                datos.setearParametros("idPedido", idPedido);
+                datos.setearParametros("idEstado", idEstado);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
         }
     }
 }

@@ -33,5 +33,12 @@ namespace ecommerce_web
         {
          Response.Redirect("Productos.aspx?buscar=" + txtBuscar.Text);
         }
+
+        protected void btnLogoutMaster_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.Abandon();
+            Response.Redirect("~/Default.aspx", false);
+        }
     }
 }

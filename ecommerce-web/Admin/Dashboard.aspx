@@ -156,7 +156,7 @@
                         AutoPostBack="false">
                         <asp:ListItem Value="">Todos</asp:ListItem>
                         <asp:ListItem Value="Marca">Por Marca</asp:ListItem>
-                        <asp:ListItem Value="Categoria">Por Categoría</asp:ListItem>
+                        <asp:ListItem Value="Categoria">Por Categoria</asp:ListItem>
                     </asp:DropDownList>
                 </div>
                 <div>
@@ -172,28 +172,28 @@
             <!-- ── KPI Cards ───────────────────────────── -->
             <div class="kpi-grid">
                 <div class="kpi-card green">
-                    <div class="kpi-icon">💰</div>
+                    <%--<div class="kpi-icon">💰</div>--%>
                     <div class="kpi-label">Ingresos Totales</div>
                     <div class="kpi-value">$<asp:Literal runat="server" ID="litIngresos" /></div>
                     <div class="kpi-sub"><asp:Literal runat="server" ID="litCantPedidos" /> pedidos</div>
                 </div>
                 <div class="kpi-card blue">
-                    <div class="kpi-icon">🛒</div>
+                    <%--<div class="kpi-icon">🛒</div>--%>
                     <div class="kpi-label">Ticket Promedio</div>
                     <div class="kpi-value">$<asp:Literal runat="server" ID="litTicket" /></div>
                     <div class="kpi-sub">Por compra</div>
                 </div>
                 <div class="kpi-card purple">
-                    <div class="kpi-icon">👥</div>
+                    <%--<div class="kpi-icon">👥</div>--%>
                     <div class="kpi-label">Clientes</div>
                     <div class="kpi-value"><asp:Literal runat="server" ID="litClientes" /></div>
                     <div class="kpi-sub">Registrados en total</div>
                 </div>
                 <div class="kpi-card orange">
-                    <div class="kpi-icon">📦</div>
+                    <%--<div class="kpi-icon">📦</div>--%>
                     <div class="kpi-label">Productos Activos</div>
                     <div class="kpi-value"><asp:Literal runat="server" ID="litProductos" /></div>
-                    <div class="kpi-sub">En catálogo</div>
+                    <div class="kpi-sub">En catalogo</div>
                 </div>
             </div>
 
@@ -201,7 +201,8 @@
             <div class="row g-3 mb-3">
                 <div class="col-lg-8">
                     <div class="dash-card" style="height:340px;">
-                        <div class="dash-card-title"><span>📈</span> Evolución de Ventas</div>
+                        <%--<div class="dash-card-title"><span>📈</span> Evolución de Ventas</div>--%>
+                        <div class="dash-card-title">Evolucion de Ventas</div>
                         <div class="chart-wrap" style="height:270px;">
                             <canvas id="chartVentas"></canvas>
                         </div>
@@ -209,7 +210,8 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="dash-card" style="height:340px;">
-                        <div class="dash-card-title"><span>🍩</span> Ventas por Categoría</div>
+                        <%--<div class="dash-card-title"><span>🍩</span> Ventas por Categoría</div>--%>
+                        <div class="dash-card-title">Ventas por Categoria</div>
                         <div class="chart-wrap" style="height:270px;">
                             <canvas id="chartCategoria"></canvas>
                         </div>
@@ -222,7 +224,8 @@
                 <!-- Top Productos -->
                 <div class="col-lg-6">
                     <div class="dash-card">
-                        <div class="dash-card-title"><span>🏆</span> Top 5 Productos Más Vendidos</div>
+                        <%--<div class="dash-card-title"><span>🏆</span> Top 5 Productos Más Vendidos</div>--%>
+                        <div class="dash-card-title">Top 5 Productos Mas Vendidos</div>
                         <asp:Repeater runat="server" ID="rpTopProductos">
                             <HeaderTemplate>
                                 <table class="dash-table">
@@ -258,7 +261,8 @@
                 <!-- Productos Sin Ventas -->
                 <div class="col-lg-6">
                     <div class="dash-card">
-                        <div class="dash-card-title"><span>⚠️</span> Productos Sin Ventas (Stock Estancado)</div>
+                        <%--<div class="dash-card-title"><span>⚠️</span> Productos Sin Ventas (Stock Estancado)</div>--%>
+                        <div class="dash-card-title">Productos Sin Ventas (Stock Estancado)</div>
                         <asp:Repeater runat="server" ID="rpSinVentas">
                             <HeaderTemplate>
                                 <table class="dash-table">
@@ -281,7 +285,8 @@
                             </ItemTemplate>
                             <FooterTemplate></tbody></table></FooterTemplate>
                         </asp:Repeater>
-                        <asp:Label runat="server" ID="lblSinVentasVacio" Text="🎉 ¡Todos los productos tuvieron ventas en el período!" 
+                        <%--<asp:Label runat="server" ID="lblSinVentasVacio" Text="🎉 ¡Todos los productos tuvieron ventas en el período!"--%>
+                        <asp:Label runat="server" ID="lblSinVentasVacio" Text="¡Todos los productos tuvieron ventas en el periodo!"
                             style="color:#34d399;font-size:13px;display:none;" />
                     </div>
                 </div>
@@ -289,7 +294,8 @@
 
             <!-- ── Últimos Pedidos ─────────────────────── -->
             <div class="dash-card mb-3">
-                <div class="dash-card-title"><span>🕐</span> Últimos 10 Pedidos</div>
+                <%--<div class="dash-card-title"><span>🕐</span> Últimos 10 Pedidos</div>--%>
+                <div class="dash-card-title">Últimos 10 Pedidos</div>
                 <asp:GridView runat="server" ID="gvUltimosPedidos" AutoGenerateColumns="false"
                     CssClass="dash-table" GridLines="None" ShowHeaderWhenEmpty="true"
                     EmptyDataText="No hay pedidos en este período.">

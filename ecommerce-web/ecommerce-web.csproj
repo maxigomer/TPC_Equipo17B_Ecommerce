@@ -96,6 +96,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\pachetech-theme.css" />
     <Content Include="Content\site.css" />
     <Content Include="Cuenta\Perfil.aspx" />
     <Content Include="Cuenta\Register.aspx" />

@@ -9,7 +9,7 @@
     </asp:ContentPlaceHolder>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="shortcut icon" href="/Assets/icono.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/Assets/icon.ico" type="image/x-icon">
 </head>
 <body>
     <form id="form1" runat="server">
@@ -18,7 +18,7 @@
                 <div class="row w-100 align-items-center">
                     <div class="col-2">
                         <a class="navbar-brand p-1">
-                            <img src="/Assets/PacheTech.png" alt="Logo" height="75" />
+                            <img src="/Assets/PacheTech1.png" alt="Logo" height="75" />
                              <%-- <img src="/Assets/notion.svg" alt="Logo" width="50" height="50" /> --%>
                         </a>
 
@@ -57,31 +57,28 @@
 
             <div class="d-flex">
                 <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark vh-100" style="width: 180px">
-                    <span>Sidebar</span>
+                    <span>Panel</span>
                     <hr />
                     <ul class="nav nav-pills flex-column mb-auto">
                         <li class="nav-item">
-                            <a href="Dashboard.aspx" class="nav-link active" aria-current="page">
-                                📊 Dashboard
-                            </a>
+                            <a href="Dashboard.aspx" class="nav-link active" aria-current="page">Dashboard</a>
                         </li>
                         <li>
-                            <a href="Pedidos.aspx" class="nav-link text-white">🛒 Pedidos</a>
+                            <a href="Pedidos.aspx" class="nav-link text-white">Pedidos</a>
                         </li>
                         <li>
-                            <a href="Clientes.aspx" class="nav-link text-white">👥 Clientes</a>
+                            <a href="Clientes.aspx" class="nav-link text-white">Clientes</a>
                         </li>
                         <li>
-                            <a href="Productos.aspx" class="nav-link text-white">📦 Productos</a>
+                            <a href="Productos.aspx" class="nav-link text-white">Productos</a>
                         </li>
                         <li>
-                            <a href="AdminMetodosPago.aspx" class="nav-link text-white">💳 Métodos de Pago</a>
+                            <a href="AdminMetodosPago.aspx" class="nav-link text-white">Métodos de Pago</a>
                         </li>
                         <li>
-                            <a href="DefaultAdmin.aspx" class="nav-link text-white">⚙️ Config. Home</a>
+                            <a href="DefaultAdmin.aspx" class="nav-link text-white">Configuración</a>
                         </li>
                     </ul>
-
 
                 </div>
                 <div class="flex-grow-1 p-3">

@@ -46,7 +46,7 @@
                                     <a class="dropdown-item" href="#">Ajustes</a>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="btnLogoutMaster" runat="server" CssClass="dropdown-item" OnClick="btnLogoutMaster_Click">Volver al inicio y salir de la sesión</asp:LinkButton>
+                                    <asp:LinkButton ID="btnLogoutMaster" runat="server" CssClass="dropdown-item" OnClick="btnLogoutMaster_Click">Volver al inicio y salir de la sesion</asp:LinkButton>
                                 </li>
 
                             </ul>
@@ -58,8 +58,8 @@
             </div>
         </nav>
 
-            <div class="d-flex">
-                <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark vh-100" style="width: 180px">
+            <div class="d-flex" style="min-height: calc(100vh - 80px);">
+                <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 180px; min-height: 100%;">
                     <span>Panel</span>
                     <hr />
                     <ul class="nav nav-pills flex-column mb-auto">

@@ -91,11 +91,6 @@
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-        <center>
-        <img src="/Assets/PacheTech2.png" alt="Logo" width="175"/>
-        </center>
-        <!-- Imagen de marca en el fondo: no es parte del footer -->
-        <div class="site-graphic" aria-hidden="true"></div>
     </form>
     <footer class="bg-dark text-light mt-auto py-4">
         <div class="container text-center">

@@ -3,7 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background: #0f1117; }
+        html, body { 
+            height: 100%; 
+            margin: 0; 
+            padding: 0;
+        }
+        body { font-family: 'Inter', sans-serif; background: #fff; }
 
         /* ── Filtros ── */
         .filter-bar {
@@ -99,9 +104,20 @@
         /* ── Tabla personalizada ── */
         .dash-table { width: 100%; border-collapse: separate; border-spacing: 0; }
         .dash-table thead th {
-            color: #8b92b8; font-size: 11px; font-weight: 600;
+            color: #e2e5f0; font-size: 11px; font-weight: 600;
             text-transform: uppercase; letter-spacing: .05em;
-            padding: 8px 12px; border-bottom: 1px solid #2d3148;
+            padding: 12px 8px; border-bottom: 2px solid #6366f1;
+            background: #0f1117;
+        }
+        /* Encabezado de GridView (primera fila) */
+        .dash-table tr:first-child td {
+            color: #e2e5f0 !important;
+            font-weight: 600 !important;
+            text-transform: uppercase;
+            font-size: 11px !important;
+            padding: 12px 8px !important;
+            background: #0f1117 !important;
+            border-bottom: 2px solid #6366f1 !important;
         }
         .dash-table tbody tr { transition: background .15s; }
         .dash-table tbody tr:hover td { background: #1e2238; }
@@ -295,28 +311,30 @@
             <!-- ── Últimos Pedidos ─────────────────────── -->
             <div class="dash-card mb-3">
                 <%--<div class="dash-card-title"><span>🕐</span> Últimos 10 Pedidos</div>--%>
-                <div class="dash-card-title">Últimos 10 Pedidos</div>
+                <div class="dash-card-title">Ultimos 10 Pedidos</div>
                 <asp:GridView runat="server" ID="gvUltimosPedidos" AutoGenerateColumns="false"
-                    CssClass="dash-table" GridLines="None" ShowHeaderWhenEmpty="true"
-                    EmptyDataText="No hay pedidos en este período.">
+                    CssClass="dash-table" GridLines="None" ShowHeaderWhenEmpty="true" ShowHeader="true"
+                    EmptyDataText="No hay pedidos en este periodo.">
                     <Columns>
-                        <asp:BoundField DataField="Id" HeaderText="# Pedido" ItemStyle-Width="70px" />
-                        <asp:BoundField DataField="NombreCliente" HeaderText="Cliente" />
-                        <asp:BoundField DataField="Fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy HH:mm}" />
+                        <asp:BoundField DataField="Id" HeaderText="# Pedido" ItemStyle-Width="70px" HeaderStyle-ForeColor="White"/>
+                        <asp:BoundField DataField="NombreCliente" HeaderText="Cliente" HeaderStyle-ForeColor="White"/>
+                        <asp:BoundField DataField="Fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy HH:mm}" HeaderStyle-ForeColor="White"/>
                         <asp:TemplateField HeaderText="Total">
+                            <HeaderStyle ForeColor="White"></HeaderStyle>
                             <ItemTemplate>
                                 <span style="color:#34d399;font-weight:600;">$<%# string.Format("{0:N0}", Eval("Total")) %></span>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Estado">
+                            <HeaderStyle ForeColor="White"></HeaderStyle>
                             <ItemTemplate>
                                 <span class='<%# GetBadgeClass(Eval("Estado").ToString()) %>'><%# Eval("Estado") %></span>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="">
                             <ItemTemplate>
-                                <a href='DetallePedido.aspx?id=<%# Eval("Id") %>' 
-                                   style="color:#6366f1;font-size:12px;text-decoration:none;">Ver →</a>
+                                <a href="DetallePedido.aspx?id=<%# Eval("Id") %>" 
+                                   style="color:#6366f1;font-size:12px;text-decoration:none;">Ver mas</a>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
